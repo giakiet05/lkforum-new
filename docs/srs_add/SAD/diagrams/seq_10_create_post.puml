@@ -1,0 +1,36 @@
+@startuml seq_10_create_post
+title Sequence Diagram: UC-10 Create Post
+
+actor User
+participant "User Web" as Frontend
+participant "Post Controller" as Controller
+participant "Post Service" as Service
+participant "Community Repo" as CommRepo
+participant "Cloudinary" as Cloudinary
+participant "Post Repo" as PostRepo
+participant "Event Bus\n(Go Channels)" as EventBus
+
+User -> Frontend: Fill post data & attach media
+Frontend -> Controller: POST /api/posts (multipart form)
+Controller -> Service: Create Post
+Service -> CommRepo: Verify community membership
+CommRepo --> Service: Membership valid
+
+alt Media files attached
+    Service -> Cloudinary: Upload media stream
+    Cloudinary --> Service: Return Media URLs & IDs
+end
+
+Service -> PostRepo: Insert new Post record
+PostRepo --> Service: Post created (ID)
+
+Service -> EventBus: Publish PostCreatedEvent
+note right of EventBus
+  Background goroutines handle 
+  moderation and notifications
+end note
+
+Service --> Controller: Created Post Data
+Controller --> Frontend: 201 Created
+Frontend --> User: Redirect to new post
+@enduml

@@ -1,0 +1,31 @@
+@startuml seq_27_assign_roles
+title Sequence Diagram: UC-27 Assign Roles
+
+actor Owner
+participant "User Web" as Frontend
+participant "Role Controller" as Controller
+participant "Role Service" as Service
+participant "Community Repo" as Repo
+participant "Event Bus\n(Go Channels)" as EventBus
+
+Owner -> Frontend: Invite member as Moderator
+Frontend -> Controller: POST /api/communities/{id}/roles {user_id, role: "moderator"}
+Controller -> Service: Assign Role
+Service -> Repo: Validate creator/owner permissions
+Repo --> Service: Permissions valid
+
+Service -> Repo: Insert moderator invitation/assignment record
+Repo --> Service: Record created
+
+Service -> EventBus: Publish RoleAssignedEvent
+note right of EventBus
+  Background goroutine notifies
+  the target user
+end note
+
+Service -> Repo: Fetch updated role list
+Repo --> Service: Role list
+Service --> Controller: Updated Role List
+Controller --> Frontend: 200 OK
+Frontend --> Owner: Refresh role management UI
+@enduml

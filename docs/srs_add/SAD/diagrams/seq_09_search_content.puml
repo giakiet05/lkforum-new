@@ -1,0 +1,37 @@
+@startuml seq_09_search_content
+title Sequence Diagram: UC-09 Search Content
+
+actor User
+participant "User Web" as Frontend
+participant "Search Controller" as Controller
+participant "Search Service" as Service
+participant "Post Repo" as PostRepo
+participant "User Repo" as UserRepo
+participant "Community Repo" as CommunityRepo
+
+User -> Frontend: Enter keyword and submit search
+Frontend -> Controller: GET /api/search?q={keyword}
+Controller -> Service: Perform Search (keyword)
+Service -> Service: Normalize query keyword
+
+par Search executing in parallel goroutines
+    Service -> PostRepo: Search Posts
+    Service -> UserRepo: Search Users
+    Service -> CommunityRepo: Search Communities
+    PostRepo --> Service: Post Results
+    UserRepo --> Service: User Results
+    CommunityRepo --> Service: Community Results
+end
+
+Service -> Service: Aggregate and sort results
+
+alt Results found
+    Service --> Controller: Aggregated Results
+    Controller --> Frontend: 200 OK (Results)
+    Frontend --> User: Display Search Results
+else No results
+    Service --> Controller: Empty Results
+    Controller --> Frontend: 200 OK (Empty)
+    Frontend --> User: Display "No results found"
+end
+@enduml

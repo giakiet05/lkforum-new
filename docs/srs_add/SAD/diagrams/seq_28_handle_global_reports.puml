@@ -1,0 +1,31 @@
+@startuml seq_28_handle_global_reports
+title Sequence Diagram: UC-28 Handle Global Reports
+
+actor Admin
+participant "Admin Web" as Frontend
+participant "Admin Report Controller" as Controller
+participant "Report Service" as Service
+participant "Report Repo" as Repo
+
+Admin -> Frontend: Open Global Reports Dashboard
+Frontend -> Controller: GET /api/admin/reports?filter=...
+Controller -> Service: Get Reports
+Service -> Repo: Validate Admin Access
+Repo --> Service: Access valid
+Service -> Repo: Fetch filtered reports
+Repo --> Service: List of Reports
+Service --> Controller: Reports Data
+Controller --> Frontend: 200 OK
+Frontend --> Admin: Display reports table
+
+Admin -> Frontend: Select report(s) & Click Delete
+Frontend -> Controller: DELETE /api/admin/reports {report_ids}
+Controller -> Service: Delete Reports
+Service -> Repo: Validate Admin Access
+Repo --> Service: Access valid
+Service -> Repo: Soft/Hard delete selected report records
+Repo --> Service: Reports deleted
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> Admin: Remove reports from dashboard UI
+@enduml

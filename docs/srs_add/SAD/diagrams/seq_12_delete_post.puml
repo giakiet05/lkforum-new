@@ -1,0 +1,35 @@
+@startuml seq_12_delete_post
+title Sequence Diagram: UC-12 Delete Post
+
+actor User
+participant "User Web" as Frontend
+participant "Post Controller" as Controller
+participant "Post Service" as Service
+participant "Post Repo" as PostRepo
+participant "User Repo" as UserRepo
+
+User -> Frontend: Click delete post & confirm
+Frontend -> Controller: DELETE /api/posts/{id}
+Controller -> Service: Delete Post (userID, postID)
+Service -> PostRepo: Find post by ID
+PostRepo --> Service: Post Data
+Service -> Service: Verify delete permission (Author or Mod/Admin)
+
+alt User is authorized
+    Service -> PostRepo: Soft delete post (set deleted_at)
+    PostRepo --> Service: Post marked deleted
+    
+    alt User is the Author
+        Service -> UserRepo: Decrease user post count
+        UserRepo --> Service: Count updated
+    end
+    
+    Service --> Controller: Success
+    Controller --> Frontend: 200 OK
+    Frontend --> User: Remove post from UI
+else Not authorized
+    Service --> Controller: Forbidden Error
+    Controller --> Frontend: 403 Forbidden
+    Frontend --> User: Show error message
+end
+@enduml

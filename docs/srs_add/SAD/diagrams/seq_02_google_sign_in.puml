@@ -1,0 +1,36 @@
+@startuml seq_02_google_sign_in
+title Sequence Diagram: UC-02.2 Sign In (Google OAuth)
+
+actor User
+participant "User Web" as Frontend
+participant "Auth Controller" as Controller
+participant "Auth Service" as Service
+participant "Google OAuth" as Google
+participant "User Repository" as Repo
+participant "Redis Cache" as Redis
+
+User -> Frontend: Click "Login with Google"
+Frontend -> Controller: GET /api/auth/google/login
+Controller --> Frontend: Redirect to Google Consent Screen
+Frontend -> Google: Redirect User
+User -> Google: Authorize application
+Google --> Frontend: Redirect to callback URL with Auth Code
+Frontend -> Controller: GET /api/auth/google/callback?code=...
+Controller -> Service: Process Google Callback
+Service -> Google: Exchange Auth Code for Tokens
+Google --> Service: Google Access Token
+Service -> Google: Fetch User Profile
+Google --> Service: Profile Data (Email, Name, Avatar)
+Service -> Repo: Find User by Google ID or Email
+alt User exists
+    Repo --> Service: Existing User
+else User not found
+    Service -> Repo: Create new User
+    Repo --> Service: New User created
+end
+Service -> Service: Generate Access & Refresh Tokens
+Service -> Redis: Store Auth State (Refresh Token)
+Service --> Controller: Tokens & User Info
+Controller --> Frontend: Redirect to Home with Tokens
+Frontend --> User: Display Home Page
+@enduml

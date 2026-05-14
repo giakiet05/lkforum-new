@@ -1,0 +1,33 @@
+@startuml seq_15_vote_on_content
+title Sequence Diagram: UC-15 Vote on Content
+
+actor User
+participant "User Web" as Frontend
+participant "Vote Controller" as Controller
+participant "Vote Service" as Service
+participant "Target Repo" as TargetRepo
+participant "Vote Repo" as VoteRepo
+
+User -> Frontend: Click Upvote or Downvote
+Frontend -> Controller: POST /api/votes {target_id, target_type, value}
+Controller -> Service: Submit Vote (targetID, type, value)
+Service -> TargetRepo: Verify target exists & is visible
+TargetRepo --> Service: Target is valid
+
+Service -> VoteRepo: Find existing vote by User & Target
+VoteRepo --> Service: Existing vote state (if any)
+
+alt New vote
+    Service -> VoteRepo: Create new vote record
+else Change vote (Up to Down, Down to Up)
+    Service -> VoteRepo: Update vote record
+else Remove vote (Click same button again)
+    Service -> VoteRepo: Delete vote record
+end
+
+Service -> TargetRepo: Recalculate & update total score
+TargetRepo --> Service: New score updated
+Service --> Controller: Updated Vote Totals
+Controller --> Frontend: 200 OK
+Frontend --> User: Update vote count UI
+@enduml

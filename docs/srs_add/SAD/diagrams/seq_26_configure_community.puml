@@ -1,0 +1,27 @@
+@startuml seq_26_configure_community
+title Sequence Diagram: UC-26 Configure Community
+
+actor Moderator
+participant "User Web" as Frontend
+participant "Community Controller" as Controller
+participant "Community Service" as Service
+participant "Cloudinary" as Cloudinary
+participant "Community Repo" as Repo
+
+Moderator -> Frontend: Update settings & media, then Save
+Frontend -> Controller: PUT /api/communities/{id}/settings (multipart form)
+Controller -> Service: Update Community Settings
+Service -> Repo: Verify ownership or moderator access
+Repo --> Service: Access confirmed
+
+alt New avatar or banner uploaded
+    Service -> Cloudinary: Upload new image stream
+    Cloudinary --> Service: Return Media URLs & IDs
+end
+
+Service -> Repo: Update Community record in DB
+Repo --> Service: Record updated
+Service --> Controller: Saved Settings Data
+Controller --> Frontend: 200 OK
+Frontend --> Moderator: Show success message & refresh UI
+@enduml

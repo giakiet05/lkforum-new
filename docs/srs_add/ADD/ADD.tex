@@ -1,0 +1,541 @@
+\documentclass{scrreprt}
+\usepackage{listings}
+\usepackage{underscore}
+\usepackage{graphicx}
+\usepackage[bookmarks=true]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{float}
+\usepackage{enumitem}
+\setlist[itemize]{topsep=4pt, itemsep=4pt, parsep=0pt, partopsep=0pt}
+\usepackage{pdflscape}
+\usepackage{array}
+\usepackage{tabularray}
+
+\UseTblrLibrary{booktabs}
+\DefTblrTemplate{firsthead,middlehead,lasthead}{default}{}
+
+\DefTblrTemplate{firstfoot}{default}{
+  \UseTblrTemplate{caption}{default}
+}
+
+\DefTblrTemplate{middlefoot}{default}{
+  \UseTblrTemplate{capcont}{default}
+}
+
+\DefTblrTemplate{lastfoot}{default}{
+  \UseTblrTemplate{caption}{default}
+}
+
+\usepackage[
+    a4paper,
+    left=2cm,
+    right=2cm,
+    top=3cm,
+    bottom=3cm
+]{geometry}
+
+
+\hypersetup{
+    bookmarks=false,    % show bookmarks bar?
+    pdftitle={Attribute-Driven Design Document},    % title
+    pdfauthor={Quach Gia Kiet},                     % author
+    pdfsubject={ADD for Community Social Network LKForum},
+    pdfkeywords={Website, ADD, Software Architecture},
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,       % color of internal links
+    citecolor=black,       % color of links to bibliography
+    filecolor=black,        % color of file links
+    urlcolor=purple,        % color of external links
+    linktoc=page            % only page is linked
+}%
+\def\myversion{1.4}
+\date{}
+
+\begin{document}
+
+\begin{flushright}
+    \rule{16cm}{5pt}\vskip1cm
+    \begin{bfseries}
+        \Huge{ATTRIBUTE-DRIVEN \\ DESIGN DOCUMENT}\\
+        \vspace{1.5cm}
+        for\\
+        \vspace{1.5cm}
+        LKFORUM WEBSITE\\
+        \vspace{1.5cm}
+        \LARGE{Version \myversion}\\
+        \vspace{1.5cm}
+        Prepared by : Quach Gia Kiet\\
+        \vspace{1.5cm}
+        Submitted to : Nguyen Trinh Dong \\Lecturer\\
+        \vspace{1.5cm}
+        \today\\
+    \end{bfseries}
+\end{flushright}
+
+\tableofcontents
+
+\chapter{Design Constraints}
+
+\begin{itemize}[leftmargin=2cm]
+    \item \textbf{Performance:} The system must deliver real-time experiences with low latency. It requires the use of the \textbf{Go/Gin} framework for high-concurrency request handling, \textbf{Redis caching} to offload database reads, and an \textbf{Event-Driven} architecture using in-memory \textbf{Go Channels} for non-blocking asynchronous tasks.
+    \item \textbf{Security:} The system must protect user data and ensure strict access control. It mandates the use of \textbf{JSON Web Tokens (JWT)} for authentication, \textbf{Role-Based Access Control (RBAC)} for authorization, and \textbf{End-to-End Encryption (E2EE)} to guarantee data privacy in private messaging.
+    \item \textbf{Availability:} The platform must maintain high uptime and recover quickly from faults. It requires \textbf{Docker containerization} to isolate services and leverage automated restart policies upon failure, relying on a stateless backend design.
+    \item \textbf{Maintainability:} The architecture must be easy to modify and extend. It enforces a strict \textbf{Layered Architecture} (Controllers, Services, Repositories) and the use of abstract \textbf{Interfaces} to ensure high cohesion, loose coupling, and testability.
+    \item \textbf{Supportability:} The system must facilitate easy troubleshooting and security auditing. It requires a comprehensive \textbf{Logging} mechanism to structurally record all critical user activities and system operations.
+    \item \textbf{Manageability:} The system must support proactive health tracking and administration. It mandates a centralized \textbf{Monitoring} stack utilizing \textbf{Prometheus} to scrape metrics and \textbf{Grafana} to visualize real-time performance and trigger alerts.
+    \item \textbf{Testability:} The system must support comprehensive automated testing at all levels. It requires the use of \textbf{Dependency Injection} via Go Interfaces to easily mock dependencies (e.g., database repositories) during unit testing.
+    \item \textbf{Reusability:} The system must promote code reuse to minimize duplication. It mandates the creation of \textbf{Shared Utility Packages} (e.g., for error handling, JWT parsing, and pagination) in the backend and a reusable UI Component Library in the Svelte frontend.
+    \item \textbf{Scalability:} The platform must be capable of handling future growth in user traffic. It requires a \textbf{Stateless Architecture} allowing the backend to scale horizontally across multiple instances behind a load balancer.
+\end{itemize}
+
+\chapter{Quality Attribute Requirements}
+
+\section{Performance}
+
+\subsection{High-Throughput Content Retrieval}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & Thousands of users simultaneously request the global public feed. \\
+\textbf{Stimulus source} & Guest Users, Members. \\
+\textbf{Environment} & Peak usage times causing high read traffic. \\
+\textbf{Artifact} & Post Service, Redis Cache Layer, MongoDB. \\
+\textbf{Response} & The system serves feeds directly from Redis RAM using a Read-Through caching strategy, bypassing the database completely for cached endpoints. \\
+\textbf{Response measure} & Database CPU utilization remains < 60\% during peak loads. >= 95\% of feed read requests process within 500ms. \\
+\end{tblr}
+\end{table}
+
+\subsection{Asynchronous Processing}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A user publishes a new post that requires notifying hundreds of followers and updating analytics. \\
+\textbf{Stimulus source} & Members. \\
+\textbf{Environment} & Normal operation during content creation. \\
+\textbf{Artifact} & Post Service, Notification Service, In-Memory Event Bus (Go Channels). \\
+\textbf{Response} & The Post Service saves the content and immediately returns success to the user. It then asynchronously publishes an event to the Event Bus via Go Channels. Background goroutines consume the event and process notifications. \\
+\textbf{Response measure} & The HTTP response time for post creation remains < 1 second, unaffected by the number of followers receiving notifications. \\
+\end{tblr}
+\end{table}
+
+\section{Security}
+
+\subsection{Authentication and Authorization}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & Users attempt to access restricted API endpoints, such as deleting a post or changing community settings. \\
+\textbf{Stimulus source} & Malicious Actors, Members, System Admins. \\
+\textbf{Environment} & Normal operation over public internet. \\
+\textbf{Artifact} & JWT Validation Middleware, RBAC Module. \\
+\textbf{Response} & The system validates JWT signatures and strictly enforces RBAC rules. It checks if the authenticated user holds the required role (e.g., Moderator or Admin) before allowing the action. \\
+\textbf{Response measure} & 100\% of unauthorized API requests are rejected with HTTP 403 Forbidden. \\
+\end{tblr}
+\end{table}
+
+\subsection{Data Privacy (End-to-End Encryption)}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & Two users initiate a private one-to-one conversation via direct messages. \\
+\textbf{Stimulus source} & Members. \\
+\textbf{Environment} & Direct messaging via WebSocket connections. \\
+\textbf{Artifact} & Client-side Cryptography Module (Svelte), Messaging Service, MongoDB. \\
+\textbf{Response} & Messages are encrypted on the sender's client using the recipient's public key (End-to-End Encryption). The backend stores and routes the cipher-text without ever possessing the decryption keys. \\
+\textbf{Response measure} & 0\% of private message plain-text is visible or readable by server administrators or via database dumps. \\
+\end{tblr}
+\end{table}
+
+\section{Availability}
+
+\subsection{Container Fault Recovery}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & The primary backend application container crashes due to an unhandled exception or memory leak. \\
+\textbf{Stimulus source} & Internal software fault. \\
+\textbf{Environment} & Production environment under normal load. \\
+\textbf{Artifact} & Docker Engine, Stateless Go Backend Containers. \\
+\textbf{Response} & Docker's restart policy detects the container failure and automatically restarts the service. The stateless nature of the backend ensures no user session data is lost (stored in Redis). \\
+\textbf{Response measure} & The system recovers and accepts new requests within 30 seconds. Overall system uptime remains >= 99.9\%. \\
+\end{tblr}
+\end{table}
+
+\subsection{Resilience Against Load Spikes}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A sudden influx of users log in simultaneously during a viral event, causing a spike in database connections. \\
+\textbf{Stimulus source} & Viral content causing traffic surge. \\
+\textbf{Environment} & Production environment under sudden peak load. \\
+\textbf{Artifact} & Gin Framework, MongoDB Connection Pool. \\
+\textbf{Response} & The Go/Gin server handles high concurrency using lightweight goroutines. The MongoDB connection pool limits active connections, queueing excess requests instead of crashing the database. \\
+\textbf{Response measure} & The system avoids total failure. <= 0.5\% error rate due to connection timeouts. \\
+\end{tblr}
+\end{table}
+
+\section{Maintainability}
+
+\subsection{Modular Architecture (Separation of Concerns)}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A developer needs to update the business logic for calculating user karma points. \\
+\textbf{Stimulus source} & Development Team. \\
+\textbf{Environment} & Development and Maintenance phases. \\
+\textbf{Artifact} & Layered Architecture (Controllers, Services, Repositories). \\
+\textbf{Response} & The developer modifies the karma calculation logic exclusively within the \texttt{UserService}. No changes are required in the HTTP \texttt{UserController} or the MongoDB \texttt{UserRepository}. \\
+\textbf{Response measure} & Code changes are strictly localized. Regression rate after the update is <= 1\%. \\
+\end{tblr}
+\end{table}
+
+\subsection{Technology Agnosticism (Interfaces)}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & The team decides to switch the cloud storage provider for user avatars from Cloudinary to AWS S3. \\
+\textbf{Stimulus source} & Infrastructure Team. \\
+\textbf{Environment} & Development and Maintenance phases. \\
+\textbf{Artifact} & Go Interfaces (e.g., \texttt{ImageStorageProvider}). \\
+\textbf{Response} & Developers create a new struct \texttt{S3StorageProvider} that implements the existing \texttt{ImageStorageProvider} interface. Dependency injection is used to wire the new provider at startup. \\
+\textbf{Response measure} & 0 changes are required in the core business logic (Services) to swap the storage provider. \\
+\end{tblr}
+\end{table}
+
+\section{Supportability}
+
+\subsection{Audit and User Activity Logging}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A system administrator needs to trace the action history of a suspected malicious user. \\
+\textbf{Stimulus source} & System Administrators, Security Auditors. \\
+\textbf{Environment} & Post-incident investigation. \\
+\textbf{Artifact} & Structured Logging Middleware, Centralized Log Storage. \\
+\textbf{Response} & The administrator queries the logs. The system provides structured, searchable entries containing contextual metadata (User ID, IP, Action, Timestamp) for every critical state change. \\
+\textbf{Response measure} & 100\% of critical user activities (login, post deletion, role assignment) are retrievable. \\
+\end{tblr}
+\end{table}
+
+\subsection{Error Diagnostics}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A user reports an unexpected HTTP 500 Internal Server Error when attempting to vote on a poll. \\
+\textbf{Stimulus source} & Members. \\
+\textbf{Environment} & Production environment during fault condition. \\
+\textbf{Artifact} & Global Error Handler, \texttt{slog} (Structured Logging). \\
+\textbf{Response} & The backend catches the panic or error, returns a generic 500 error to the client to hide internal details, but logs a complete stack trace and request payload to the server logs. \\
+\textbf{Response measure} & The root cause can be identified by developers within 15 minutes by examining the structured error logs. \\
+\end{tblr}
+\end{table}
+
+\section{Manageability}
+
+\subsection{System Health Monitoring}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & The backend experiences an unexpected spike in HTTP 500 errors or increased response latency. \\
+\textbf{Stimulus source} & Unpredictable traffic surge or internal bottleneck. \\
+\textbf{Environment} & Production runtime. \\
+\textbf{Artifact} & Prometheus Scraper, Grafana Dashboards, Go \texttt{/metrics} endpoint. \\
+\textbf{Response} & Prometheus scrapes the elevated error rates from the backend. Grafana evaluates the alert rules and immediately triggers a notification to the operations team via email/Slack. \\
+\textbf{Response measure} & The operations team is alerted within 1 minute of the threshold violation. The dashboard visualizes the exact endpoint causing the issue. \\
+\end{tblr}
+\end{table}
+
+\subsection{Configuration Management}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & The operations team needs to rotate the JWT Secret Key or change the database URI for a staging environment. \\
+\textbf{Stimulus source} & Operations Team. \\
+\textbf{Environment} & Deployment phase. \\
+\textbf{Artifact} & Environment Variables (\texttt{.env}), Viper Config Library. \\
+\textbf{Response} & The system reads all critical configurations from environment variables at startup. The team updates the variables in the \texttt{docker-compose.yml} and restarts the container without modifying or recompiling the code. \\
+\textbf{Response measure} & Configuration changes take effect immediately upon container restart. 0 code recompilations are required for environment-specific settings. \\
+\end{tblr}
+\end{table}
+
+\section{Testability}
+
+\subsection{Unit Testing with Mocks}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A developer writes unit tests for the core business logic in the \texttt{PostService}. \\
+\textbf{Stimulus source} & Development Team. \\
+\textbf{Environment} & Local development and CI pipeline. \\
+\textbf{Artifact} & Go Interfaces, Mockgen Tool, \texttt{PostService}. \\
+\textbf{Response} & The developer generates mock implementations of the \texttt{PostRepository} interface and injects them into the \texttt{PostService}, allowing testing of business logic without a live database. \\
+\textbf{Response measure} & Unit tests execute in < 1 second. Test coverage for the Service layer reaches >= 80\%. \\
+\end{tblr}
+\end{table}
+
+\subsection{Integration Testing}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A developer submits a Pull Request, triggering the automated CI/CD pipeline. \\
+\textbf{Stimulus source} & CI/CD System (e.g., GitHub Actions). \\
+\textbf{Environment} & Automated build environment. \\
+\textbf{Artifact} & Docker, Go Testing Framework. \\
+\textbf{Response} & The CI pipeline spins up ephemeral Docker containers for MongoDB and Redis, runs the full integration test suite against the API endpoints, and destroys the containers upon completion. \\
+\textbf{Response measure} & Integration tests complete in < 5 minutes. 100\% of critical API paths are automatically verified before merging. \\
+\end{tblr}
+\end{table}
+
+\section{Reusability}
+
+\subsection{Shared Backend Utilities}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A developer is assigned to build a new feature that requires returning paginated data to the client. \\
+\textbf{Stimulus source} & Development Team. \\
+\textbf{Environment} & Development phase. \\
+\textbf{Artifact} & Shared Utility Packages (\texttt{pkg/pagination}). \\
+\textbf{Response} & The developer imports the existing \texttt{pagination} package instead of writing custom logic, ensuring consistent API responses across all endpoints. \\
+\textbf{Response measure} & 0 lines of duplicated pagination logic are introduced into the codebase. Development time is reduced by 20\%. \\
+\end{tblr}
+\end{table}
+
+\subsection{Frontend Component Library}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & A frontend developer needs to create a new page containing user avatar icons and standard buttons. \\
+\textbf{Stimulus source} & Frontend Development Team. \\
+\textbf{Environment} & Development phase. \\
+\textbf{Artifact} & Svelte UI Components (\texttt{Avatar.svelte}, \texttt{Button.svelte}). \\
+\textbf{Response} & The developer reuses the standardized Svelte components, maintaining consistent styling and reducing redundant CSS/HTML. \\
+\textbf{Response measure} & UI consistency is maintained at 100\%. Redundant code is reduced, leading to smaller bundle sizes. \\
+\end{tblr}
+\end{table}
+
+\section{Scalability}
+
+\subsection{Horizontal Backend Scaling}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & User traffic increases by 500\% over the course of a week due to a successful marketing campaign. \\
+\textbf{Stimulus source} & Sudden increase in active users. \\
+\textbf{Environment} & Production environment under heavy load. \\
+\textbf{Artifact} & Stateless Go Backend, Reverse Proxy/Load Balancer. \\
+\textbf{Response} & The operations team scales the backend by spinning up multiple instances of the Go API container. The Load Balancer distributes incoming requests evenly across all instances. \\
+\textbf{Response measure} & System throughput scales linearly with the number of instances. End-user latency remains < 1 second despite the 500\% traffic increase. \\
+\end{tblr}
+\end{table}
+
+\subsection{Database Read Scaling}
+\begin{table}[H]
+\centering
+\begin{tblr}{
+    width=\textwidth,
+    hlines,
+    vlines,
+    rows = {valign=m},
+    colspec = {Q[l,3.5cm] Q[l,11.5cm]}
+}
+\textbf{Element} & \textbf{Statement} \\
+\textbf{Stimulus} & The primary MongoDB instance approaches 90\% CPU utilization due to a high volume of read queries. \\
+\textbf{Stimulus source} & High volume of concurrent users. \\
+\textbf{Environment} & Production database. \\
+\textbf{Artifact} & MongoDB Replica Set, Redis Cache. \\
+\textbf{Response} & The system offloads repetitive read queries to the Redis cache. If needed, the operations team can configure MongoDB Read Replicas to distribute the read operations across multiple secondary database nodes. \\
+\textbf{Response measure} & Primary database CPU utilization drops below 50\%. Read query throughput increases significantly without affecting write operations. \\
+\end{tblr}
+\end{table}
+
+\chapter{Architectural Representation}
+
+To describe the architecture of the LKForum System, the following views are presented:
+
+\section{Logical View}
+This view presents the system's modular decomposition into functional components and subsystems. It aligns with the \textbf{System Context} of the C4 model.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{diagrams/LKForum_System_Context.png}
+    \caption{System Context Diagram}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Layered Architecture \& Interfaces:} The backend strictly separates concerns into Routes, Controllers, Services, and Repositories. Interfaces define contracts between layers (e.g., \texttt{PostService} interface), allowing for easy mock generation and unit testing.
+    \item \textbf{IAM (Identity \& Access Management) Module:} Handles user registration, JWT-based stateless authentication, Google OAuth SSO integration, and RBAC.
+    \item \textbf{Community \& Content Modules:} Manages the lifecycle of sub-forums, posts, and nested comments.
+    \item \textbf{Event-Driven Hub:} An internal message bus utilizing \textbf{Go Channels and Goroutines} that decouples core business logic from auxiliary tasks (like firing push notifications or updating search indexes), ensuring high performance without relying on external message brokers.
+    \item \textbf{Communication Module:} Facilitates real-time features including E2EE private messaging via WebSockets.
+\end{itemize}
+
+\section{Implementation View}
+This view outlines the organization of code and deployment artifacts, aligning with the \textbf{Component Diagram} of the C4 model.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{diagrams/LKForum_Component_Backend.png}
+    \caption{Backend Component Diagram}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Backend Organization:} The backend is a monolithic Go application exposing REST APIs and WebSocket endpoints. 
+    \item \textbf{Frontend Organization:} Separated into two distinct SPAs built with Svelte and Vite:
+    \begin{itemize}
+        \item \texttt{user-web}: The main interface for Guests, Members, and Community Moderators.
+        \item \texttt{admin-web}: A dedicated dashboard for System Administrators.
+    \end{itemize}
+    \item \textbf{Observability Implementation:} The backend integrates Prometheus client libraries to expose metrics and structured logging (e.g., using \texttt{slog} or \texttt{logrus}) for user activity tracking.
+\end{itemize}
+
+\section{Deployment View}
+Describes the physical deployment and runtime environment of system components, aligning with the \textbf{Container Diagram} of the C4 model.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{diagrams/LKForum_Container.png}
+    \caption{Container Diagram}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Containerization:} The entire ecosystem is containerized using Docker, avoiding the overhead of Kubernetes while maintaining isolation.
+    \item \textbf{Orchestration:} A \texttt{docker-compose.yml} file manages the multi-container application network.
+    \item \textbf{Node Layout:} 
+    \begin{itemize}
+        \item \textbf{Application Nodes:} Go Backend Container, User Web Frontend Container, Admin Web Frontend Container.
+        \item \textbf{Data Nodes:} MongoDB container (persistent data), Redis container (caching).
+        \item \textbf{Monitoring Nodes:} Prometheus container (metrics scraping) and Grafana container (dashboards).
+    \end{itemize}
+\end{itemize}
+
+\section{Data View}
+Focuses on data models, storage strategy, and external data integrations.
+
+\begin{itemize}
+    \item \textbf{Primary Storage (MongoDB):} Chosen for its flexible schema design, suitable for dynamic content types (polls, media arrays).
+    \item \textbf{Caching (Redis):} Acts as an in-memory cache to absorb high read loads for public feeds, and stores fast-expiring data like session tokens and OTPs.
+    \item \textbf{Secure Messaging Storage:} Private messages stored in MongoDB are encrypted blobs; the server routes them but relies on client devices for actual decryption (E2EE).
+\end{itemize}
+
+\end{document}

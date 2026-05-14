@@ -1,0 +1,22 @@
+@startuml seq_18_hide_post
+title Sequence Diagram: UC-18 Hide Post
+
+actor User
+participant "User Web" as Frontend
+participant "Post Controller" as Controller
+participant "Post Service" as Service
+participant "Post Repo" as PostRepo
+participant "Hide Repo" as HideRepo
+
+User -> Frontend: Click "Hide Post"
+Frontend -> Controller: POST /api/posts/{id}/hide
+Controller -> Service: Hide Post (userID, postID)
+Service -> PostRepo: Verify post exists and is visible
+PostRepo --> Service: Post is valid
+
+Service -> HideRepo: Create hidden-post record
+HideRepo --> Service: Record created
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> User: Remove post from current feed view
+@enduml

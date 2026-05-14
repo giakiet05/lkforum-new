@@ -1,0 +1,50 @@
+@startuml seq_01_sign_up
+title Sequence Diagram: UC-01 Sign Up
+
+actor User
+participant "User Web" as Frontend
+participant "Auth Controller" as Controller
+participant "Auth Service" as Service
+participant "User Repository" as Repo
+participant "Redis Cache" as Redis
+participant "Email Service" as Email
+
+User -> Frontend: Open Register page & enter email
+Frontend -> Controller: POST /api/auth/register-email {email}
+Controller -> Service: Request OTP for email
+Service -> Repo: Check if email exists
+Repo --> Service: Email not found
+Service -> Redis: Generate & store OTP (TTL 5m)
+Service -> Email: Send OTP email
+Email --> Service: Email sent
+Service --> Controller: Success
+Controller --> Frontend: 200 OK (OTP sent)
+Frontend --> User: Prompt for OTP
+
+User -> Frontend: Enter OTP
+Frontend -> Controller: POST /api/auth/verify-otp {email, otp}
+Controller -> Service: Verify OTP
+Service -> Redis: Check OTP
+Redis --> Service: OTP matches
+Service -> Redis: Generate & store verification token (TTL 15m)
+Service --> Controller: Success (verification token)
+Controller --> Frontend: 200 OK (verification token)
+Frontend --> User: Prompt for username/password
+
+User -> Frontend: Enter username, password
+Frontend -> Controller: POST /api/auth/register {email, username, password, token}
+Controller -> Service: Register User
+Service -> Redis: Validate verification token
+Redis --> Service: Token valid
+Service -> Repo: Check username availability
+Repo --> Service: Username available
+Service -> Service: Hash password (bcrypt)
+Service -> Repo: Create new User
+Repo --> Service: User created
+Service -> Service: Generate Access & Refresh Tokens
+Service -> Redis: Store Auth State (Refresh Token)
+Service -> Redis: Delete verification token
+Service --> Controller: Tokens & User Info
+Controller --> Frontend: 200 OK
+Frontend --> User: Redirect to Home Page
+@enduml

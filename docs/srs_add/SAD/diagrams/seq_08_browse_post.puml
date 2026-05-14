@@ -1,0 +1,35 @@
+@startuml seq_08_browse_post
+title Sequence Diagram: UC-08 Browse Post
+
+actor User
+participant "User Web" as Frontend
+participant "Post Controller" as Controller
+participant "Post Service" as Service
+participant "Redis Cache" as Redis
+participant "Post Repository" as Repo
+
+User -> Frontend: Open Forum Homepage
+Frontend -> Controller: GET /api/posts/public-feed
+Controller -> Service: Get Public Feed
+Service -> Redis: Check Cache for Feed
+alt Cache Hit
+    Redis --> Service: Cached Feed Data
+else Cache Miss
+    Redis --> Service: Null
+    Service -> Repo: Fetch Recent Public Posts
+    Repo --> Service: List of Posts
+    Service -> Redis: Store Feed in Cache (TTL)
+end
+Service --> Controller: Feed Data
+Controller --> Frontend: 200 OK
+Frontend --> User: Display Post List
+
+User -> Frontend: Click on a specific post
+Frontend -> Controller: GET /api/posts/{post_id}
+Controller -> Service: Get Post Details
+Service -> Repo: Fetch Post by ID
+Repo --> Service: Post Details
+Service --> Controller: Post Details
+Controller --> Frontend: 200 OK
+Frontend --> User: Display full post content
+@enduml

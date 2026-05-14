@@ -1,0 +1,43 @@
+@startuml seq_24_approve_reject_post
+title Sequence Diagram: UC-24 Approve / Reject Post
+
+actor Moderator
+participant "User Web" as Frontend
+participant "Moderation Controller" as Controller
+participant "Moderation Service" as Service
+participant "Post Repo" as Repo
+participant "Event Bus\n(Go Channels)" as EventBus
+
+Moderator -> Frontend: Open moderation queue
+Frontend -> Controller: GET /api/moderation/queue
+Controller -> Service: Get Pending Posts
+Service -> Repo: Fetch posts with 'pending' status
+Repo --> Service: List of pending posts
+Service --> Controller: Pending posts data
+Controller --> Frontend: 200 OK
+Frontend --> Moderator: Display pending posts
+
+Moderator -> Frontend: Review post & Click Approve or Reject
+Frontend -> Controller: POST /api/moderation/posts/{id}/decide {action, reason}
+Controller -> Service: Process Moderation Decision
+Service -> Repo: Verify moderator permissions
+Repo --> Service: Permissions valid
+
+alt Action is Approve
+    Service -> Repo: Update post status to 'published'
+    Repo --> Service: Status updated
+else Action is Reject
+    Service -> Repo: Update post status to 'rejected' & store reason
+    Repo --> Service: Status updated
+end
+
+Service -> EventBus: Publish ModerationDecisionEvent
+note right of EventBus
+  Background goroutine notifies
+  the post author
+end note
+
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> Moderator: Remove post from queue UI
+@enduml

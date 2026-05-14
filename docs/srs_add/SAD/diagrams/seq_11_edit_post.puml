@@ -1,0 +1,41 @@
+@startuml seq_11_edit_post
+title Sequence Diagram: UC-11 Edit Post
+
+actor User
+participant "User Web" as Frontend
+participant "Post Controller" as Controller
+participant "Post Service" as Service
+participant "Post Repo" as PostRepo
+participant "Cloudinary" as Cloudinary
+
+User -> Frontend: Click edit post
+Frontend -> Controller: GET /api/posts/{id}
+Controller -> Service: Get Post
+Service -> PostRepo: Find post by ID
+PostRepo --> Service: Post Data
+Service --> Controller: Post Data
+Controller --> Frontend: 200 OK
+Frontend --> User: Display edit form
+
+User -> Frontend: Modify content & change media
+Frontend -> Controller: PUT /api/posts/{id} (multipart form)
+Controller -> Service: Update Post
+Service -> PostRepo: Verify post ownership
+PostRepo --> Service: Ownership confirmed
+
+alt Old media marked for removal
+    Service -> Cloudinary: Delete media by Public ID
+    Cloudinary --> Service: Deletion confirmed
+end
+
+alt New media attached
+    Service -> Cloudinary: Upload new media stream
+    Cloudinary --> Service: Return Media URLs & IDs
+end
+
+Service -> PostRepo: Update Post record in DB
+PostRepo --> Service: Post updated
+Service --> Controller: Updated Post Data
+Controller --> Frontend: 200 OK
+Frontend --> User: Show updated post
+@enduml

@@ -1,0 +1,36 @@
+\babel@toc {english}{}\relax 
+\contentsline {chapter}{\numberline {1}Design Constraints}{3}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Quality Attribute Requirements}{4}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Performance}{4}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}High-Throughput Content Retrieval}{4}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Asynchronous Processing}{4}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Security}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Authentication and Authorization}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Data Privacy (End-to-End Encryption)}{5}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.3}Availability}{6}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Container Fault Recovery}{6}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Resilience Against Load Spikes}{6}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Maintainability}{7}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Modular Architecture (Separation of Concerns)}{7}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Technology Agnosticism (Interfaces)}{7}{subsection.2.4.2}%
+\contentsline {section}{\numberline {2.5}Supportability}{8}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Audit and User Activity Logging}{8}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Error Diagnostics}{8}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}Manageability}{9}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}System Health Monitoring}{9}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Configuration Management}{9}{subsection.2.6.2}%
+\contentsline {section}{\numberline {2.7}Testability}{10}{section.2.7}%
+\contentsline {subsection}{\numberline {2.7.1}Unit Testing with Mocks}{10}{subsection.2.7.1}%
+\contentsline {subsection}{\numberline {2.7.2}Integration Testing}{10}{subsection.2.7.2}%
+\contentsline {section}{\numberline {2.8}Reusability}{11}{section.2.8}%
+\contentsline {subsection}{\numberline {2.8.1}Shared Backend Utilities}{11}{subsection.2.8.1}%
+\contentsline {subsection}{\numberline {2.8.2}Frontend Component Library}{11}{subsection.2.8.2}%
+\contentsline {section}{\numberline {2.9}Scalability}{12}{section.2.9}%
+\contentsline {subsection}{\numberline {2.9.1}Horizontal Backend Scaling}{12}{subsection.2.9.1}%
+\contentsline {subsection}{\numberline {2.9.2}Database Read Scaling}{12}{subsection.2.9.2}%
+\contentsline {chapter}{\numberline {3}Architectural Representation}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Logical View}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Implementation View}{15}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Deployment View}{16}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Data View}{18}{section.3.4}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

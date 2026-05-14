@@ -1,0 +1,32 @@
+@startuml seq_14_reply_to_comment
+title Sequence Diagram: UC-14 Reply to Comment
+
+actor User
+participant "User Web" as Frontend
+participant "Comment Controller" as Controller
+participant "Comment Service" as Service
+participant "Comment Repo" as CommentRepo
+participant "Post Repo" as PostRepo
+participant "Event Bus\n(Go Channels)" as EventBus
+
+User -> Frontend: Write & submit reply
+Frontend -> Controller: POST /api/comments/{parent_id}/reply {content}
+Controller -> Service: Create Reply (parentID, content)
+Service -> CommentRepo: Verify parent comment exists
+CommentRepo --> Service: Parent is valid (postID)
+
+Service -> CommentRepo: Insert new Reply (with parent_id)
+CommentRepo --> Service: Reply created
+Service -> PostRepo: Increment post comment count
+PostRepo --> Service: Count updated
+
+Service -> EventBus: Publish ReplyCreatedEvent
+note right of EventBus
+  Background goroutine notifies
+  the parent comment author
+end note
+
+Service --> Controller: Created Reply Data
+Controller --> Frontend: 201 Created
+Frontend --> User: Render reply under parent
+@enduml

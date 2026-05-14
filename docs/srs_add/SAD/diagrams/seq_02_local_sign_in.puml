@@ -1,0 +1,22 @@
+@startuml seq_02_local_sign_in
+title Sequence Diagram: UC-02.1 Sign In (Local)
+
+actor User
+participant "User Web" as Frontend
+participant "Auth Controller" as Controller
+participant "Auth Service" as Service
+participant "User Repository" as Repo
+participant "Redis Cache" as Redis
+
+User -> Frontend: Enter username/email and password
+Frontend -> Controller: POST /api/auth/login {identifier, password}
+Controller -> Service: Login User
+Service -> Repo: Find User by email or username
+Repo --> Service: User found (hashed_password)
+Service -> Service: Verify password (bcrypt)
+Service -> Service: Generate Access & Refresh Tokens
+Service -> Redis: Store Auth State (Refresh Token)
+Service --> Controller: Tokens & User Info
+Controller --> Frontend: 200 OK
+Frontend --> User: Redirect to Home Page
+@enduml

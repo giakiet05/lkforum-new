@@ -1,0 +1,28 @@
+@startuml seq_04_manage_profile
+title Sequence Diagram: UC-04 Manage Profile
+
+actor User
+participant "User Web" as Frontend
+participant "User Controller" as Controller
+participant "User Service" as Service
+participant "Cloudinary" as Cloudinary
+participant "User Repository" as Repo
+
+User -> Frontend: Edit profile info & select new avatar
+Frontend -> Controller: PUT /api/users/profile (multipart form data)
+Controller -> Service: Update Profile
+Service -> Repo: Find User by ID
+Repo --> Service: User found
+Service -> Service: Validate profile fields
+
+alt New avatar/cover image uploaded
+    Service -> Cloudinary: Upload image stream
+    Cloudinary --> Service: Return Image URL & Public ID
+end
+
+Service -> Repo: Update User Profile (including new image URLs if any)
+Repo --> Service: Profile updated
+Service --> Controller: Updated User Info
+Controller --> Frontend: 200 OK
+Frontend --> User: Display updated profile
+@enduml

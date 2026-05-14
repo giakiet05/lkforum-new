@@ -1,0 +1,29 @@
+@startuml seq_07_follow_unfollow_user
+title Sequence Diagram: UC-07 Follow / Unfollow User
+
+actor User
+participant "User Web" as Frontend
+participant "Follow Controller" as Controller
+participant "Follow Service" as Service
+participant "User Repository" as Repo
+
+User -> Frontend: Click Follow / Unfollow button
+Frontend -> Controller: POST /api/users/{target_id}/follow (or DELETE)
+Controller -> Service: Toggle Follow Status (followerID, targetID)
+Service -> Repo: Check target user exists
+Repo --> Service: User exists
+
+alt Action is Follow
+    Service -> Repo: Create Follow Relationship
+    Repo --> Service: Relationship created
+    Service -> Repo: Increment Follower Count
+else Action is Unfollow
+    Service -> Repo: Remove Follow Relationship
+    Repo --> Service: Relationship removed
+    Service -> Repo: Decrement Follower Count
+end
+
+Service --> Controller: Updated Follow Status
+Controller --> Frontend: 200 OK
+Frontend --> User: Update UI button state
+@enduml

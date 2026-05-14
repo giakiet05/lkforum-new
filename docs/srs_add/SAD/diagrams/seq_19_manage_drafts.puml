@@ -1,0 +1,41 @@
+@startuml seq_19_manage_drafts
+title Sequence Diagram: UC-19 Manage Drafts
+
+actor User
+participant "User Web" as Frontend
+participant "Draft Controller" as Controller
+participant "Draft Service" as Service
+participant "Draft Repo" as DraftRepo
+participant "Post Service" as PostService
+
+User -> Frontend: Open Drafts list
+Frontend -> Controller: GET /api/drafts
+Controller -> Service: Get User Drafts
+Service -> DraftRepo: Find drafts by UserID
+DraftRepo --> Service: List of Drafts
+Service --> Controller: Drafts data
+Controller --> Frontend: 200 OK
+Frontend --> User: Display drafts
+
+User -> Frontend: Create/Edit draft & Click Save
+Frontend -> Controller: PUT /api/drafts/{id} {draft_data}
+Controller -> Service: Save Draft
+Service -> DraftRepo: Verify ownership & update
+DraftRepo --> Service: Draft updated
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> User: Show "Saved" indicator
+
+User -> Frontend: Click "Publish" on a draft
+Frontend -> Controller: POST /api/drafts/{id}/publish
+Controller -> Service: Publish Draft
+Service -> DraftRepo: Load Draft content
+DraftRepo --> Service: Draft data
+Service -> PostService: Create Post from Draft data
+PostService --> Service: Post created (postID)
+Service -> DraftRepo: Delete Draft record
+DraftRepo --> Service: Draft deleted
+Service --> Controller: Success (postID)
+Controller --> Frontend: 200 OK
+Frontend --> User: Redirect to newly published post
+@enduml

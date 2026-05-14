@@ -1,0 +1,28 @@
+@startuml seq_25_ban_mute_user
+title Sequence Diagram: UC-25 Ban / Mute User
+
+actor Moderator
+participant "User Web" as Frontend
+participant "Moderation Controller" as Controller
+participant "Moderation Service" as Service
+participant "Restriction Repo" as Repo
+participant "User Repo" as UserRepo
+
+Moderator -> Frontend: Select Ban/Mute & Submit details
+Frontend -> Controller: POST /api/moderation/users/{id}/restrict {type, duration, reason}
+Controller -> Service: Restrict User
+Service -> UserRepo: Validate moderator permissions & target user
+UserRepo --> Service: Validation passed
+
+alt Action is Ban
+    Service -> Repo: Insert Ban record
+    Repo --> Service: Ban record created
+else Action is Mute
+    Service -> Repo: Insert Mute record
+    Repo --> Service: Mute record created
+end
+
+Service --> Controller: Updated Restriction State
+Controller --> Frontend: 200 OK
+Frontend --> Moderator: Show success & update user status UI
+@enduml

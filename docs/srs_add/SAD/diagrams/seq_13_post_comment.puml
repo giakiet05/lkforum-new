@@ -1,0 +1,32 @@
+@startuml seq_13_post_comment
+title Sequence Diagram: UC-13 Post Comment
+
+actor User
+participant "User Web" as Frontend
+participant "Comment Controller" as Controller
+participant "Comment Service" as Service
+participant "Post Repo" as PostRepo
+participant "Comment Repo" as CommentRepo
+participant "Event Bus\n(Go Channels)" as EventBus
+
+User -> Frontend: Write & submit comment
+Frontend -> Controller: POST /api/posts/{post_id}/comments {content}
+Controller -> Service: Create Comment
+Service -> PostRepo: Verify post exists and allows comments
+PostRepo --> Service: Post is valid
+
+Service -> CommentRepo: Insert new Comment record
+CommentRepo --> Service: Comment created
+Service -> PostRepo: Increment post comment count
+PostRepo --> Service: Count updated
+
+Service -> EventBus: Publish CommentCreatedEvent
+note right of EventBus
+  Background goroutine notifies
+  the post author
+end note
+
+Service --> Controller: Created Comment Data
+Controller --> Frontend: 201 Created
+Frontend --> User: Render new comment in thread
+@enduml

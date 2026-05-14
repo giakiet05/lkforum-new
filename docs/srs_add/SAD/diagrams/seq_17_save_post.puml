@@ -1,0 +1,30 @@
+@startuml seq_17_save_post
+title Sequence Diagram: UC-17 Save Post
+
+actor User
+participant "User Web" as Frontend
+participant "Post Controller" as Controller
+participant "Post Service" as Service
+participant "Post Repo" as PostRepo
+participant "Save Repo" as SaveRepo
+
+User -> Frontend: Click "Save Post"
+Frontend -> Controller: POST /api/posts/{id}/save
+Controller -> Service: Save Post (userID, postID)
+Service -> PostRepo: Verify post exists
+PostRepo --> Service: Post is valid
+
+Service -> SaveRepo: Check if already saved
+SaveRepo --> Service: Check result
+
+alt Not yet saved
+    Service -> SaveRepo: Create saved-post record
+    SaveRepo --> Service: Record created
+else Already saved
+    Service -> Service: Do nothing (Idempotent)
+end
+
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> User: Update bookmark icon UI
+@enduml

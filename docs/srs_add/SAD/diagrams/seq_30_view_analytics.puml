@@ -1,0 +1,31 @@
+@startuml seq_30_view_analytics
+title Sequence Diagram: UC-30 View Analytics
+
+actor Admin
+participant "Admin Web" as Frontend
+participant "Analytics Controller" as Controller
+participant "Analytics Service" as Service
+participant "User Repo" as UserRepo
+participant "Post Repo" as PostRepo
+participant "Community Repo" as CommRepo
+
+Admin -> Frontend: Open Analytics Dashboard
+Frontend -> Controller: GET /api/admin/analytics
+Controller -> Service: Get Dashboard Analytics
+Service -> UserRepo: Validate Admin Access
+UserRepo --> Service: Access valid
+
+par Aggregate statistics concurrently
+    Service -> UserRepo: Count total users & growth rate
+    Service -> PostRepo: Count total posts & engagement
+    Service -> CommRepo: Count total communities
+    UserRepo --> Service: User stats
+    PostRepo --> Service: Post stats
+    CommRepo --> Service: Community stats
+end
+
+Service -> Service: Compile analytics report
+Service --> Controller: Analytics Data
+Controller --> Frontend: 200 OK
+Frontend --> Admin: Render charts and statistics UI
+@enduml

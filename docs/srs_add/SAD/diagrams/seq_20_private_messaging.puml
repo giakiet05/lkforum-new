@@ -1,0 +1,36 @@
+@startuml seq_20_private_messaging
+title Sequence Diagram: UC-20 Private Messaging (E2EE)
+
+actor User
+participant "User Web (Client)" as Frontend
+participant "Crypto Module" as Crypto
+participant "Message Controller\n(WebSocket)" as Controller
+participant "Message Service" as Service
+participant "Message Repo" as Repo
+participant "Event Bus\n(Go Channels)" as EventBus
+
+User -> Frontend: Open Messages
+Frontend -> Controller: GET /api/messages/channels
+Controller -> Service: Get User Channels
+Service -> Repo: Find channels for user
+Repo --> Service: List of channels
+Service --> Controller: Channels Data
+Controller --> Frontend: 200 OK (Channels)
+Frontend --> User: Display conversations
+
+User -> Frontend: Type message & Send
+Frontend -> Crypto: Encrypt message with recipient's Public Key (E2EE)
+Crypto --> Frontend: Encrypted Ciphertext
+Frontend -> Controller: WS Send {channel_id, ciphertext}
+Controller -> Service: Process Message
+Service -> Repo: Validate channel membership
+Repo --> Service: Membership valid
+Service -> Repo: Persist Encrypted Message
+Repo --> Service: Message saved
+Service -> EventBus: Broadcast to Channel Members
+EventBus --> Controller: Push to recipient's WS connection
+Controller -> Frontend: WS Deliver Message (Ciphertext)
+Frontend -> Crypto: Decrypt with User's Private Key
+Crypto --> Frontend: Plaintext Message
+Frontend --> User: Display new message
+@enduml

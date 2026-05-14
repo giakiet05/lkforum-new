@@ -1,0 +1,32 @@
+@startuml seq_16_participate_in_poll
+title Sequence Diagram: UC-16 Participate in Poll
+
+actor User
+participant "User Web" as Frontend
+participant "Poll Controller" as Controller
+participant "Poll Service" as Service
+participant "Poll Repo" as PollRepo
+participant "Vote Repo" as VoteRepo
+
+User -> Frontend: Select poll option(s) & Vote
+Frontend -> Controller: POST /api/polls/{poll_id}/vote {option_ids}
+Controller -> Service: Submit Poll Vote
+Service -> PollRepo: Check poll exists and is open
+PollRepo --> Service: Poll is valid and open
+
+Service -> VoteRepo: Check existing poll vote for user
+VoteRepo --> Service: Existing vote (if any)
+
+alt Single-choice poll & user already voted
+    Service -> VoteRepo: Remove prior vote
+end
+
+Service -> VoteRepo: Record new selected option(s)
+VoteRepo --> Service: Vote recorded
+
+Service -> PollRepo: Update poll option counters
+PollRepo --> Service: Counts updated
+Service --> Controller: Updated Poll Results
+Controller --> Frontend: 200 OK
+Frontend --> User: Display poll results & lock options
+@enduml

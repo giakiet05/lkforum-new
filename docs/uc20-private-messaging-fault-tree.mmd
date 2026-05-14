@@ -1,0 +1,32 @@
+flowchart TD
+    T["TOP EVENT<br/>Tin nhan rieng tu bi lo plain-text"]
+
+    OR0(("OR"))
+
+    A["A. Tin nhan roi client<br/>duoi dang plain-text"]
+    B["B. Backend luu hoac<br/>de lo plain-text"]
+    C["C. Nguoi khong co quyen<br/>nhan duoc tin nhan"]
+
+    T --> OR0
+    OR0 --> A
+    OR0 --> B
+    OR0 --> C
+
+    AOR(("OR"))
+    BAND(("AND"))
+    CAND(("AND"))
+
+    A --> AOR
+    AOR --> A1["A1. Client khong ma hoa<br/>tin nhan"]
+    AOR --> A2["A2. Ma hoa that bai<br/>nhung van cho gui"]
+    AOR --> A3["A3. Client dung sai public key<br/>nguoi nhan"]
+
+    B --> BAND
+    BAND --> B1["B1. Backend nhan noi dung<br/>chua ma hoa"]
+    BAND --> B2["B2. Backend luu message<br/>vao MongoDB"]
+    BAND --> B3["B3. Server log/debug ghi lai<br/>noi dung message"]
+
+    C --> CAND
+    CAND --> C1["C1. JWT/WebSocket authentication sai"]
+    CAND --> C2["C2. Kiem tra channel membership sai"]
+    CAND --> C3["C3. Broadcast gui toi sai user"]

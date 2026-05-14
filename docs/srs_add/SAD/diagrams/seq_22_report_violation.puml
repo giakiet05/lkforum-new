@@ -1,0 +1,22 @@
+@startuml seq_22_report_violation
+title Sequence Diagram: UC-22 Report Violation
+
+actor User
+participant "User Web" as Frontend
+participant "Report Controller" as Controller
+participant "Report Service" as Service
+participant "Report Repo" as Repo
+participant "Target Repo" as TargetRepo
+
+User -> Frontend: Fill report form & Submit
+Frontend -> Controller: POST /api/reports {target_id, type, reason}
+Controller -> Service: Create Report
+Service -> TargetRepo: Validate target exists (Post/Comment/Community)
+TargetRepo --> Service: Target is valid
+
+Service -> Repo: Create Report record (Status: Pending)
+Repo --> Service: Report created
+Service --> Controller: Success
+Controller --> Frontend: 201 Created
+Frontend --> User: Show "Report submitted" message
+@enduml

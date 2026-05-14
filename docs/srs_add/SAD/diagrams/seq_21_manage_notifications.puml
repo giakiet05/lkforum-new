@@ -1,0 +1,36 @@
+@startuml seq_21_manage_notifications
+title Sequence Diagram: UC-21 Manage Notifications
+
+actor User
+participant "User Web" as Frontend
+participant "Notification Controller" as Controller
+participant "Notification Service" as Service
+participant "Notification Repo" as Repo
+
+User -> Frontend: Open Notifications
+Frontend -> Controller: GET /api/notifications
+Controller -> Service: Get User Notifications
+Service -> Repo: Fetch notifications for user
+Repo --> Service: List of Notifications
+Service --> Controller: Notifications data
+Controller --> Frontend: 200 OK
+Frontend --> User: Display notifications
+
+User -> Frontend: Mark as read / Delete
+Frontend -> Controller: PUT /api/notifications/{id}/read (or DELETE)
+Controller -> Service: Update Notification State
+Service -> Repo: Validate ownership
+Repo --> Service: Ownership confirmed
+
+alt Mark as read
+    Service -> Repo: Update status to 'read'
+    Repo --> Service: Updated
+else Delete
+    Service -> Repo: Delete notification record
+    Repo --> Service: Deleted
+end
+
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> User: Update notification UI
+@enduml

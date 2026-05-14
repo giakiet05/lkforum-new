@@ -1,0 +1,32 @@
+@startuml seq_29_manage_platform
+title Sequence Diagram: UC-29 Manage Platform (Admin Login/Logout)
+
+actor Admin
+participant "Admin Web" as Frontend
+participant "Admin Auth Controller" as Controller
+participant "Admin Auth Service" as Service
+participant "Admin Repo" as Repo
+participant "Redis Cache" as Redis
+
+Admin -> Frontend: Enter Admin Credentials
+Frontend -> Controller: POST /api/admin/auth/login
+Controller -> Service: Admin Login
+Service -> Repo: Fetch Admin by username
+Repo --> Service: Admin found (hashed_password)
+Service -> Service: Verify password & Admin Role
+Service -> Service: Generate Admin Access & Refresh Tokens
+Service -> Redis: Store Admin Auth State (Refresh Token)
+Service --> Controller: Tokens
+Controller --> Frontend: 200 OK
+Frontend --> Admin: Redirect to Admin Dashboard
+
+... Admin manages platform ...
+
+Admin -> Frontend: Click Logout
+Frontend -> Controller: POST /api/admin/auth/logout
+Controller -> Service: Admin Logout
+Service -> Redis: Delete Admin Auth State (Revoke Session)
+Service --> Controller: Success
+Controller --> Frontend: 200 OK
+Frontend --> Admin: Redirect to Admin Login Page
+@enduml

@@ -1,0 +1,25 @@
+@startuml seq_06_view_activity_history
+title Sequence Diagram: UC-06 View Activity History
+
+actor User
+participant "User Web" as Frontend
+participant "Activity Controller" as Controller
+participant "Activity Service" as Service
+participant "Activity Repository" as Repo
+
+User -> Frontend: Open Activity History page
+Frontend -> Controller: GET /api/users/activity-history?page=1
+Controller -> Service: Get Paginated History (userID, page)
+Service -> Repo: Fetch Activity Records
+Repo --> Service: List of Records & Pagination Data
+
+alt Records found
+    Service --> Controller: History Data
+    Controller --> Frontend: 200 OK (Data array)
+    Frontend --> User: Display Activity List
+else No records found
+    Service --> Controller: Empty List
+    Controller --> Frontend: 200 OK (Empty array)
+    Frontend --> User: Display "No activity" state
+end
+@enduml

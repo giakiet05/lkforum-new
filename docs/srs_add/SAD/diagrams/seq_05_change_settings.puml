@@ -1,0 +1,28 @@
+@startuml seq_05_change_settings
+title Sequence Diagram: UC-05 Change Settings
+
+actor User
+participant "User Web" as Frontend
+participant "User Controller" as Controller
+participant "User Service" as Service
+participant "User Repository" as Repo
+
+User -> Frontend: Open Settings page
+Frontend -> Controller: GET /api/users/settings
+Controller -> Service: Get Settings
+Service -> Repo: Find User Settings by ID
+Repo --> Service: Current Settings
+Service --> Controller: Current Settings
+Controller --> Frontend: 200 OK (Settings data)
+Frontend --> User: Display Settings Form
+
+User -> Frontend: Modify settings & Save
+Frontend -> Controller: PUT /api/users/settings {new_settings}
+Controller -> Service: Update Settings
+Service -> Service: Validate settings values
+Service -> Repo: Update User Settings
+Repo --> Service: Settings updated
+Service --> Controller: Updated Settings
+Controller --> Frontend: 200 OK
+Frontend --> User: Show success message
+@enduml

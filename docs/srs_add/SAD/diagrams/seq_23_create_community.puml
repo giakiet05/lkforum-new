@@ -1,0 +1,31 @@
+@startuml seq_23_create_community
+title Sequence Diagram: UC-23 Create Community
+
+actor User
+participant "User Web" as Frontend
+participant "Community Controller" as Controller
+participant "Community Service" as Service
+participant "Cloudinary" as Cloudinary
+participant "Community Repo" as Repo
+
+User -> Frontend: Fill community details & attach media
+Frontend -> Controller: POST /api/communities (multipart form)
+Controller -> Service: Create Community
+Service -> Repo: Check community name availability
+Repo --> Service: Name is available
+
+alt Media (avatar/banner) attached
+    Service -> Cloudinary: Upload media stream
+    Cloudinary --> Service: Return Media URLs & IDs
+end
+
+Service -> Repo: Insert new Community record
+Repo --> Service: Community created (ID)
+
+Service -> Repo: Add creator as Community Admin/Owner
+Repo --> Service: Role assigned
+
+Service --> Controller: Created Community Data
+Controller --> Frontend: 201 Created
+Frontend --> User: Redirect to new community page
+@enduml
