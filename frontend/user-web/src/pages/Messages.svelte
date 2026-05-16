@@ -181,7 +181,7 @@
     if (!messageInput.trim() || !$chatStore.activeChannelId) return;
 
     try {
-      websocketService.sendMessage(
+      await websocketService.sendMessage(
         $chatStore.activeChannelId,
         messageInput.trim(),
         "text",

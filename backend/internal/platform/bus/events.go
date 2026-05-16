@@ -284,6 +284,10 @@ type NewMessageEvent struct {
 	SenderUsername string            `json:"sender_username"`
 	Type           model.MessageType `json:"type"`
 	Content        string            `json:"content"`
+	Ciphertext     string            `json:"ciphertext,omitempty"`
+	Nonce          string            `json:"nonce,omitempty"`
+	Algorithm      string            `json:"algorithm,omitempty"`
+	KeyVersion     string            `json:"key_version,omitempty"`
 }
 
 func (e NewMessageEvent) Topic() string { return TopicNewMessage }
@@ -295,6 +299,10 @@ func (e NewMessageEvent) Payload() map[string]interface{} {
 		"sender_username": e.SenderUsername,
 		"type":            e.Type,
 		"content":         e.Content,
+		"ciphertext":      e.Ciphertext,
+		"nonce":           e.Nonce,
+		"algorithm":       e.Algorithm,
+		"key_version":     e.KeyVersion,
 	}
 }
 

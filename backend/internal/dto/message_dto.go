@@ -31,6 +31,10 @@ type MessageResponse struct {
 	SenderUsername string            `json:"sender_username"`
 	Type           model.MessageType `json:"type"`
 	Content        string            `json:"content"`
+	Ciphertext     string            `json:"ciphertext,omitempty"`
+	Nonce          string            `json:"nonce,omitempty"`
+	Algorithm      string            `json:"algorithm,omitempty"`
+	KeyVersion     string            `json:"key_version,omitempty"`
 	CreatedAt      time.Time         `json:"created_at"`
 	IsRead         bool              `json:"is_read"`
 }
@@ -48,6 +52,10 @@ func FromMessage(message *model.Message) *MessageResponse {
 		SenderUsername: message.SenderUsername,
 		Type:           message.Type,
 		Content:        message.Content,
+		Ciphertext:     message.Ciphertext,
+		Nonce:          message.Nonce,
+		Algorithm:      message.Algorithm,
+		KeyVersion:     message.KeyVersion,
 		CreatedAt:      message.CreatedAt,
 		IsRead:         message.IsRead,
 	}

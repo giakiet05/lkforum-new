@@ -13,7 +13,7 @@ func RegisterAdminReportRoutes(rg *gin.RouterGroup, rc *controller.ReportControl
 	{
 		reports.GET("", rc.GetReportsFilter)                    // Get all reports with filters
 		reports.GET("/:report_id", rc.GetReportByIDAdmin)       // Get report by ID (admin)
-		reports.DELETE("/:report_id", rc.DeleteReportByIDAdmin) // Delete single report (admin)
 		reports.DELETE("/batch", rc.DeleteReportsByIDAdmin)     // Delete multiple reports (admin)
+		reports.DELETE("/:report_id", rc.DeleteReportByIDAdmin) // Delete single report (admin)
 	}
 }

@@ -6,6 +6,17 @@ services:
     networks:
       - lkforum_net
 
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    depends_on:
+      - backend
+    networks:
+      - lkforum_net
+
   backend:
     build: ./backend
     ports:

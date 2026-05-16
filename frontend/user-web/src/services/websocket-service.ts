@@ -2,6 +2,7 @@ import type { MessageResponse, MessageType } from "../dtos/message-dto";
 import { getValidAccessToken } from "../auth/token";
 import { API_BASE_URL } from "./api";
 import { USER_KEY } from "../constants/auth-constants";
+import { decryptMessage, encryptMessage } from "./e2ee-service";
 
 export type WebSocketMessageType =
   | 'new_message'
@@ -134,22 +135,24 @@ class WebSocketService {
     /**
      * Send message through WebSocket
      */
-    sendMessage(channelId: string, content: string, type: MessageType = "text"): void {
+    async sendMessage(channelId: string, content: string, type: MessageType = "text"): Promise<void> {
         const userStr = localStorage.getItem(USER_KEY);
         if (!userStr) throw new Error("User not authenticated");
         const currentUser = JSON.parse(userStr);
 
         const tempMessageId = `temp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        const encrypted = await encryptMessage(channelId, content);
 
         const payload = {
             temp_message_id: tempMessageId,
             channel_id: channelId,
             sender_username: currentUser.username,
             type,
-            content
+            content: "",
+            ...encrypted
         };
 
-        console.log("📤 Sending message:", payload);
+        console.log("Sending encrypted message:", { ...payload, ciphertext: "[redacted]" });
         this.send("new_message", payload);
     }
 
@@ -207,9 +210,9 @@ class WebSocketService {
      */
     onMessage(callback: (message: MessageResponse) => void): void {
         // Wrapper to handle both send_message and ack_message
-        const handler = (payload: any) => {
+        const handler = async (payload: any) => {
             const message = payload.message || payload;
-            callback(message);
+            callback(await decryptMessage(message));
         };
         this.on("send_message", handler);
         this.on("ack_message", handler);

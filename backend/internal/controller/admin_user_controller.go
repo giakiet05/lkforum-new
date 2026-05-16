@@ -5,6 +5,7 @@ import (
 
 	"github.com/giakiet05/lkforum/internal/apperror"
 	"github.com/giakiet05/lkforum/internal/dto"
+	"github.com/giakiet05/lkforum/internal/middleware"
 	"github.com/giakiet05/lkforum/internal/service"
 	"github.com/gin-gonic/gin"
 )
@@ -56,6 +57,7 @@ func (c *AdminUserController) BanUser(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "admin.user_banned", "user", userID, req.Reason, gin.H{"ban_until": req.BanUntil})
 	banType := "permanently"
 	if req.BanUntil != nil {
 		banType = "until " + req.BanUntil.Format("2006-01-02")
@@ -78,6 +80,7 @@ func (c *AdminUserController) UnbanUser(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "admin.user_unbanned", "user", userID, "", nil)
 	dto.SendSuccess(ctx, http.StatusOK, "User unbanned successfully", gin.H{"user_id": userID})
 }
 

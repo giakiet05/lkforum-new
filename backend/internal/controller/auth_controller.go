@@ -10,6 +10,7 @@ import (
 	"github.com/giakiet05/lkforum/internal/auth"
 	"github.com/giakiet05/lkforum/internal/config"
 	"github.com/giakiet05/lkforum/internal/dto"
+	"github.com/giakiet05/lkforum/internal/middleware"
 	"github.com/giakiet05/lkforum/internal/service"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
@@ -57,10 +58,12 @@ func (c *AuthController) SendEmailVerification(ctx *gin.Context) {
 
 	err := c.authService.SendEmailVerification(req.Email)
 	if err != nil {
+		middleware.RecordAudit(ctx, "auth.email_verification_failed", "email", req.Email, apperror.Message(err), nil)
 		dto.SendError(ctx, apperror.StatusFromError(err), apperror.Message(err), apperror.Code(err))
 		return
 	}
 
+	middleware.RecordAudit(ctx, "auth.email_verification_requested", "email", req.Email, "", nil)
 	dto.SendSuccess(ctx, http.StatusOK, "Verification code sent to your email. Please check your inbox.", nil)
 }
 
@@ -73,10 +76,12 @@ func (c *AuthController) Login(ctx *gin.Context) {
 
 	user, accessToken, refreshToken, err := c.authService.Login(req.Identifier, req.Password)
 	if err != nil {
+		middleware.RecordAudit(ctx, "auth.login_failed", "user", req.Identifier, apperror.Message(err), nil)
 		dto.SendError(ctx, apperror.StatusFromError(err), apperror.Message(err), apperror.Code(err))
 		return
 	}
 
+	middleware.RecordAudit(ctx, "auth.login_success", "user", user.ID.Hex(), "", nil)
 	data := dto.AuthResponse{
 		User:         dto.FromUser(user),
 		AccessToken:  accessToken,
@@ -264,10 +269,12 @@ func (c *AuthController) ForgotPassword(ctx *gin.Context) {
 
 	err := c.authService.ForgotPassword(req.Email)
 	if err != nil {
+		middleware.RecordAudit(ctx, "auth.password_reset_failed", "email", req.Email, apperror.Message(err), nil)
 		dto.SendError(ctx, apperror.StatusFromError(err), apperror.Message(err), apperror.Code(err))
 		return
 	}
 
+	middleware.RecordAudit(ctx, "auth.password_reset_requested", "email", req.Email, "", nil)
 	dto.SendSuccess(ctx, http.StatusOK, "Password reset code sent to your email. Please check your inbox.", nil)
 }
 

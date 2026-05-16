@@ -5,6 +5,7 @@ import (
 
 	"github.com/giakiet05/lkforum/internal/apperror"
 	"github.com/giakiet05/lkforum/internal/dto"
+	"github.com/giakiet05/lkforum/internal/middleware"
 	"github.com/giakiet05/lkforum/internal/service"
 	"github.com/gin-gonic/gin"
 )
@@ -60,6 +61,7 @@ func (c *AdminCommunityController) BanCommunity(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "admin.community_banned", "community", communityID, req.Reason, nil)
 	dto.SendSuccess(ctx, http.StatusOK, "Community banned successfully", nil)
 }
 
@@ -81,5 +83,6 @@ func (c *AdminCommunityController) UnbanCommunity(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "admin.community_unbanned", "community", communityID, "", nil)
 	dto.SendSuccess(ctx, http.StatusOK, "Community unbanned successfully", nil)
 }

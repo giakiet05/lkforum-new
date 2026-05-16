@@ -3,6 +3,7 @@ import type {
     GetMessageFilterQuery
 } from "../dtos/message-dto";
 import { authenticatedFetch, handleApiResponse } from "./api";
+import { decryptMessage } from "./e2ee-service";
 
 /**
  * Get message by ID
@@ -12,7 +13,7 @@ export async function getMessageById(messageId: string): Promise<MessageResponse
         method: "GET"
     });
 
-    return await handleApiResponse(res);
+    return await decryptMessage(await handleApiResponse(res));
 }
 
 /**
@@ -38,7 +39,7 @@ export async function getMessages(query: GetMessageFilterQuery): Promise<Message
     const response = await handleApiResponse(res);
     
     // Backend returns { messages: [], pagination: {} }, we only need messages array
-    return response.messages || [];
+    return await Promise.all((response.messages || []).map(decryptMessage));
 }
 
 /**

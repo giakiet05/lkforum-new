@@ -1,12 +1,15 @@
 package route
 
 import (
+	"time"
+
 	"github.com/giakiet05/lkforum/internal/controller"
 	"github.com/giakiet05/lkforum/internal/middleware"
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
 )
 
-func RegisterPostRoutes(rg *gin.RouterGroup, c *controller.PostController) {
+func RegisterPostRoutes(rg *gin.RouterGroup, c *controller.PostController, redisClient *redis.Client) {
 	posts := rg.Group("/posts")
 
 	// --- Public routes that can be enriched with auth info ---
@@ -19,7 +22,7 @@ func RegisterPostRoutes(rg *gin.RouterGroup, c *controller.PostController) {
 	private.Use(middleware.RequireAuth())
 	{
 		// Basic CRUD
-		private.POST("", c.CreatePost)
+		private.POST("", middleware.RateLimit(redisClient, "post_create", 30, time.Hour), c.CreatePost)
 		private.PUT("/:id", c.UpdatePost)
 		private.DELETE("/:id", c.DeletePost)
 
@@ -31,7 +34,7 @@ func RegisterPostRoutes(rg *gin.RouterGroup, c *controller.PostController) {
 		private.GET("/hidden", c.GetHiddenPosts)
 		private.POST("/:id/save", c.SavePost)
 		private.DELETE("/:id/save", c.UnsavePost)
-		private.POST("/:id/report", c.ReportPost)
+		private.POST("/:id/report", middleware.RateLimit(redisClient, "post_report", 20, time.Hour), c.ReportPost)
 		private.POST("/:id/hide", c.HidePost)
 		private.POST("/:id/unhide", c.UnhidePost)
 

@@ -20,4 +20,5 @@ const (
 	LikedPostColName         = "liked_posts"
 	UserPostHistoryColName   = "user_post_history"
 	DraftColName             = "drafts"
+	AuditLogColName          = "audit_logs"
 )
