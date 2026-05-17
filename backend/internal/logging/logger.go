@@ -17,7 +17,7 @@ func NewLogger() *slog.Logger {
 		Level: logLevel,
 	}
 
-	handler := slog.NewTextHandler(os.Stdout, opts)
+	handler := slog.NewJSONHandler(os.Stdout, opts)
 	logger := slog.New(handler)
 
 	if logLevel == slog.LevelDebug {
@@ -26,5 +26,11 @@ func NewLogger() *slog.Logger {
 		logger.Info("Info logging enabled")
 	}
 
+	return logger
+}
+
+func ConfigureDefault() *slog.Logger {
+	logger := NewLogger()
+	slog.SetDefault(logger)
 	return logger
 }

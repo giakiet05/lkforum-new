@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "requirements/LKForum_BRD.md",
+                "file": "srs_add/ADD_CODE_TRACE_MAP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "LKForum_BRD"
+              "title": "ADD_CODE_TRACE_MAP"
             }
           }
         ]
@@ -185,11 +185,21 @@
   },
   "active": "30e605569db551ad",
   "lastOpenFiles": [
-    "requirements/LKForum_BRD_tmp.html",
-    "requirements/LKForum_BRD.pdf",
-    "requirements/Unconfirmed 403133.crdownload",
-    "requirements/diagrams/use_case_diagram.png",
+    "srs_add/SRS/pdflatex13.fls",
+    "srs_add/SAD/SAD.fdb_latexmk",
+    "srs_add/BRD/pdflatex13.fls",
+    "srs_add/ADD/pdflatex13.fls",
+    "srs_add/SAD/pdflatex13.fls",
+    "srs_add/SAD/SAD.fls",
+    "srs_add/SAD/pdflatex12.fls",
+    "srs_add/ADD/ADD.fls",
+    "srs_add/BRD/pdflatex12.fls",
+    "srs_add/ADD/pdflatex12.fls",
+    "srs_add/SRS/pdflatex12.fls",
+    "srs_add/SLIDE_GENERATION_BRIEF.md",
+    "srs_add/ADD_CODE_TRACE_MAP.md",
     "requirements/LKForum_BRD.md",
+    "requirements/diagrams/use_case_diagram.png",
     "requirements/diagrams/domain_model.png"
   ]
 }

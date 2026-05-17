@@ -1,6 +1,8 @@
 package middleware
 
 import (
+	"log/slog"
+
 	"github.com/giakiet05/lkforum/internal/auth"
 	"github.com/giakiet05/lkforum/internal/model"
 	"github.com/giakiet05/lkforum/internal/service"
@@ -15,6 +17,7 @@ func SetAuditLogService(s service.AuditLogService) {
 
 func RecordAudit(c *gin.Context, action, targetType, targetID, reason string, metadata map[string]interface{}) {
 	if auditLogService == nil {
+		slog.WarnContext(c.Request.Context(), "audit_log_service_not_configured", "action", action, "target_type", targetType)
 		return
 	}
 
@@ -34,5 +37,14 @@ func RecordAudit(c *gin.Context, action, targetType, targetID, reason string, me
 		}
 	}
 
+	slog.InfoContext(
+		c.Request.Context(),
+		"audit_log_record_requested",
+		"action", entry.Action,
+		"actor_id", entry.ActorID,
+		"actor_role", entry.ActorRole,
+		"target_type", entry.TargetType,
+		"target_id", entry.TargetID,
+	)
 	auditLogService.Record(entry)
 }

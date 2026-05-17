@@ -6,6 +6,7 @@ import (
 	"errors"
 	"fmt"
 	"log"
+	"log/slog"
 	"mime/multipart"
 	"time"
 
@@ -1264,16 +1265,19 @@ func (s *postService) getCachedFeed(key string) *dto.PaginatedPostsResponse {
 	raw, err := s.redisClient.Get(ctx, key).Result()
 	if err != nil {
 		metrics.IncCounter("lkforum_feed_cache_total", map[string]string{"result": "miss"})
+		slog.DebugContext(ctx, "feed_cache_miss", "cache_key", key)
 		return nil
 	}
 
 	var response dto.PaginatedPostsResponse
 	if err := json.Unmarshal([]byte(raw), &response); err != nil {
 		metrics.IncCounter("lkforum_feed_cache_total", map[string]string{"result": "bad_payload"})
+		slog.WarnContext(ctx, "feed_cache_bad_payload", "cache_key", key, "error", err)
 		return nil
 	}
 
 	metrics.IncCounter("lkforum_feed_cache_total", map[string]string{"result": "hit"})
+	slog.DebugContext(ctx, "feed_cache_hit", "cache_key", key)
 	return &response
 }
 
@@ -1289,7 +1293,9 @@ func (s *postService) setCachedFeed(key string, response *dto.PaginatedPostsResp
 
 	ctx, cancel := util.NewDefaultRedisContext()
 	defer cancel()
-	_ = s.redisClient.Set(ctx, key, payload, 2*time.Minute).Err()
+	if err := s.redisClient.Set(ctx, key, payload, 2*time.Minute).Err(); err != nil {
+		slog.WarnContext(ctx, "feed_cache_set_failed", "cache_key", key, "error", err)
+	}
 }
 
 func (s *postService) invalidateFeedCache() {
@@ -1309,6 +1315,7 @@ func (s *postService) invalidateFeedCache() {
 		_ = s.redisClient.Del(ctx, keys...).Err()
 	}
 	metrics.AddCounter("lkforum_feed_cache_invalidations_total", nil, 1)
+	slog.InfoContext(ctx, "feed_cache_invalidated", "keys_deleted", len(keys))
 }
 
 func (s *postService) buildFilter(query *dto.GetPostsQuery) repo.Filter {

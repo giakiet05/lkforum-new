@@ -1,0 +1,2293 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.4.17)  17 MAY 2026 19:07
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**SRS.tex
+(./SRS.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+(/usr/share/texmf-dist/tex/latex/koma-script/scrreprt.cls
+Document Class: scrreprt 2026/02/02 v3.49.2 KOMA-Script document class (report)
+
+(/usr/share/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-dependent
+ basics and keyval usage)
+
+(/usr/share/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2026/02/02 v3.49.2 KOMA-Script package (KOMA-Script-independen
+t basics and keyval usage)
+
+(/usr/share/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2026/02/02 v3.49.2 KOMA-Script package (file load hooks)
+
+(/usr/share/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
+Package: scrlfile-hook 2026/02/02 v3.49.2 KOMA-Script package (using LaTeX hook
+s)
+
+(/usr/share/texmf-dist/tex/latex/koma-script/scrlogo.sty
+Package: scrlogo 2026/02/02 v3.49.2 KOMA-Script package (logo)
+)))
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+Applying: [2021/05/01] Usage of raw or classic option list on input line 254.
+Already applied: [0000/00/00] Usage of raw or classic option list on input line
+ 370.
+))
+(/usr/share/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2026/02/02 v3.49.2 KOMA-Script package (handling toc-files)
+\scr@dte@tocline@numberwidth=\skip49
+\scr@dte@tocline@numbox=\box53
+)
+Package tocbasic Info: omitting babel extension for `toc'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `toc' on input line 143.
+Class scrreprt Info: File `scrsize11pt.clo' used instead of
+(scrreprt)           file `scrsize11.clo' to setup font sizes on input line 271
+0.
+
+(/usr/share/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2026/02/02 v3.49.2 KOMA-Script font size class option (11
+pt)
+)
+(/usr/share/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2026/02/02 v3.49.2 KOMA-Script package (type area)
+\ta@bcor=\skip50
+\ta@div=\count275
+\ta@hblk=\skip51
+\ta@vblk=\skip52
+\ta@temp=\skip53
+\footheight=\skip54
+Package typearea Info: These are the values describing the layout:
+(typearea)             DIV  = 10
+(typearea)             BCOR = 0.0pt
+(typearea)             \paperwidth      = 597.50793pt
+(typearea)              \textwidth      = 418.25555pt
+(typearea)              DIV departure   = -6%
+(typearea)              \evensidemargin = 17.3562pt
+(typearea)              \oddsidemargin  = 17.3562pt
+(typearea)             \paperheight     = 845.04694pt
+(typearea)              \textheight     = 595.80026pt
+(typearea)              \topmargin      = -25.16531pt
+(typearea)              \headheight     = 17.0pt
+(typearea)              \headsep        = 20.40001pt
+(typearea)              \topskip        = 11.0pt
+(typearea)              \footskip       = 47.6pt
+(typearea)              \baselineskip   = 13.6pt
+(typearea)              on input line 1810.
+)
+\c@part=\count276
+\c@chapter=\count277
+\c@section=\count278
+\c@subsection=\count279
+\c@subsubsection=\count280
+\c@paragraph=\count281
+\c@subparagraph=\count282
+\scr@dte@chapter@maxnumwidth=\skip55
+Class scrreprt Info: using compatibility default `afterindent=bysign'
+(scrreprt)           for `\chapter on input line 5934.
+\scr@dte@section@maxnumwidth=\skip56
+Class scrreprt Info: using compatibility default `runin=bysign'
+(scrreprt)           for `\section on input line 5945.
+Class scrreprt Info: using compatibility default `afterindent=bysign'
+(scrreprt)           for `\section on input line 5945.
+\scr@dte@part@maxnumwidth=\skip57
+Class scrreprt Info: using compatibility default `afterindent=true'
+(scrreprt)           for `\part on input line 5954.
+\scr@dte@subsection@maxnumwidth=\skip58
+Class scrreprt Info: using compatibility default `runin=bysign'
+(scrreprt)           for `\subsection on input line 5964.
+Class scrreprt Info: using compatibility default `afterindent=bysign'
+(scrreprt)           for `\subsection on input line 5964.
+\scr@dte@subsubsection@maxnumwidth=\skip59
+Class scrreprt Info: using compatibility default `runin=bysign'
+(scrreprt)           for `\subsubsection on input line 5974.
+Class scrreprt Info: using compatibility default `afterindent=bysign'
+(scrreprt)           for `\subsubsection on input line 5974.
+\scr@dte@paragraph@maxnumwidth=\skip60
+Class scrreprt Info: using compatibility default `runin=bysign'
+(scrreprt)           for `\paragraph on input line 5985.
+Class scrreprt Info: using compatibility default `afterindent=bysign'
+(scrreprt)           for `\paragraph on input line 5985.
+\scr@dte@subparagraph@maxnumwidth=\skip61
+Class scrreprt Info: using compatibility default `runin=bysign'
+(scrreprt)           for `\subparagraph on input line 5995.
+Class scrreprt Info: using compatibility default `afterindent=bysign'
+(scrreprt)           for `\subparagraph on input line 5995.
+\abovecaptionskip=\skip62
+\belowcaptionskip=\skip63
+\c@pti@nb@sid@b@x=\box54
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 7225.
+\scr@dte@figure@maxnumwidth=\skip64
+\c@figure=\count283
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 7238.
+\scr@dte@table@maxnumwidth=\skip65
+\c@table=\count284
+Class scrreprt Info: Redefining `\numberline' on input line 7409.
+\bibindent=\dimen148
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count285
+\lst@gtempboxa=\box55
+\lst@token=\toks18
+\lst@length=\count286
+\lst@currlwidth=\dimen149
+\lst@column=\count287
+\lst@pos=\count288
+\lst@lostspace=\dimen150
+\lst@width=\dimen151
+\lst@newlines=\count289
+\lst@lineno=\count290
+\lst@maxwidth=\dimen152
+
+(/usr/share/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
+)
+(/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
+\c@lstnumber=\count291
+\lst@skipnumbers=\count292
+\lst@framebox=\box56
+)
+(/usr/share/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2025/11/14 1.11b listings configuration
+))
+Package: listings 2025/11/14 1.11b (Carsten Heinz)
+
+==> First Aid for listings.sty no longer applied!
+    Expected:
+        2024/09/23 1.10c (Carsten Heinz)
+    but found:
+        2025/11/14 1.11b (Carsten Heinz)
+    so I'm assuming it got fixed.
+(/usr/share/texmf-dist/tex/latex/underscore/underscore.sty
+Package: underscore 2006/09/13
+LaTeX Info: Redefining \_ on input line 42.
+)
+==> First Aid for underscore.sty applied!
+(/usr/share/texmf-dist/tex/latex/firstaid/underscore-ltx.sty
+Package: underscore-ltx 2023/09/20 LaTeX firstaid to make underscore protected 
+
+)
+(/usr/share/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2024/12/31 v1.2e Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2024/08/06 v1.4g Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/share/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2023/12/02 v1.11 sin cos tan (DPC)
+)
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 106.
+
+(/usr/share/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2025/09/29 v1.2d Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen153
+\Gin@req@width=\dimen154
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
+
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2024/12/12 v1.0g TeX engine tests
+)
+(/usr/share/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+)
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(/usr/share/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+))
+(/usr/share/texmf-dist/tex/latex/hycolor/hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
+
+(/usr/share/texmf-dist/tex/latex/refcount/refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(/usr/share/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+))
+\c@section@level=\count293
+)
+(/usr/share/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count294
+)
+(/usr/share/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
+\@linkdim=\dimen155
+\Hy@linkcounter=\count295
+\Hy@pagecounter=\count296
+
+(/usr/share/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(/usr/share/texmf-dist/tex/generic/intcalc/intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+\Hy@SavedSpaceFactor=\count297
+
+(/usr/share/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4468.
+\c@Hy@tempcnt=\count298
+
+(/usr/share/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip17
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 4807.
+\XeTeXLinkMargin=\dimen156
+
+(/usr/share/texmf-dist/tex/generic/bitset/bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(/usr/share/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count299
+\Field@Width=\dimen157
+\Fld@charsize=\dimen158
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
+\Hy@abspage=\count300
+\c@Item=\count301
+\c@Hfootnote=\count302
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/hpdftex.def
+File: hpdftex.def 2026-01-29 v7.01p Hyperref driver for pdfTeX
+\Fld@listcount=\count303
+\c@bookmark@seq@number=\count304
+
+(/usr/share/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
+
+(/usr/share/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+84.
+)
+\Hy@SectionHShift=\skip66
+)
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks19
+\inpenc@posthook=\toks20
+)
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
+\babel@savecnt=\count305
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
+ne 2078.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
+ne 2080.
+LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
+e 2082.
+LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
+e 2083.
+LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
+on input line 2084.
+LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
+on input line 2086.
+LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
+on input line 2111.
+\U@D=\dimen159
+\l@unhyphenated=\language3
+
+(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count306
+
+(/usr/share/texmf-dist/tex/generic/babel/locale/en/babel-english.tex)
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 4330.
+
+(/usr/share/texmf-dist/tex/generic/babel-english/english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'british' set to \l@english
+(babel)             (\language0). Reported on input line 82.
+Package babel Info: Hyphen rules for 'UKenglish' set to \l@english
+(babel)             (\language0). Reported on input line 83.
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@english
+(babel)             (\language0). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@english
+(babel)             (\language0). Reported on input line 108.
+))
+(/usr/share/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count307
+\float@exts=\toks21
+\float@box=\box57
+\@float@everytoks=\toks22
+\@floatcapt=\box58
+)
+(/usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2025/02/06 v3.11 Customized lists
+\labelindent=\skip67
+\enit@outerparindent=\dimen160
+\enit@toks=\toks23
+\enit@inbox=\box59
+\enit@count@id=\count308
+\enitdp@description=\count309
+)
+(/usr/share/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2025-06-23 v0.14 Display of landscape pages in PDF
+
+(/usr/share/texmf-dist/tex/latex/pdflscape/pdflscape-nometadata.sty
+Package: pdflscape-nometadata 2025-06-23 v0.14 Display of landscape pages in PD
+F (HO)
+
+(/usr/share/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2020/05/28 v3.02 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
+))
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
+\col@sep=\dimen161
+\ar@mcellbox=\box60
+\extrarowheight=\dimen162
+\NC@list=\toks24
+\extratabsurround=\skip68
+\backup@length=\skip69
+\ar@cellbox=\box61
+)
+(/usr/share/texmf-dist/tex/latex/tabularray/tabularray.sty
+Package: tabularray 2025-11-27 v2025C Typeset tabulars and arrays with LaTeX3
+\g__tblr_nohyper_int=\count310
+\l__tblr_a_int=\count311
+\l__tblr_c_int=\count312
+\l__tblr_r_int=\count313
+\l__tblr_d_dim=\dimen163
+\l__tblr_h_dim=\dimen164
+\l__tblr_o_dim=\dimen165
+\l__tblr_p_dim=\dimen166
+\l__tblr_q_dim=\dimen167
+\l__tblr_r_dim=\dimen168
+\l__tblr_s_dim=\dimen169
+\l__tblr_t_dim=\dimen170
+\l__tblr_v_dim=\dimen171
+\l__tblr_w_dim=\dimen172
+\l__tblr_a_box=\box62
+\l__tblr_b_box=\box63
+\l__tblr_c_box=\box64
+\l__tblr_d_box=\box65
+\c@tblrcount=\count314
+\c@rownum=\count315
+\c@colnum=\count316
+\c@rowcount=\count317
+\c@colcount=\count318
+\abovesep=\dimen173
+\belowsep=\dimen174
+\leftsep=\dimen175
+\rightsep=\dimen176
+\gTblrLevelInt=\count319
+\g__tblr_data_row_key_count_int=\count320
+\g__tblr_data_column_key_count_int=\count321
+\g__tblr_data_cell_key_count_int=\count322
+\g__tblr_array_int=\count323
+\l__tblr_key_count_int=\count324
+\l__tblr_key_quotient_int=\count325
+\l__tblr_key_quotient_two_int=\count326
+\l__tblr_key_remainder_int=\count327
+\g__tblr_data_str_value_count_int=\count328
+\lTblrChildTotalInt=\count329
+\lTblrChildHtotalInt=\count330
+\lTblrChildVtotalInt=\count331
+\l__child_diff_h_int=\count332
+\l__child_diff_v_int=\count333
+\l__child_sign_h_int=\count334
+\l__child_sign_v_int=\count335
+\l__child_step_int=\count336
+\lTblrDefaultHruleWidthDim=\dimen177
+\lTblrDefaultVruleWidthDim=\dimen178
+\l__tblr_split_balance_int=\count337
+\l__tblr_strut_dp_dim=\dimen179
+\l__tblr_strut_ht_dim=\dimen180
+\g__tblr_cell_wd_dim=\dimen181
+\g__tblr_cell_ht_dim=\dimen182
+\g__tblr_cell_head_dim=\dimen183
+\g__tblr_cell_foot_dim=\dimen184
+\l__tblr_measured_cell_box=\box66
+\g__tblr_last_box=\box67
+\l__tblr_temp_box=\box68
+\l__tblr_column_target_dim=\dimen185
+\l__tblr_hfuzz_dim=\dimen186
+\l__tblr_caption_box=\box69
+\l__tblr_caption_left_box=\box70
+\lTblrRowHeadInt=\count338
+\lTblrRowFootInt=\count339
+\l__tblr_row_head_box=\box71
+\l__tblr_row_foot_box=\box72
+\l__tblr_row_head_foot_dim=\dimen187
+\lTblrTableWidthDim=\dimen188
+\l__tblr_table_firsthead_box=\box73
+\l__tblr_table_middlehead_box=\box74
+\l__tblr_table_lasthead_box=\box75
+\l__tblr_table_firstfoot_box=\box76
+\l__tblr_table_middlefoot_box=\box77
+\l__tblr_table_lastfoot_box=\box78
+\l__tblr_remain_height_dim=\dimen189
+\l__tblr_next_rows_dim=\dimen190
+\l__tblr_page_overfill_dim=\dimen191
+\l__tblr_long_from_int=\count340
+\l__tblr_long_to_int=\count341
+\l__tblr_curr_i_int=\count342
+\l__tblr_prev_i_int=\count343
+\lTblrTablePageInt=\count344
+\l__tblr_table_head_box=\box79
+\l__tblr_table_foot_box=\box80
+\l__tblr_table_head_foot_dim=\dimen192
+\l__tblr_table_head_body_foot_dim=\dimen193
+\l__tblr_table_box=\box81
+\lTblrRowFirstInt=\count345
+\lTblrRowLastInt=\count346
+\l__tblr_cover_box_a_dim=\dimen194
+\l__tblr_cover_box_b_dim=\dimen195
+\l__tblr_table_hlines_box=\box82
+\l__tblr_hline_box=\box83
+\l__tblr_row_box=\box84
+\l__tblr_col_o_wd_dim=\dimen196
+\l__tblr_col_b_wd_dim=\dimen197
+\l__tblr_hline_leftskip_dim=\dimen198
+\l__tblr_hline_rightskip_dim=\dimen199
+\l__tblr_row_ht_dim=\dimen256
+\l__tblr_row_dp_dim=\dimen257
+\l__tblr_row_abovesep_dim=\dimen258
+\l__tblr_row_belowsep_dim=\dimen259
+\l__tblr_row_vlines_box=\box85
+\l__tblr_vline_box=\box86
+\l__tblr_cell_box=\box87
+\l__tblr_row_upper_dim=\dimen260
+\l__tblr_row_lower_dim=\dimen261
+\l__tblr_row_vpace_dim=\dimen262
+\l__tblr_vline_aboveskip_dim=\dimen263
+\l__tblr_vline_belowskip_dim=\dimen264
+\lTblrCellRowSpanInt=\count347
+\lTblrCellColSpanInt=\count348
+\l__tblr_cell_wd_dim=\dimen265
+\l__tblr_cell_ht_dim=\dimen266
+\lTblrCellAboveBorderWidthDim=\dimen267
+\lTblrCellBelowBorderWidthDim=\dimen268
+\lTblrCellLeftBorderWidthDim=\dimen269
+\lTblrCellRightBorderWidthDim=\dimen270
+\l__tblr_diag_box=\box88
+\l__tblr_cell_inner_wd_dim=\dimen271
+\l__tblr_cell_inner_dp_dim=\dimen272
+\l__tblr_cell_hanchor_dim=\dimen273
+\l__tblr_last_cell_table_ht_dim=\dimen274
+\l__tblr_last_cell_table_dp_dim=\dimen275
+\l__tblr_last_vline_wd_dim=\dimen276
+\l__tblr_tikz_node_box=\box89
+)
+(/usr/share/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen277
+\lightrulewidth=\dimen278
+\cmidrulewidth=\dimen279
+\belowrulesep=\dimen280
+\belowbottomsep=\dimen281
+\aboverulesep=\dimen282
+\abovetopsep=\dimen283
+\cmidrulesep=\dimen284
+\cmidrulekern=\dimen285
+\defaultaddspace=\dimen286
+\@cmidla=\count349
+\@cmidlb=\count350
+\@aboverulesep=\dimen287
+\@belowrulesep=\dimen288
+\@thisruleclass=\count351
+\@lastruleclass=\count352
+\@thisrulewidth=\dimen289
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count353
+\Gm@cntv=\count354
+\c@Gm@tempcnt=\count355
+\Gm@bindingoffset=\dimen290
+\Gm@wd@mp=\dimen291
+\Gm@odd@mp=\dimen292
+\Gm@even@mp=\dimen293
+\Gm@layoutwidth=\dimen294
+\Gm@layoutheight=\dimen295
+\Gm@layouthoffset=\dimen296
+\Gm@layoutvoffset=\dimen297
+\Gm@dimlist=\toks25
+)
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 51.
+
+Package hyperref Info: Option `colorlinks' set `true' on input line 51.
+Class scrreprt Info: loading recommended package `bookmark'.
+(scrreprt)           Using `bookmark' together with `hyperref' is recommended,
+(scrreprt)           because of handling of possible bookmark level gaps.
+(scrreprt)           You can avoid loading `bookmark' with KOMA-Script option
+(scrreprt)           `bookmarkpackage=false' before \begin{document} and
+(scrreprt)           you can avoid this message adding:
+(scrreprt)             \usepackage{bookmark}
+(scrreprt)           before \begin{document} on input line 58.
+(/usr/share/texmf-dist/tex/latex/bookmark/bookmark.sty
+Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
+
+(/usr/share/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
+File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
+)
+\BKM@id=\count356
+))
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count357
+) (./SRS.aux
+
+LaTeX Warning: Label `tab:data_dictionary_image' multiply defined.
+
+
+LaTeX Warning: Label `tab:data_dictionary_video' multiply defined.
+
+)
+\openout1 = `SRS.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 58.
+LaTeX Font Info:    ... okay on input line 58.
+Package scrbase Info: activating english \abstractname on input line 58.
+Package scrbase Info: activating english \partname on input line 58.
+Package scrbase Info: activating english \chaptername on input line 58.
+Package scrbase Info: activating english \appendixname on input line 58.
+Package scrbase Info: activating english \figurename on input line 58.
+Package scrbase Info: activating english \tablename on input line 58.
+Package scrbase Info: activating english \contentsname on input line 58.
+Package scrbase Info: activating english \listfigurename on input line 58.
+Package scrbase Info: activating english \listtablename on input line 58.
+Package scrbase Info: activating english \bibname on input line 58.
+Package scrbase Info: activating english \indexname on input line 58.
+\c@lstlisting=\count358
+Package tocbasic Info: setting babel extension for `lol' on input line 58.
+\scr@dte@lstlisting@maxnumwidth=\skip70
+ (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count359
+\scratchdimen=\dimen298
+\scratchbox=\box90
+\nofMPsegments=\count360
+\nofMParguments=\count361
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count362
+\MPscratchDim=\dimen299
+\MPnumerator=\count363
+\makeMPintoPDFobject=\count364
+\everyMPtoPDFconversion=\toks27
+) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
+e
+))
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2025/01/14 v1.3e Standard LaTeX Color (DPC)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+Package hyperref Info: Link coloring ON on input line 58.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=483.69687pt
+* \textheight=674.33032pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-24.31174pt
+* \headheight=17.0pt
+* \headsep=20.40001pt
+* \topskip=11.0pt
+* \footskip=47.6pt
+* \marginparwidth=59.7508pt
+* \marginparsep=12.8401pt
+* \columnsep=10.0pt
+* \skip\footins=10.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./SRS.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 3.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 3.
+ [2
+
+])
+\tf@toc=\write3
+\openout3 = `SRS.toc'.
+
+ [3]
+chapter 1.
+[4
+
+]
+chapter 2.
+<./diagrams/Context Diagram.jpg, id=127, 1166.3575pt x 925.4575pt>
+File: ./diagrams/Context Diagram.jpg Graphic file (type jpg)
+<use ./diagrams/Context Diagram.jpg>
+Package pdftex.def Info: ./diagrams/Context Diagram.jpg  used on input line 102
+.
+(pdftex.def)             Requested size: 386.95897pt x 307.02586pt.
+[5
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.120     \item[\textbf{CO-2:}]
+                                The system must use a standard MongoDB NoSQL...
+ <./diagrams/Context Diagram.jpg>] [6]
+chapter 3.
+<./diagrams/activity_diagrams/UC_01_Sign_Up.png, id=138, 847.165pt x 1356.06625
+pt>
+File: ./diagrams/activity_diagrams/UC_01_Sign_Up.png Graphic file (type png)
+<use ./diagrams/activity_diagrams/UC_01_Sign_Up.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_01_Sign_Up.png  used o
+n input line 169.
+(pdftex.def)             Requested size: 386.95897pt x 619.41138pt.
+[7
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.1}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.173 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 243--243
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 243--243
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.243 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_01_Sign_Up.png (PNG copy)
+>] [9{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<./diagrams/activity_diagrams/UC_02_Local_Sign_In.png, id=157, 880.28876pt x 72
+2.7pt>
+File: ./diagrams/activity_diagrams/UC_02_Local_Sign_In.png Graphic file (type p
+ng)
+<use ./diagrams/activity_diagrams/UC_02_Local_Sign_In.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_02_Local_Sign_In.png  
+used on input line 270.
+(pdftex.def)             Requested size: 386.95897pt x 317.6802pt.
+
+[10]
+<./diagrams/activity_diagrams/UC_02_Google_Sign_In.png, id=163, 943.525pt x 713
+.66624pt>
+File: ./diagrams/activity_diagrams/UC_02_Google_Sign_In.png Graphic file (type 
+png)
+<use ./diagrams/activity_diagrams/UC_02_Google_Sign_In.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_02_Google_Sign_In.png 
+ used on input line 276.
+(pdftex.def)             Requested size: 386.95897pt x 292.69217pt.
+ [11
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.3}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.280 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.280 
+       <./diagrams/activity_diagrams/UC_02_Local_Sign_In.png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_03_Forgot_Password.png, id=170, 1101.11375pt x
+ 1287.81125pt>
+File: ./diagrams/activity_diagrams/UC_03_Forgot_Password.png Graphic file (type
+ png)
+<use ./diagrams/activity_diagrams/UC_03_Forgot_Password.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_03_Forgot_Password.png
+  used on input line 304.
+(pdftex.def)             Requested size: 386.95897pt x 452.56818pt.
+
+[12
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.308 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.4}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.308 
+       <./diagrams/activity_diagrams/UC_02_Google_Sign_In.png (PNG copy)>]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 365--365
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 365--365
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[13
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.4}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.365 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_03_Forgot_Password.png (P
+NG copy)>] [14]
+<./diagrams/activity_diagrams/UC_04_Manage_Profile.png, id=188, 1050.92625pt x 
+834.11626pt>
+File: ./diagrams/activity_diagrams/UC_04_Manage_Profile.png Graphic file (type 
+png)
+<use ./diagrams/activity_diagrams/UC_04_Manage_Profile.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_04_Manage_Profile.png 
+ used on input line 391.
+(pdftex.def)             Requested size: 386.95897pt x 307.12906pt.
+ [15
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.6}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.395 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 443--443
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 443--443
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[16
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.5}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.443 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_04_Manage_Profile.png (PN
+G copy)>]
+<./diagrams/activity_diagrams/UC_05_Change_Settings.png, id=200, 605.26125pt x 
+658.46pt>
+File: ./diagrams/activity_diagrams/UC_05_Change_Settings.png Graphic file (type
+ png)
+<use ./diagrams/activity_diagrams/UC_05_Change_Settings.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_05_Change_Settings.png
+  used on input line 469.
+(pdftex.def)             Requested size: 386.95897pt x 420.97089pt.
+ [17
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.8}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.473 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 514--514
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 514--514
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[18
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.6}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.514 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_05_Change_Settings.png (P
+NG copy)>]
+<./diagrams/activity_diagrams/UC_06_View_Activity_History.png, id=212, 709.6512
+5pt x 603.25375pt>
+File: ./diagrams/activity_diagrams/UC_06_View_Activity_History.png Graphic file
+ (type png)
+<use ./diagrams/activity_diagrams/UC_06_View_Activity_History.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_06_View_Activity_Histo
+ry.png  used on input line 540.
+(pdftex.def)             Requested size: 386.95897pt x 328.94627pt.
+ [19
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.10}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.544 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 577--577
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 577--577
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[20
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.7}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.599 
+       <./diagrams/activity_diagrams/UC_06_View_Activity_History.png (PNG copy)
+>]
+<./diagrams/activity_diagrams/UC_07_Follow_Unfollow_User.png, id=225, 712.6625p
+t x 548.0475pt>
+File: ./diagrams/activity_diagrams/UC_07_Follow_Unfollow_User.png Graphic file 
+(type png)
+<use ./diagrams/activity_diagrams/UC_07_Follow_Unfollow_User.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_07_Follow_Unfollow_Use
+r.png  used on input line 603.
+(pdftex.def)             Requested size: 386.95897pt x 297.57193pt.
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 633--633
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 633--633
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[21
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.12}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.633 \end
+          {longtblr}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.8}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.633 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_07_Follow_Unfollow_User.p
+ng (PNG copy)>]
+<./diagrams/activity_diagrams/UC_08_Browse_Content.png, id=232, 812.03375pt x 8
+07.015pt>
+File: ./diagrams/activity_diagrams/UC_08_Browse_Content.png Graphic file (type 
+png)
+<use ./diagrams/activity_diagrams/UC_08_Browse_Content.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_08_Browse_Content.png 
+ used on input line 659.
+(pdftex.def)             Requested size: 386.95897pt x 384.5675pt.
+ [22
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.14}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.663 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 697--697
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 697--697
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[23
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.9}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.697 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_08_Browse_Content.png (PN
+G copy)>]
+<./diagrams/activity_diagrams/UC_09_Search_Content.png, id=245, 600.2425pt x 75
+1.80875pt>
+File: ./diagrams/activity_diagrams/UC_09_Search_Content.png Graphic file (type 
+png)
+<use ./diagrams/activity_diagrams/UC_09_Search_Content.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_09_Search_Content.png 
+ used on input line 723.
+(pdftex.def)             Requested size: 386.95897pt x 484.67775pt.
+ [24
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.16}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.727 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 760--760
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 760--760
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[25
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.10})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.760 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_09_Search_Content.png (PN
+G copy)>]
+<./diagrams/activity_diagrams/UC_10_Create_Post.png, id=257, 1081.03876pt x 984
+.67876pt>
+File: ./diagrams/activity_diagrams/UC_10_Create_Post.png Graphic file (type png
+)
+<use ./diagrams/activity_diagrams/UC_10_Create_Post.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_10_Create_Post.png  us
+ed on input line 786.
+(pdftex.def)             Requested size: 386.95897pt x 352.4557pt.
+ [26
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.18}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.790 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 837--837
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 837--837
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[27
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.11})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.837 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_10_Create_Post.png (PNG c
+opy)>]
+<./diagrams/activity_diagrams/UC_11_Edit_Post.png, id=270, 1005.7575pt x 1256.6
+95pt>
+File: ./diagrams/activity_diagrams/UC_11_Edit_Post.png Graphic file (type png)
+<use ./diagrams/activity_diagrams/UC_11_Edit_Post.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_11_Edit_Post.png  used
+ on input line 863.
+(pdftex.def)             Requested size: 386.95897pt x 483.4935pt.
+ [28
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.20}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.867 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 914--914
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 914--914
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[29
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.12})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.914 \end
+          {longtblr} <./diagrams/activity_diagrams/UC_11_Edit_Post.png (PNG cop
+y)>]
+<./diagrams/activity_diagrams/UC_12_Delete_Post.png, id=282, 734.745pt x 658.46
+pt>
+File: ./diagrams/activity_diagrams/UC_12_Delete_Post.png Graphic file (type png
+)
+<use ./diagrams/activity_diagrams/UC_12_Delete_Post.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_12_Delete_Post.png  us
+ed on input line 940.
+(pdftex.def)             Requested size: 386.95897pt x 346.79184pt.
+ [30
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.22}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.944 
+      ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 979--979
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 979--979
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[31
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.13})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1001 
+        <./diagrams/activity_diagrams/UC_12_Delete_Post.png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_13_Post_Comment.png, id=296, 601.24625pt x 603
+.25375pt>
+File: ./diagrams/activity_diagrams/UC_13_Post_Comment.png Graphic file (type pn
+g)
+<use ./diagrams/activity_diagrams/UC_13_Post_Comment.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_13_Post_Comment.png  u
+sed on input line 1005.
+(pdftex.def)             Requested size: 386.95897pt x 388.26263pt.
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1043--1043
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1043--1043
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[32
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.24}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1043 \end
+           {longtblr}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.14})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1043 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_13_Post_Comment.png (PNG
+ copy)>]
+<./diagrams/activity_diagrams/UC_14_Reply_To_Comment.png, id=303, 620.3175pt x 
+603.25375pt>
+File: ./diagrams/activity_diagrams/UC_14_Reply_To_Comment.png Graphic file (typ
+e png)
+<use ./diagrams/activity_diagrams/UC_14_Reply_To_Comment.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_14_Reply_To_Comment.pn
+g  used on input line 1069.
+(pdftex.def)             Requested size: 386.95897pt x 376.31468pt.
+ [33
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.26}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1073 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1105--1105
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1105--1105
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[34
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.15})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1128 
+        <./diagrams/activity_diagrams/UC_14_Reply_To_Comment.png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_15_Vote_On_Content.png, id=316, 648.4225pt x 6
+58.46pt>
+File: ./diagrams/activity_diagrams/UC_15_Vote_On_Content.png Graphic file (type
+ png)
+<use ./diagrams/activity_diagrams/UC_15_Vote_On_Content.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_15_Vote_On_Content.png
+  used on input line 1132.
+(pdftex.def)             Requested size: 386.95897pt x 392.94904pt.
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1170--1170
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1170--1170
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[35
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.28}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1170 \end
+           {longtblr}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.16})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1170 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_15_Vote_On_Content.png (
+PNG copy)>]
+<./diagrams/activity_diagrams/UC_16_Participate_In_Poll.png, id=323, 741.77126p
+t x 603.25375pt>
+File: ./diagrams/activity_diagrams/UC_16_Participate_In_Poll.png Graphic file (
+type png)
+<use ./diagrams/activity_diagrams/UC_16_Participate_In_Poll.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_16_Participate_In_Poll
+.png  used on input line 1196.
+(pdftex.def)             Requested size: 386.95897pt x 314.70628pt.
+ [36
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.30}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1200 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1234--1234
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1234--1234
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[37
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.17})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1256 
+        <./diagrams/activity_diagrams/UC_16_Participate_In_Poll.png (PNG copy)>
+]
+<./diagrams/activity_diagrams/UC_17_Save_Post.png, id=337, 533.995pt x 492.8412
+5pt>
+File: ./diagrams/activity_diagrams/UC_17_Save_Post.png Graphic file (type png)
+<use ./diagrams/activity_diagrams/UC_17_Save_Post.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_17_Save_Post.png  used
+ on input line 1260.
+(pdftex.def)             Requested size: 386.95897pt x 357.14658pt.
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1291--1291
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1291--1291
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[38
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.32}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1291 \end
+           {longtblr}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.18})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1291 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_17_Save_Post.png (PNG co
+py)>]
+<./diagrams/activity_diagrams/UC_18_Hide_Post.png, id=344, 428.60126pt x 483.80
+75pt>
+File: ./diagrams/activity_diagrams/UC_18_Hide_Post.png Graphic file (type png)
+<use ./diagrams/activity_diagrams/UC_18_Hide_Post.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_18_Hide_Post.png  used
+ on input line 1317.
+(pdftex.def)             Requested size: 386.95897pt x 436.80322pt.
+ [39
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.34}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1321 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1348--1348
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1348--1348
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[40
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.19})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1370 
+        <./diagrams/activity_diagrams/UC_18_Hide_Post.png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_19_Manage_Drafts.png, id=357, 624.3325pt x 768
+.8725pt>
+File: ./diagrams/activity_diagrams/UC_19_Manage_Drafts.png Graphic file (type p
+ng)
+<use ./diagrams/activity_diagrams/UC_19_Manage_Drafts.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_19_Manage_Drafts.png  
+used on input line 1374.
+(pdftex.def)             Requested size: 386.95897pt x 476.55524pt.
+ [41
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.36}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1378 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1420--1420
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1420--1420
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[42
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.20})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1420 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_19_Manage_Drafts.png (PN
+G copy)>]
+<./diagrams/activity_diagrams/UC_20_Private_Messaging.png, id=369, 566.115pt x 
+704.6325pt>
+File: ./diagrams/activity_diagrams/UC_20_Private_Messaging.png Graphic file (ty
+pe png)
+<use ./diagrams/activity_diagrams/UC_20_Private_Messaging.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_20_Private_Messaging.p
+ng  used on input line 1446.
+(pdftex.def)             Requested size: 386.95897pt x 481.64894pt.
+ [43
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.38}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1450 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1484--1484
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1484--1484
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[44
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.21})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1484 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_20_Private_Messaging.png
+ (PNG copy)>]
+<./diagrams/activity_diagrams/UC_21_Manage_Notifications.png, id=382, 543.02875
+pt x 594.22pt>
+File: ./diagrams/activity_diagrams/UC_21_Manage_Notifications.png Graphic file 
+(type png)
+<use ./diagrams/activity_diagrams/UC_21_Manage_Notifications.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_21_Manage_Notification
+s.png  used on input line 1510.
+(pdftex.def)             Requested size: 386.95897pt x 423.4587pt.
+ [45
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.40}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1514 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1550--1550
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1550--1550
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[46
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.22})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1550 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_21_Manage_Notifications.
+png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_22_Report_Violation.png, id=394, 647.41875pt x
+ 539.01375pt>
+File: ./diagrams/activity_diagrams/UC_22_Report_Violation.png Graphic file (typ
+e png)
+<use ./diagrams/activity_diagrams/UC_22_Report_Violation.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_22_Report_Violation.pn
+g  used on input line 1576.
+(pdftex.def)             Requested size: 386.95897pt x 322.16881pt.
+ [47
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.42}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1580 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1615--1615
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1615--1615
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[48
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.23})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1637 
+        <./diagrams/activity_diagrams/UC_22_Report_Violation.png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_23_Create_Community.png, id=406, 661.47125pt x
+ 594.22pt>
+File: ./diagrams/activity_diagrams/UC_23_Create_Community.png Graphic file (typ
+e png)
+<use ./diagrams/activity_diagrams/UC_23_Create_Community.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_23_Create_Community.pn
+g  used on input line 1641.
+(pdftex.def)             Requested size: 386.95897pt x 347.61276pt.
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1680--1680
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1680--1680
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[49
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.44}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1680 \end
+           {longtblr}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.24})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1680 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_23_Create_Community.png 
+(PNG copy)>]
+<./diagrams/activity_diagrams/UC_24_Approve_Reject_Post.png, id=415, 790.955pt 
+x 658.46pt>
+File: ./diagrams/activity_diagrams/UC_24_Approve_Reject_Post.png Graphic file (
+type png)
+<use ./diagrams/activity_diagrams/UC_24_Approve_Reject_Post.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_24_Approve_Reject_Post
+.png  used on input line 1706.
+(pdftex.def)             Requested size: 386.95897pt x 322.13582pt.
+ [50
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.46}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1710 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1745--1745
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1745--1745
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[51
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.25})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1745 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_24_Approve_Reject_Post.p
+ng (PNG copy)>]
+<./diagrams/activity_diagrams/UC_25_Ban_Mute_User.png, id=428, 591.20876pt x 60
+3.25375pt>
+File: ./diagrams/activity_diagrams/UC_25_Ban_Mute_User.png Graphic file (type p
+ng)
+<use ./diagrams/activity_diagrams/UC_25_Ban_Mute_User.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_25_Ban_Mute_User.png  
+used on input line 1771.
+(pdftex.def)             Requested size: 386.95897pt x 394.85335pt.
+ [52
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.48}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1775 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1810--1810
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1810--1810
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[53
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.26})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1810 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_25_Ban_Mute_User.png (PN
+G copy)>]
+<./diagrams/activity_diagrams/UC_26_Configure_Community.png, id=440, 664.4825pt
+ x 483.8075pt>
+File: ./diagrams/activity_diagrams/UC_26_Configure_Community.png Graphic file (
+type png)
+<use ./diagrams/activity_diagrams/UC_26_Configure_Community.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_26_Configure_Community
+.png  used on input line 1836.
+(pdftex.def)             Requested size: 386.95897pt x 281.74542pt.
+ [54
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.50}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1840 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1874--1874
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1874--1874
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[55
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.27})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1896 
+        <./diagrams/activity_diagrams/UC_26_Configure_Community.png (PNG copy)>
+]
+<./diagrams/activity_diagrams/UC_27_Assign_Roles.png, id=453, 541.02126pt x 539
+.01375pt>
+File: ./diagrams/activity_diagrams/UC_27_Assign_Roles.png Graphic file (type pn
+g)
+<use ./diagrams/activity_diagrams/UC_27_Assign_Roles.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_27_Assign_Roles.png  u
+sed on input line 1900.
+(pdftex.def)             Requested size: 386.95897pt x 385.53172pt.
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1938--1938
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 1938--1938
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[56
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.52}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1938 \end
+           {longtblr}
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.28})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1938 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_27_Assign_Roles.png (PNG
+ copy)>]
+<./diagrams/activity_diagrams/UC_28_Handle_Global_Reports.png, id=460, 550.055p
+t x 649.42625pt>
+File: ./diagrams/activity_diagrams/UC_28_Handle_Global_Reports.png Graphic file
+ (type png)
+<use ./diagrams/activity_diagrams/UC_28_Handle_Global_Reports.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_28_Handle_Global_Repor
+ts.png  used on input line 1964.
+(pdftex.def)             Requested size: 386.95897pt x 456.88435pt.
+ [57
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.54}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1968 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 2004--2004
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 2004--2004
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[58
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.29})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2004 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_28_Handle_Global_Reports
+.png (PNG copy)>]
+<./diagrams/activity_diagrams/UC_29_Manage_Platform.png, id=473, 537.00626pt x 
+594.22pt>
+File: ./diagrams/activity_diagrams/UC_29_Manage_Platform.png Graphic file (type
+ png)
+<use ./diagrams/activity_diagrams/UC_29_Manage_Platform.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_29_Manage_Platform.png
+  used on input line 2030.
+(pdftex.def)             Requested size: 386.95897pt x 428.18262pt.
+ [59
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.56}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2034 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 2069--2069
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 2069--2069
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+[60
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.30})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2069 \end
+           {longtblr} <./diagrams/activity_diagrams/UC_29_Manage_Platform.png (
+PNG copy)>]
+<./diagrams/activity_diagrams/UC_30_View_Analytics.png, id=485, 463.7325pt x 42
+8.60126pt>
+File: ./diagrams/activity_diagrams/UC_30_View_Analytics.png Graphic file (type 
+png)
+<use ./diagrams/activity_diagrams/UC_30_View_Analytics.png>
+Package pdftex.def Info: ./diagrams/activity_diagrams/UC_30_View_Analytics.png 
+ used on input line 2095.
+(pdftex.def)             Requested size: 386.95897pt x 357.6486pt.
+ [61
+pdfTeX warning (ext4): destination with the same identifier (name{table.3.58}) 
+has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2099 
+       ]
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 2133--2133
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+
+Overfull \hbox (2.34485pt too wide) in paragraph at lines 2133--2133
+ []\OT1/cmr/bx/n/10.95 Activity 
+ []
+
+<./diagrams/Partial data model for LKForum.jpg, id=492, 1372.12625pt x 818.0562
+4pt>
+File: ./diagrams/Partial data model for LKForum.jpg Graphic file (type jpg)
+<use ./diagrams/Partial data model for LKForum.jpg>
+Package pdftex.def Info: ./diagrams/Partial data model for LKForum.jpg  used on
+ input line 2141.
+(pdftex.def)             Requested size: 483.69687pt x 288.38359pt.
+[62
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.31})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2145 
+        <./diagrams/activity_diagrams/UC_30_View_Analytics.png (PNG copy)>]
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2179
+ [] 
+ []
+
+[63
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3.32})
+ has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.2179 \end
+           {longtblr} <./diagrams/Partial data model for LKForum.jpg>]
+Overfull \hbox (19.72078pt too wide) detected at line 2179
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2196
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2220
+ [] 
+ []
+
+[64]
+Overfull \hbox (19.72078pt too wide) detected at line 2220
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2239
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2259
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+[65]
+Overfull \hbox (19.72078pt too wide) detected at line 2275
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2294
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2311
+ [] 
+ []
+
+
+Overfull \hbox (4.404pt too wide) in paragraph at lines 2332--2332
+[]\OT1/cmr/m/n/10.95 NotifyOnMessage  
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (4.404pt too wide) in paragraph at lines 2332--2332
+[]\OT1/cmr/m/n/10.95 NotifyOnMessage  
+ []
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2332
+ [] 
+ []
+
+
+Overfull \hbox (2.15312pt too wide) in paragraph at lines 2352--2352
+[]\OT1/cmr/m/n/10.95 ShowPostHistory  
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+[66]
+Overfull \hbox (2.15312pt too wide) in paragraph at lines 2352--2352
+[]\OT1/cmr/m/n/10.95 ShowPostHistory  
+ []
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2352
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2368
+ [] 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (6.89812pt too wide) in paragraph at lines 2390--2390
+[]\OT1/cmr/m/n/10.95 EmailVerification- 
+ []
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2390
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+[67]
+Overfull \hbox (19.72078pt too wide) detected at line 2412
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2430
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2448
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+[68]
+Overfull \hbox (19.72078pt too wide) detected at line 2483
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+[69]
+Overfull \hbox (19.72078pt too wide) detected at line 2502
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2519
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2539
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2560
+ [] 
+ []
+
+[70]
+Overfull \hbox (19.72078pt too wide) detected at line 2560
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2578
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2600
+ [] 
+ []
+
+[71]
+Overfull \hbox (19.72078pt too wide) detected at line 2600
+ [] 
+ []
+
+
+Overfull \hbox (0.69312pt too wide) in paragraph at lines 2638--2638
+[]\OT1/cmr/m/n/10.95 CommentsCount  
+ []
+
+
+Overfull \hbox (6.1986pt too wide) in paragraph at lines 2638--2638
+[]\OT1/cmr/m/n/10.95 ModerationStatus  
+ []
+
+
+Overfull \hbox (6.35066pt too wide) in paragraph at lines 2638--2638
+[]\OT1/cmr/m/n/10.95 ModerationResult  
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (0.69312pt too wide) in paragraph at lines 2638--2638
+[]\OT1/cmr/m/n/10.95 CommentsCount  
+ []
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2638
+ [] 
+ []
+
+[72]
+Overfull \hbox (6.1986pt too wide) in paragraph at lines 2638--2638
+[]\OT1/cmr/m/n/10.95 ModerationStatus  
+ []
+
+
+Overfull \hbox (6.35066pt too wide) in paragraph at lines 2638--2638
+[]\OT1/cmr/m/n/10.95 ModerationResult  
+ []
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2638
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2657
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2677
+ [] 
+ []
+
+[73]
+Overfull \hbox (19.72078pt too wide) detected at line 2677
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2695
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2712
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2733
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+[74]
+Overfull \hbox (19.72078pt too wide) detected at line 2757
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2775
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2799
+ [] 
+ []
+
+[75]
+Overfull \hbox (19.72078pt too wide) detected at line 2799
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2817
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2835
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2856
+ [] 
+ []
+
+[76]
+Overfull \hbox (19.72078pt too wide) detected at line 2856
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2875
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2894
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2920
+ [] 
+ []
+
+[77]
+Overfull \hbox (19.72078pt too wide) detected at line 2920
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2941
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2961
+ [] 
+ []
+
+[78]
+Overfull \hbox (19.72078pt too wide) detected at line 2961
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 2979
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 3003
+ [] 
+ []
+
+[79]
+Overfull \hbox (19.72078pt too wide) detected at line 3003
+ [] 
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 3029
+ [] 
+ []
+
+
+Overfull \hbox (1.24065pt too wide) in paragraph at lines 3060--3060
+[]\OT1/cmr/m/n/10.95 NotificationType  
+ []
+
+
+Package tabularray Warning: Table width is too small, need 19.72078pt more!
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 3060
+ [] 
+ []
+
+[80]
+Overfull \hbox (1.24065pt too wide) in paragraph at lines 3060--3060
+[]\OT1/cmr/m/n/10.95 NotificationType  
+ []
+
+
+Overfull \hbox (19.72078pt too wide) detected at line 3060
+ [] 
+ []
+
+[81]
+chapter 4.
+[82
+
+]
+chapter 5.
+[83
+
+] (./SRS.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2026-01-19>
+ ***********
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 19811 strings out of 469515
+ 387109 string characters out of 5470807
+ 994989 words of memory out of 5000000
+ 48017 multiletter control sequences out of 15000+600000
+ 634663 words of font info for 61 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 108i,8n,112p,11227b,2782s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
+Output written on SRS.pdf (83 pages, 1676696 bytes).
+PDF statistics:
+ 885 PDF objects out of 1000 (max. 8388607)
+ 747 compressed objects within 8 object streams
+ 278 named destinations out of 1000 (max. 500000)
+ 574 words of extra memory for PDF output out of 10000 (max. 10000000)
+

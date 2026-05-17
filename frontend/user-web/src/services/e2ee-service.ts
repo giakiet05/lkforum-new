@@ -2,6 +2,7 @@ import type { MessageResponse } from "../dtos/message-dto";
 
 const ALGORITHM = "AES-GCM";
 const KEY_VERSION = "demo-v1";
+const DECRYPTION_FAILED_CONTENT = "[Encrypted message could not be decrypted]";
 
 function bytesToBase64(bytes: Uint8Array): string {
     let binary = "";
@@ -43,8 +44,12 @@ export async function encryptMessage(channelId: string, plaintext: string) {
     };
 }
 
+export function isEncryptedMessage(message: Pick<MessageResponse, "ciphertext" | "nonce">): boolean {
+    return Boolean(message.ciphertext && message.nonce);
+}
+
 export async function decryptMessage(message: MessageResponse): Promise<MessageResponse> {
-    if (!message.ciphertext || !message.nonce) {
+    if (!isEncryptedMessage(message)) {
         return message;
     }
 
@@ -63,7 +68,11 @@ export async function decryptMessage(message: MessageResponse): Promise<MessageR
     } catch {
         return {
             ...message,
-            content: "[Encrypted message could not be decrypted]",
+            content: DECRYPTION_FAILED_CONTENT,
         };
     }
+}
+
+export async function decryptMessages(messages: MessageResponse[]): Promise<MessageResponse[]> {
+    return Promise.all(messages.map(decryptMessage));
 }

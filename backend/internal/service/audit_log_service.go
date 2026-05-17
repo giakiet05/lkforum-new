@@ -1,6 +1,7 @@
 package service
 
 import (
+	"log/slog"
 	"time"
 
 	"github.com/giakiet05/lkforum/internal/model"
@@ -31,6 +32,26 @@ func (s *auditLogService) Record(entry *model.AuditLog) {
 	go func() {
 		ctx, cancel := util.NewDefaultDBContext()
 		defer cancel()
-		_ = s.repo.Create(ctx, entry)
+		if err := s.repo.Create(ctx, entry); err != nil {
+			slog.ErrorContext(
+				ctx,
+				"audit_log_persist_failed",
+				"action", entry.Action,
+				"actor_id", entry.ActorID,
+				"target_type", entry.TargetType,
+				"target_id", entry.TargetID,
+				"error", err,
+			)
+			return
+		}
+
+		slog.InfoContext(
+			ctx,
+			"audit_log_persisted",
+			"action", entry.Action,
+			"actor_id", entry.ActorID,
+			"target_type", entry.TargetType,
+			"target_id", entry.TargetID,
+		)
 	}()
 }

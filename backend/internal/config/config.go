@@ -1,7 +1,7 @@
 package config
 
 import (
-	"log"
+	"log/slog"
 	"os"
 	"strconv"
 	"strings"
@@ -77,7 +77,7 @@ var Cfg AppConfig
 // LoadConfig loads environment variables from .env file and populates the Cfg struct
 func LoadConfig() {
 	if err := godotenv.Load(); err != nil {
-		log.Println(".env file not found. Using environment variables.")
+		slog.Warn("env file not found; using environment variables")
 	}
 
 	//Port
@@ -127,7 +127,7 @@ func LoadConfig() {
 	Cfg.Gemini.Timeout = getEnvInt("GEMINI_TIMEOUT", 15)
 	Cfg.Gemini.MaxRetries = getEnvInt("GEMINI_MAX_RETRIES", 3)
 
-	log.Println("Configuration loaded successfully")
+	slog.Info("configuration_loaded", "port", Cfg.Port, "db_name", Cfg.DBName, "redis_addr", Cfg.Redis.Addr)
 }
 
 // Helper function to get environment variable with a default value

@@ -19,6 +19,7 @@
   } from "./stores/chat-store";
   import { getChannelsByUser } from "./services/channel-service";
   import { getMessages } from "./services/message-service";
+  import { decryptMessage } from "./services/e2ee-service";
   import type { MessageResponse } from "./dtos/message-dto";
 
   const sidebarItems = [
@@ -124,10 +125,11 @@
   };
 
   // Global handler for incoming messages (so badge shows even when ChatPopup is closed)
-  const handleGlobalMessage = (payload: any) => {
+  const handleGlobalMessage = async (payload: any) => {
     const message: MessageResponse = payload.message || payload;
-    console.log("📨 [App] Global message received:", message);
-    addMessage(message.channel_id, message);
+    const decryptedMessage = await decryptMessage(message);
+    console.log("📨 [App] Global message received:", decryptedMessage);
+    addMessage(decryptedMessage.channel_id, decryptedMessage);
   };
 
   // Load channels and messages on login to get unread count

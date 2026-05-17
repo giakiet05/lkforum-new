@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.4.17)  16 MAY 2026 19:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.4.17)  17 MAY 2026 19:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -732,7 +732,7 @@ chapter 3.
 File: diagrams/LKForum_System_Context.png Graphic file (type png)
 <use diagrams/LKForum_System_Context.png>
 Package pdftex.def Info: diagrams/LKForum_System_Context.png  used on input lin
-e 309.
+e 310.
 (pdftex.def)             Requested size: 435.32422pt x 728.75417pt.
 [9
 
@@ -745,9 +745,9 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.1})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.312 
+l.313 
        <./diagrams/LKForum_System_Context.png (PNG copy)>]
-Overfull \hbox (17.13359pt too wide) in paragraph at lines 314--315
+Overfull \hbox (17.13359pt too wide) in paragraph at lines 315--316
 \OT1/cmr/m/n/10.95 Con-trollers, Ser-vices, and Repos-i-to-ries. In-ter-faces d
 e-fine con-tracts be-tween lay-ers (e.g., \OT1/cmtt/m/n/10.95 PostService
  []
@@ -756,13 +756,13 @@ e-fine con-tracts be-tween lay-ers (e.g., \OT1/cmtt/m/n/10.95 PostService
 File: diagrams/LKForum_Component_Backend.png Graphic file (type png)
 <use diagrams/LKForum_Component_Backend.png>
 Package pdftex.def Info: diagrams/LKForum_Component_Backend.png  used on input 
-line 326.
+line 327.
 (pdftex.def)             Requested size: 435.32422pt x 427.98048pt.
 [11]
 <diagrams/LKForum_Container.png, id=104, 859.21pt x 1082.0425pt>
 File: diagrams/LKForum_Container.png Graphic file (type png)
 <use diagrams/LKForum_Container.png>
-Package pdftex.def Info: diagrams/LKForum_Container.png  used on input line 345
+Package pdftex.def Info: diagrams/LKForum_Container.png  used on input line 346
 .
 (pdftex.def)             Requested size: 435.32422pt x 548.23506pt.
  [12
@@ -770,13 +770,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3.2})
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.348 
+l.349 
        <./diagrams/LKForum_Component_Backend.png (PNG copy)>] [13
 pdfTeX warning (ext4): destination with the same identifier (name{figure.3.3}) 
 has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.355         \item \textbf
+l.356         \item \textbf
                            {Data Nodes:} MongoDB container (persistent data)...
  <./diagrams/LKForum_Container.png (PNG copy)>] [14] (./ADD.aux)
  ***********
@@ -797,7 +797,7 @@ texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public
 /amsfonts/cm/cmssbx10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm
 /cmtt10.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on ADD.pdf (14 pages, 531528 bytes).
+Output written on ADD.pdf (14 pages, 531695 bytes).
 PDF statistics:
  227 PDF objects out of 1000 (max. 8388607)
  194 compressed objects within 2 object streams

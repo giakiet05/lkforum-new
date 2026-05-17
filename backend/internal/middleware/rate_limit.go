@@ -2,6 +2,7 @@ package middleware
 
 import (
 	"fmt"
+	"log/slog"
 	"net/http"
 	"strings"
 	"time"
@@ -30,6 +31,7 @@ func RateLimit(redisClient *redis.Client, scope string, limit int64, window time
 		key := fmt.Sprintf("rate:%s:%s", scope, identifier)
 		count, err := redisClient.Incr(ctx, key).Result()
 		if err != nil {
+			slog.WarnContext(c.Request.Context(), "rate_limit_redis_error", "scope", scope, "error", err)
 			c.Next()
 			return
 		}
@@ -37,6 +39,15 @@ func RateLimit(redisClient *redis.Client, scope string, limit int64, window time
 			_ = redisClient.Expire(ctx, key, window).Err()
 		}
 		if count > limit {
+			slog.WarnContext(
+				c.Request.Context(),
+				"rate_limit_exceeded",
+				"scope", scope,
+				"limit", limit,
+				"count", count,
+				"path", c.FullPath(),
+				"client_ip", identifier,
+			)
 			dto.SendError(c, http.StatusTooManyRequests, "Too many requests. Please try again later.", "RATE_LIMITED")
 			c.Abort()
 			return

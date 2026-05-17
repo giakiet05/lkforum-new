@@ -2,7 +2,7 @@ package bootstrap
 
 import (
 	"context"
-	"log"
+	"log/slog"
 	"net/http"
 	"time"
 
@@ -236,6 +236,9 @@ func registerSystemRoutes(r *gin.Engine, client *mongo.Client, redisClient *redi
 			checks["redis"] = err.Error()
 		}
 
+		if status != http.StatusOK {
+			slog.WarnContext(c.Request.Context(), "readiness_check_degraded", "checks", checks)
+		}
 		c.JSON(status, gin.H{"status": map[bool]string{true: "ready", false: "degraded"}[status == http.StatusOK], "checks": checks})
 	})
 
@@ -252,13 +255,15 @@ func Init() (*gin.Engine, error) {
 
 	tokenService, err := InitializeTokenService(redisClient)
 	if err != nil {
-		log.Printf("Warning: Token invalidation service not available: %v\n", err)
+		slog.Warn("token invalidation service not available", "error", err)
 	}
 
 	client := config.NewMongoClient()
 	db := client.Database(config.Cfg.DBName)
-	router := gin.Default()
+	router := gin.New()
 	router.MaxMultipartMemory = 100 << 20 // 100 MB
+	router.Use(gin.Recovery())
+	router.Use(middleware.RequestLogger())
 	router.Use(middleware.Metrics())
 
 	router.Use(func(c *gin.Context) {
@@ -286,7 +291,7 @@ func Init() (*gin.Engine, error) {
 	// Initialize Gemini client for content moderation
 	geminiClient, err := gemini.NewGeminiClient(&config.Cfg.Gemini)
 	if err != nil {
-		log.Printf("Warning: Gemini client initialization failed: %v. Content moderation will be disabled.", err)
+		slog.Warn("gemini client initialization failed; content moderation disabled", "error", err)
 	}
 
 	repos := initRepos(client, db)
