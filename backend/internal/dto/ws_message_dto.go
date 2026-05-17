@@ -29,6 +29,10 @@ type NewMessagePayload struct {
 	SenderUsername string            `json:"sender_username"`
 	Type           model.MessageType `json:"type"`
 	Content        string            `json:"content"`
+	Ciphertext     string            `json:"ciphertext,omitempty"`
+	Nonce          string            `json:"nonce,omitempty"`
+	Algorithm      string            `json:"algorithm,omitempty"`
+	KeyVersion     string            `json:"key_version,omitempty"`
 }
 
 type SendMessagePayload struct {

@@ -2,7 +2,7 @@ package config
 
 import (
 	"context"
-	"log"
+	"log/slog"
 	"time"
 
 	"github.com/redis/go-redis/v9"
@@ -34,9 +34,9 @@ func NewRedisClient() *redis.Client {
 		// Log a warning instead of a fatal error.
 		// This allows the application to continue running even if Redis is unavailable.
 		// Features that depend on Redis (like token invalidation) will be gracefully disabled.
-		log.Printf("WARNING: Could not connect to Redis at %s. Features depending on Redis may be disabled. Error: %v", Cfg.Redis.Addr, err)
+		slog.Warn("redis_connection_failed", "addr", Cfg.Redis.Addr, "error", err)
 	} else {
-		log.Println("Successfully connected to Redis.")
+		slog.Info("redis_connected", "addr", Cfg.Redis.Addr)
 	}
 
 	return client

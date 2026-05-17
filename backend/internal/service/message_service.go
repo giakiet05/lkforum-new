@@ -11,6 +11,7 @@ import (
 	"github.com/giakiet05/lkforum/internal/dto"
 	"github.com/giakiet05/lkforum/internal/model"
 	"github.com/giakiet05/lkforum/internal/platform/bus"
+	"github.com/giakiet05/lkforum/internal/platform/metrics"
 	"github.com/giakiet05/lkforum/internal/repo"
 	"github.com/giakiet05/lkforum/internal/util"
 	"github.com/redis/go-redis/v9"
@@ -79,13 +80,22 @@ func (m *messageService) handleNewMessage(event bus.Event) {
 	senderID, _ := payload["sender_id"].(string)
 	senderUsername, _ := payload["sender_username"].(string)
 	content, _ := payload["content"].(string)
+	ciphertext, _ := payload["ciphertext"].(string)
+	nonce, _ := payload["nonce"].(string)
+	algorithm, _ := payload["algorithm"].(string)
+	keyVersion, _ := payload["key_version"].(string)
 
 	var msgType model.MessageType
 	if t, ok := payload["type"].(string); ok {
 		msgType = model.MessageType(t)
+	} else if t, ok := payload["type"].(model.MessageType); ok {
+		msgType = t
+	}
+	if msgType == "" {
+		msgType = model.UserMessage
 	}
 
-	if tempMessageID == "" || channelID == "" || senderID == "" || senderUsername == "" || content == "" {
+	if tempMessageID == "" || channelID == "" || senderID == "" || senderUsername == "" || (content == "" && ciphertext == "") {
 		m.publishMessageError(senderID, channelID, tempMessageID, apperror.ErrBadRequest)
 		return
 	}
@@ -142,6 +152,10 @@ func (m *messageService) handleNewMessage(event bus.Event) {
 		SenderUsername: senderUsername,
 		Type:           msgType,
 		Content:        content,
+		Ciphertext:     ciphertext,
+		Nonce:          nonce,
+		Algorithm:      algorithm,
+		KeyVersion:     keyVersion,
 		IsSend:         false,
 		IsRead:         false,
 		IsDeleted:      false,
@@ -153,6 +167,7 @@ func (m *messageService) handleNewMessage(event bus.Event) {
 		m.publishMessageError(senderID, channelID, tempMessageID, apperror.ErrInternal)
 		return
 	}
+	metrics.IncCounter("lkforum_messages_sent_total", map[string]string{"encrypted": fmt.Sprintf("%t", ciphertext != "")})
 
 	broadcastEvent := bus.BroadcastEvent{
 		RecipientIDs: recipientIDs,

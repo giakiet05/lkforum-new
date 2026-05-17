@@ -10,8 +10,10 @@ import (
 	"github.com/giakiet05/lkforum/internal/dto"
 	model "github.com/giakiet05/lkforum/internal/model"
 	"github.com/giakiet05/lkforum/internal/platform/bus"
+	"github.com/giakiet05/lkforum/internal/platform/metrics"
 	"github.com/giakiet05/lkforum/internal/repo"
 	"github.com/giakiet05/lkforum/internal/util"
+	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -59,6 +61,7 @@ type communityService struct {
 	userRepo       repo.UserRepo
 	eventBus       bus.EventBus
 	membershipSvc  MembershipService
+	redisClient    *redis.Client
 }
 
 func NewCommunityService(
@@ -67,7 +70,12 @@ func NewCommunityService(
 	postRepo repo.PostRepo,
 	userRepo repo.UserRepo,
 	bus bus.EventBus,
+	redisClients ...*redis.Client,
 ) CommunityService {
+	var redisClient *redis.Client
+	if len(redisClients) > 0 {
+		redisClient = redisClients[0]
+	}
 	return &communityService{
 		communityRepo:  communityRepo,
 		membershipRepo: membershipRepo,
@@ -75,6 +83,7 @@ func NewCommunityService(
 		userRepo:       userRepo,
 		eventBus:       bus,
 		membershipSvc:  nil, // Will be set via SetMembershipService
+		redisClient:    redisClient,
 	}
 }
 
@@ -1001,12 +1010,14 @@ func (c *communityService) ModeratePost(communityID string, postID string, moder
 		if err != nil {
 			return err
 		}
+		c.invalidateFeedCache()
 
 		// Publish approved event
 		c.eventBus.Publish(&bus.PostApprovedEvent{
 			PostID:   postID,
 			AuthorID: post.AuthorID.Hex(),
 		})
+		metrics.IncCounter("lkforum_moderation_decisions_total", map[string]string{"decision": "approved"})
 
 		log.Printf("Post %s approved by moderator %s in community %s", postID, moderatorID, communityID)
 	} else {
@@ -1032,6 +1043,7 @@ func (c *communityService) ModeratePost(communityID string, postID string, moder
 		if err != nil {
 			return err
 		}
+		c.invalidateFeedCache()
 
 		// Publish rejected event
 		c.eventBus.Publish(&bus.PostRejectedEvent{
@@ -1039,9 +1051,29 @@ func (c *communityService) ModeratePost(communityID string, postID string, moder
 			AuthorID: post.AuthorID.Hex(),
 			Reason:   moderationResult.Reason,
 		})
+		metrics.IncCounter("lkforum_moderation_decisions_total", map[string]string{"decision": "rejected"})
 
 		log.Printf("Post %s rejected by moderator %s in community %s: %s", postID, moderatorID, communityID, moderationResult.Reason)
 	}
 
 	return nil
+}
+
+func (c *communityService) invalidateFeedCache() {
+	if c.redisClient == nil {
+		return
+	}
+
+	ctx, cancel := util.NewDefaultRedisContext()
+	defer cancel()
+
+	iter := c.redisClient.Scan(ctx, 0, "lkforum:feed:*", 0).Iterator()
+	var keys []string
+	for iter.Next(ctx) {
+		keys = append(keys, iter.Val())
+	}
+	if len(keys) > 0 {
+		_ = c.redisClient.Del(ctx, keys...).Err()
+	}
+	metrics.AddCounter("lkforum_feed_cache_invalidations_total", nil, 1)
 }

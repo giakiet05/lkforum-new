@@ -9,6 +9,7 @@ import (
 	"github.com/giakiet05/lkforum/internal/apperror"
 	"github.com/giakiet05/lkforum/internal/auth"
 	"github.com/giakiet05/lkforum/internal/dto"
+	"github.com/giakiet05/lkforum/internal/middleware"
 	"github.com/giakiet05/lkforum/internal/service"
 	"github.com/gin-gonic/gin"
 )
@@ -573,6 +574,11 @@ func (c *CommunityController) ModeratePost(ctx *gin.Context) {
 	if !req.Approve {
 		status = "rejected"
 	}
+	reason := ""
+	if req.Reason != nil {
+		reason = *req.Reason
+	}
+	middleware.RecordAudit(ctx, "moderation.post_"+status, "post", postID, reason, gin.H{"community_id": communityID})
 
 	dto.SendSuccess(ctx, http.StatusOK, "Post "+status+" successfully", gin.H{"post_id": postID, "status": status})
 }

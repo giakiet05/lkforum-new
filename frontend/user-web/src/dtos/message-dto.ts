@@ -29,6 +29,10 @@ export interface MessageResponse {
     sender_username: string;
     type: MessageType;
     content: string;
+    ciphertext?: string;
+    nonce?: string;
+    algorithm?: string;
+    key_version?: string;
     created_at: string; // ISO 8601 format
     is_read: boolean;
 }

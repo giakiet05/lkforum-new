@@ -1,24 +1,30 @@
 package main
 
 import (
-	"log"
+	"log/slog"
+	"os"
 
 	"github.com/giakiet05/lkforum/internal/bootstrap"
 	"github.com/giakiet05/lkforum/internal/config"
+	"github.com/giakiet05/lkforum/internal/logging"
 )
 
 func main() {
+	logging.ConfigureDefault()
+
 	// Initialize Gin router
 	r, err := bootstrap.Init()
 	if err != nil {
-		log.Fatalf("failed to initialize application: %v", err)
+		slog.Error("failed to initialize application", "error", err)
+		os.Exit(1)
 	}
 
 	// Start the server
 	port := config.Cfg.Port
-	log.Printf("Server is running at http://localhost:%s\n", port)
+	slog.Info("server_starting", "address", "http://localhost:"+port)
 	if err := r.Run(":" + port); err != nil {
-		log.Fatalf("failed to run server: %v", err)
+		slog.Error("failed to run server", "error", err)
+		os.Exit(1)
 	}
 
 	for _, ri := range r.Routes() {

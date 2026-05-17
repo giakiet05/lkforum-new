@@ -3,7 +3,7 @@ package config
 import (
 	"context"
 	"fmt"
-	"log"
+	"log/slog"
 	"os"
 	"time"
 
@@ -20,7 +20,8 @@ var (
 func NewMongoClient() *mongo.Client {
 	uri := os.Getenv("MONGO_URI") // e.g. mongodb://user:pass@localhost:27017
 	if uri == "" {
-		log.Fatal("MONGO_URI environment variable is not set")
+		slog.Error("mongo_uri_not_configured")
+		os.Exit(1)
 	}
 
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
@@ -28,19 +29,22 @@ func NewMongoClient() *mongo.Client {
 
 	client, err := mongo.Connect(ctx, options.Client().ApplyURI(uri))
 	if err != nil {
-		log.Fatalf("Could not connect to MongoDB: %v", err)
+		slog.Error("mongo_connect_failed", "error", err)
+		os.Exit(1)
 	}
 
 	// Test connection
 	if err := client.Ping(ctx, nil); err != nil {
-		log.Fatalf("MongoDB ping failed: %v", err)
+		slog.Error("mongo_ping_failed", "error", err)
+		os.Exit(1)
 	}
 
-	log.Println("Connected to MongoDB successfully!")
+	slog.Info("mongo_connected")
 
 	dbName := os.Getenv("DB_NAME")
 	if dbName == "" {
-		log.Fatal("DB_NAME environment variable is not set")
+		slog.Error("mongo_db_name_not_configured")
+		os.Exit(1)
 	}
 
 	Client = client
@@ -48,10 +52,11 @@ func NewMongoClient() *mongo.Client {
 
 	// Verify required collections exist
 	if err := verifyCollections(ctx, db); err != nil {
-		log.Fatalf("Collection verification failed: %v", err)
+		slog.Error("mongo_collection_verification_failed", "error", err)
+		os.Exit(1)
 	}
 
-	log.Printf("Using database: %s\n", dbName)
+	slog.Info("mongo_database_selected", "db_name", dbName)
 	return client
 }
 
@@ -91,6 +96,6 @@ func verifyCollections(ctx context.Context, db *mongo.Database) error {
 		}
 	}
 
-	log.Println("All required collections verified")
+	slog.Info("mongo_required_collections_verified", "count", len(required))
 	return nil
 }

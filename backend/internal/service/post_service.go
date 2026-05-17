@@ -2,9 +2,11 @@ package service
 
 import (
 	"context"
+	"encoding/json"
 	"errors"
 	"fmt"
 	"log"
+	"log/slog"
 	"mime/multipart"
 	"time"
 
@@ -14,8 +16,10 @@ import (
 	"github.com/giakiet05/lkforum/internal/model"
 	"github.com/giakiet05/lkforum/internal/platform/bus"
 	"github.com/giakiet05/lkforum/internal/platform/cloudinary"
+	"github.com/giakiet05/lkforum/internal/platform/metrics"
 	"github.com/giakiet05/lkforum/internal/repo"
 	"github.com/giakiet05/lkforum/internal/util"
+	"github.com/redis/go-redis/v9"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -69,6 +73,7 @@ type postService struct {
 	savedPostRepo  repo.SavedPostRepo
 	reportRepo     repo.ReportRepo
 	bus            bus.EventBus
+	redisClient    *redis.Client
 }
 
 // NewPostService creates a new instance of PostService.
@@ -82,7 +87,12 @@ func NewPostService(
 	savedPostRepo repo.SavedPostRepo,
 	reportRepo repo.ReportRepo,
 	bus bus.EventBus,
+	redisClients ...*redis.Client,
 ) PostService {
+	var redisClient *redis.Client
+	if len(redisClients) > 0 {
+		redisClient = redisClients[0]
+	}
 	return &postService{
 		postRepo:       postRepo,
 		voteService:    voteService,
@@ -93,6 +103,7 @@ func NewPostService(
 		savedPostRepo:  savedPostRepo,
 		reportRepo:     reportRepo,
 		bus:            bus,
+		redisClient:    redisClient,
 	}
 }
 
@@ -224,6 +235,7 @@ func (s *postService) CreatePost(userID string, req *dto.CreatePostRequest) (*dt
 	if err != nil {
 		return nil, err
 	}
+	s.invalidateFeedCache()
 
 	// Increment user's post count
 	if err := s.userRepo.IncrementPostCount(ctx, userID, 1); err != nil {
@@ -286,6 +298,13 @@ func (s *postService) GetPostByID(postID string, userID string) (*dto.PostRespon
 func (s *postService) GetPosts(userID string, query *dto.GetPostsQuery) (*dto.PaginatedPostsResponse, error) {
 	ctx, cancel := util.NewDefaultDBContext()
 	defer cancel()
+
+	cacheKey := s.feedCacheKey(userID, query)
+	if cacheKey != "" {
+		if cached := s.getCachedFeed(cacheKey); cached != nil {
+			return cached, nil
+		}
+	}
 
 	// Handle feed type filtering
 	if query.FeedType == "home" {
@@ -438,14 +457,18 @@ func (s *postService) GetPosts(userID string, query *dto.GetPostsQuery) (*dto.Pa
 		limit = 10
 	}
 
-	return &dto.PaginatedPostsResponse{
+	response := &dto.PaginatedPostsResponse{
 		Posts: responses,
 		Pagination: dto.Pagination{
 			Page:     query.Page,
 			PageSize: limit,
 			Total:    totalPosts,
 		},
-	}, nil
+	}
+	if cacheKey != "" {
+		s.setCachedFeed(cacheKey, response)
+	}
+	return response, nil
 }
 
 func (s *postService) GetMyPosts(userID string, query *dto.GetPostsQuery) (*dto.PaginatedPostsResponse, error) {
@@ -556,6 +579,7 @@ func (s *postService) UpdatePost(postID string, userID string, req *dto.UpdatePo
 	if err := s.postRepo.UpdateByID(ctx, postID, update); err != nil {
 		return nil, err
 	}
+	s.invalidateFeedCache()
 
 	// Publish PostUpdatedEvent for moderation
 	s.bus.Publish(&bus.PostUpdatedEvent{
@@ -675,6 +699,7 @@ func (s *postService) RemoveImagesFromPost(userID, postID string, publicIDs []st
 	if err := s.postRepo.UpdateByID(ctx, postID, update); err != nil {
 		return err
 	}
+	s.invalidateFeedCache()
 
 	for _, pid := range publicIDs {
 		go cloudinary.Delete(pid)
@@ -961,7 +986,11 @@ func (s *postService) BanPost(postID string, reason *string) error {
 		return apperror.ErrPostNotFound
 	}
 
-	return s.postRepo.BanPost(ctx, postID, reason)
+	if err := s.postRepo.BanPost(ctx, postID, reason); err != nil {
+		return err
+	}
+	s.invalidateFeedCache()
+	return nil
 }
 
 func (s *postService) UnbanPost(postID string) error {
@@ -973,7 +1002,11 @@ func (s *postService) UnbanPost(postID string) error {
 		return apperror.ErrPostNotFound
 	}
 
-	return s.postRepo.UnbanPost(ctx, postID)
+	if err := s.postRepo.UnbanPost(ctx, postID); err != nil {
+		return err
+	}
+	s.invalidateFeedCache()
+	return nil
 }
 
 func (s *postService) GetBanPosts(query *dto.GetBanPostsQuery, requesterID string) (*dto.PaginatedPostsResponse, error) {
@@ -1209,6 +1242,81 @@ func (s *postService) getPollResponse(ctx context.Context, postID, userID string
 }
 
 // --- Helper methods ---
+
+func (s *postService) feedCacheKey(userID string, query *dto.GetPostsQuery) string {
+	if s.redisClient == nil || userID != "" || query == nil || query.FeedType == "home" || query.CommunityID != "" || query.AuthorID != "" {
+		return ""
+	}
+	page := query.Page
+	if page <= 0 {
+		page = 1
+	}
+	limit := query.Limit
+	if limit <= 0 {
+		limit = 10
+	}
+	return fmt.Sprintf("lkforum:feed:%s:%s:%s:%s:%d:%d", query.FeedType, query.Sort, query.TimeFrame, query.Type, page, limit)
+}
+
+func (s *postService) getCachedFeed(key string) *dto.PaginatedPostsResponse {
+	ctx, cancel := util.NewDefaultRedisContext()
+	defer cancel()
+
+	raw, err := s.redisClient.Get(ctx, key).Result()
+	if err != nil {
+		metrics.IncCounter("lkforum_feed_cache_total", map[string]string{"result": "miss"})
+		slog.DebugContext(ctx, "feed_cache_miss", "cache_key", key)
+		return nil
+	}
+
+	var response dto.PaginatedPostsResponse
+	if err := json.Unmarshal([]byte(raw), &response); err != nil {
+		metrics.IncCounter("lkforum_feed_cache_total", map[string]string{"result": "bad_payload"})
+		slog.WarnContext(ctx, "feed_cache_bad_payload", "cache_key", key, "error", err)
+		return nil
+	}
+
+	metrics.IncCounter("lkforum_feed_cache_total", map[string]string{"result": "hit"})
+	slog.DebugContext(ctx, "feed_cache_hit", "cache_key", key)
+	return &response
+}
+
+func (s *postService) setCachedFeed(key string, response *dto.PaginatedPostsResponse) {
+	if key == "" || response == nil || s.redisClient == nil {
+		return
+	}
+
+	payload, err := json.Marshal(response)
+	if err != nil {
+		return
+	}
+
+	ctx, cancel := util.NewDefaultRedisContext()
+	defer cancel()
+	if err := s.redisClient.Set(ctx, key, payload, 2*time.Minute).Err(); err != nil {
+		slog.WarnContext(ctx, "feed_cache_set_failed", "cache_key", key, "error", err)
+	}
+}
+
+func (s *postService) invalidateFeedCache() {
+	if s.redisClient == nil {
+		return
+	}
+
+	ctx, cancel := util.NewDefaultRedisContext()
+	defer cancel()
+
+	iter := s.redisClient.Scan(ctx, 0, "lkforum:feed:*", 0).Iterator()
+	var keys []string
+	for iter.Next(ctx) {
+		keys = append(keys, iter.Val())
+	}
+	if len(keys) > 0 {
+		_ = s.redisClient.Del(ctx, keys...).Err()
+	}
+	metrics.AddCounter("lkforum_feed_cache_invalidations_total", nil, 1)
+	slog.InfoContext(ctx, "feed_cache_invalidated", "keys_deleted", len(keys))
+}
 
 func (s *postService) buildFilter(query *dto.GetPostsQuery) repo.Filter {
 	filter := repo.Filter{

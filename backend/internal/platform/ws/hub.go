@@ -7,6 +7,7 @@ import (
 
 	"github.com/giakiet05/lkforum/internal/dto"
 	"github.com/giakiet05/lkforum/internal/platform/bus"
+	"github.com/giakiet05/lkforum/internal/platform/metrics"
 	"github.com/giakiet05/lkforum/internal/util"
 )
 
@@ -60,6 +61,7 @@ func (h *Hub) run(eventChannel bus.EventListener) {
 		select {
 		case client := <-h.register:
 			h.userClients[client.UserID] = client
+			metrics.SetGauge("lkforum_websocket_active_connections", nil, float64(len(h.userClients)))
 			log.Printf("WebSocket client registered: %s", client.UserID)
 
 			// Broadcast presence online to all connected users
@@ -70,6 +72,7 @@ func (h *Hub) run(eventChannel bus.EventListener) {
 			if _, ok := h.userClients[client.UserID]; ok {
 				delete(h.userClients, client.UserID)
 				close(client.send)
+				metrics.SetGauge("lkforum_websocket_active_connections", nil, float64(len(h.userClients)))
 				log.Printf("WebSocket client unregistered: %s", client.UserID)
 
 				// Broadcast presence offline to remaining connected users
@@ -93,7 +96,8 @@ func (h *Hub) run(eventChannel bus.EventListener) {
 			switch event.Topic() {
 			case bus.TopicNotificationCreated:
 				payload := event.Payload()
-				if recipientID, ok := payload["recipientId"].(string); ok {
+				metrics.IncCounter("lkforum_notifications_created_total", nil)
+				if recipientID, ok := payload["recipient_id"].(string); ok {
 					if notification, ok := payload["notification"].(interface{}); ok {
 						h.sendToUser(recipientID, dto.NewNotification, notification)
 					}
@@ -149,6 +153,10 @@ func (h *Hub) handleIncoming(raw []byte, userID string) {
 			SenderUsername: payload.SenderUsername,
 			Type:           payload.Type,
 			Content:        payload.Content,
+			Ciphertext:     payload.Ciphertext,
+			Nonce:          payload.Nonce,
+			Algorithm:      payload.Algorithm,
+			KeyVersion:     payload.KeyVersion,
 		})
 	case dto.TypingIndicator:
 		var payload dto.TypingIndicatorPayload

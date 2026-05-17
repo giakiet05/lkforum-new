@@ -2,6 +2,7 @@ import type { MessageResponse, MessageType } from "../dtos/message-dto";
 import { getValidAccessToken } from "../auth/token";
 import { API_BASE_URL } from "./api";
 import { USER_KEY } from "../constants/auth-constants";
+import { decryptMessage, encryptMessage } from "./e2ee-service";
 
 export type WebSocketMessageType =
   | 'new_message'
@@ -24,9 +25,10 @@ export interface PresencePayload {
 }
 
 // Handler types
-type MessageHandler = (payload: any) => void;
+type MessageHandler = (payload: any) => void | Promise<void>;
 type ErrorCallback = (error: Event) => void;
 type CloseCallback = (event: CloseEvent) => void;
+type MessageCallback = (message: MessageResponse) => void;
 
 /**
  * WebSocket Service for real-time messaging
@@ -41,6 +43,7 @@ class WebSocketService {
     private reconnectDelay = 1000;
     private isConnecting = false;
     private shouldReconnect = true;
+    private legacyMessageHandlers: Map<MessageCallback, MessageHandler[]> = new Map();
 
     /**
      * Connect to WebSocket server
@@ -134,22 +137,24 @@ class WebSocketService {
     /**
      * Send message through WebSocket
      */
-    sendMessage(channelId: string, content: string, type: MessageType = "text"): void {
+    async sendMessage(channelId: string, content: string, type: MessageType = "text"): Promise<void> {
         const userStr = localStorage.getItem(USER_KEY);
         if (!userStr) throw new Error("User not authenticated");
         const currentUser = JSON.parse(userStr);
 
         const tempMessageId = `temp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+        const encrypted = await encryptMessage(channelId, content);
 
         const payload = {
             temp_message_id: tempMessageId,
             channel_id: channelId,
             sender_username: currentUser.username,
             type,
-            content
+            content: "",
+            ...encrypted
         };
 
-        console.log("📤 Sending message:", payload);
+        console.log("Sending encrypted message:", { ...payload, ciphertext: "[redacted]" });
         this.send("new_message", payload);
     }
 
@@ -198,21 +203,25 @@ class WebSocketService {
     private handleMessage(type: WebSocketMessageType, payload: any): void {
         const handlers = this.handlers.get(type);
         if (handlers) {
-            handlers.forEach(handler => handler(payload));
+            handlers.forEach(handler => {
+                void handler(payload);
+            });
         }
     }
 
     /**
      * Legacy: Register callback for incoming messages (backward compatibility)
      */
-    onMessage(callback: (message: MessageResponse) => void): void {
-        // Wrapper to handle both send_message and ack_message
-        const handler = (payload: any) => {
+    onMessage(callback: MessageCallback): void {
+        this.offMessage(callback);
+
+        const handler = async (payload: any) => {
             const message = payload.message || payload;
-            callback(message);
+            callback(await decryptMessage(message));
         };
         this.on("send_message", handler);
         this.on("ack_message", handler);
+        this.legacyMessageHandlers.set(callback, [handler]);
     }
 
     /**
@@ -232,10 +241,15 @@ class WebSocketService {
     /**
      * Legacy: Remove message callback (backward compatibility)
      */
-    offMessage(callback: (message: MessageResponse) => void): void {
-        // Cannot easily remove without keeping references, so we'll clear all
-        // In practice, this should use the new off() method
-        console.warn("offMessage is deprecated, use off() method instead");
+    offMessage(callback: MessageCallback): void {
+        const handlers = this.legacyMessageHandlers.get(callback);
+        if (!handlers) return;
+
+        handlers.forEach(handler => {
+            this.off("send_message", handler);
+            this.off("ack_message", handler);
+        });
+        this.legacyMessageHandlers.delete(callback);
     }
 
     /**
@@ -262,6 +276,7 @@ class WebSocketService {
             this.ws = null;
         }
         this.handlers.clear();
+        this.legacyMessageHandlers.clear();
         this.errorCallbacks = [];
         this.closeCallbacks = [];
         this.reconnectAttempts = 0;

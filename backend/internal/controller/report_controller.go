@@ -7,6 +7,7 @@ import (
 	"github.com/giakiet05/lkforum/internal/apperror"
 	"github.com/giakiet05/lkforum/internal/auth"
 	"github.com/giakiet05/lkforum/internal/dto"
+	"github.com/giakiet05/lkforum/internal/middleware"
 	"github.com/giakiet05/lkforum/internal/service"
 	"github.com/gin-gonic/gin"
 )
@@ -120,6 +121,7 @@ func (rc *ReportController) DeleteReportByID(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "report.deleted", "report", reportID, "", nil)
 	dto.SendSuccess(ctx, http.StatusOK, "Report deleted successfully", gin.H{"id": reportID})
 }
 
@@ -136,6 +138,7 @@ func (rc *ReportController) DeleteReportByIDAdmin(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "admin.report_deleted", "report", reportID, "", nil)
 	dto.SendSuccess(ctx, http.StatusOK, "Report deleted successfully", gin.H{"id": reportID})
 }
 
@@ -158,6 +161,7 @@ func (rc *ReportController) DeleteReportsByID(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "report.batch_deleted", "report", "", "", gin.H{"report_ids": req.ReportIDs})
 	dto.SendSuccess(ctx, http.StatusOK, "Reports deleted successfully", gin.H{})
 }
 
@@ -174,5 +178,6 @@ func (rc *ReportController) DeleteReportsByIDAdmin(ctx *gin.Context) {
 		return
 	}
 
+	middleware.RecordAudit(ctx, "admin.report_batch_deleted", "report", "", "", gin.H{"report_ids": req.ReportIDs})
 	dto.SendSuccess(ctx, http.StatusOK, "Reports deleted successfully", gin.H{})
 }

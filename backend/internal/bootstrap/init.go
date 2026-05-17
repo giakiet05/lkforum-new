@@ -1,7 +1,10 @@
 package bootstrap
 
 import (
-	"log"
+	"context"
+	"log/slog"
+	"net/http"
+	"time"
 
 	"github.com/giakiet05/lkforum/internal/auth"
 	"github.com/giakiet05/lkforum/internal/config"
@@ -10,6 +13,7 @@ import (
 	"github.com/giakiet05/lkforum/internal/platform/bus"
 	"github.com/giakiet05/lkforum/internal/platform/email"
 	"github.com/giakiet05/lkforum/internal/platform/gemini"
+	"github.com/giakiet05/lkforum/internal/platform/metrics"
 	"github.com/giakiet05/lkforum/internal/platform/ws"
 	"github.com/giakiet05/lkforum/internal/repo"
 	"github.com/giakiet05/lkforum/internal/route"
@@ -36,6 +40,7 @@ type Repos struct {
 	repo.SavedPostRepo
 	repo.ReportRepo
 	repo.DraftRepo
+	repo.AuditLogRepo
 }
 
 type Services struct {
@@ -58,6 +63,7 @@ type Services struct {
 	service.AdminCommunityService
 	service.AdminStatsService
 	service.AdminAuthService
+	service.AuditLogService
 }
 
 type Controllers struct {
@@ -100,6 +106,7 @@ func initRepos(client *mongo.Client, db *mongo.Database) *Repos {
 		SavedPostRepo:         repo.NewSavedPostRepo(db),
 		ReportRepo:            repo.NewReportRepo(db),
 		DraftRepo:             repo.NewDraftRepo(db),
+		AuditLogRepo:          repo.NewAuditLogRepo(db),
 	}
 }
 
@@ -115,7 +122,8 @@ func initServices(repos *Repos, redisClient *redis.Client, emailSender email.Sen
 		PostHistoryService:  service.NewPostHistoryService(repos.PostHistoryRepo),
 		ReportService:       service.NewReportService(repos.ReportRepo),
 		CommentService:      service.NewCommentService(repos.CommentRepo, repos.UserRepo, repos.CommunityRepo, repos.PostRepo, eventBus),
-		CommunityService:    service.NewCommunityService(repos.CommunityRepo, repos.MembershipRepo, repos.PostRepo, repos.UserRepo, eventBus),
+		CommunityService:    service.NewCommunityService(repos.CommunityRepo, repos.MembershipRepo, repos.PostRepo, repos.UserRepo, eventBus, redisClient),
+		AuditLogService:     service.NewAuditLogService(repos.AuditLogRepo),
 	}
 
 	// Set MembershipService in CommunityService to get real-time member count
@@ -129,7 +137,7 @@ func initServices(repos *Repos, redisClient *redis.Client, emailSender email.Sen
 	services.VoteService = service.NewVoteService(repos.VoteRepo, repos.PostRepo, repos.CommentRepo, eventBus)
 
 	// PostService and CommentService need VoteService
-	services.PostService = service.NewPostService(repos.PostRepo, services.VoteService, repos.PollVoteRepo, repos.UserRepo, repos.CommunityRepo, repos.MembershipRepo, repos.SavedPostRepo, repos.ReportRepo, eventBus)
+	services.PostService = service.NewPostService(repos.PostRepo, services.VoteService, repos.PollVoteRepo, repos.UserRepo, repos.CommunityRepo, repos.MembershipRepo, repos.SavedPostRepo, repos.ReportRepo, eventBus, redisClient)
 
 	// DraftService needs PostService
 	services.DraftService = service.NewDraftService(repos.DraftRepo, repos.PostRepo, services.PostService)
@@ -170,7 +178,7 @@ func initControllers(services *Services, wsHub *ws.Hub, db *mongo.Database) *Con
 	}
 }
 
-func initRoutes(controllers *Controllers, r *gin.Engine) {
+func initRoutes(controllers *Controllers, r *gin.Engine, redisClient *redis.Client) {
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{"message": "pong"})
 	})
@@ -183,11 +191,11 @@ func initRoutes(controllers *Controllers, r *gin.Engine) {
 		c.JSON(200, gin.H{"message": "Welcome to LKForum API!"})
 	})
 
-	route.RegisterAuthRoutes(api, &controllers.AuthController, &controllers.UserController)
+	route.RegisterAuthRoutes(api, &controllers.AuthController, &controllers.UserController, redisClient)
 	route.RegisterUserRoutes(api, &controllers.UserController)
 	route.RegisterCommunityRoutes(api, &controllers.CommunityController)
 	route.RegisterMembershipRoutes(api, &controllers.MembershipController)
-	route.RegisterPostRoutes(api, &controllers.PostController)
+	route.RegisterPostRoutes(api, &controllers.PostController, redisClient)
 	route.RegisterVoteRoutes(api, &controllers.VoteController) // Added VoteRoutes
 	route.RegisterCommentRoutes(api, &controllers.CommentController)
 	route.RegisterNotificationRoutes(api, &controllers.NotificationController)
@@ -204,6 +212,41 @@ func initRoutes(controllers *Controllers, r *gin.Engine) {
 	route.RegisterAdminStatsRoutes(api, &controllers.AdminStatsController)
 }
 
+func registerSystemRoutes(r *gin.Engine, client *mongo.Client, redisClient *redis.Client) {
+	r.GET("/health", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"status": "ok"})
+	})
+
+	r.GET("/ready", func(c *gin.Context) {
+		status := http.StatusOK
+		checks := gin.H{"mongo": "ok", "redis": "ok"}
+
+		ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)
+		defer cancel()
+
+		if err := client.Ping(ctx, nil); err != nil {
+			status = http.StatusServiceUnavailable
+			checks["mongo"] = err.Error()
+		}
+		if redisClient == nil {
+			status = http.StatusServiceUnavailable
+			checks["redis"] = "not configured"
+		} else if err := redisClient.Ping(ctx).Err(); err != nil {
+			status = http.StatusServiceUnavailable
+			checks["redis"] = err.Error()
+		}
+
+		if status != http.StatusOK {
+			slog.WarnContext(c.Request.Context(), "readiness_check_degraded", "checks", checks)
+		}
+		c.JSON(status, gin.H{"status": map[bool]string{true: "ready", false: "degraded"}[status == http.StatusOK], "checks": checks})
+	})
+
+	r.GET("/metrics", func(c *gin.Context) {
+		c.Data(http.StatusOK, "text/plain; version=0.0.4; charset=utf-8", []byte(metrics.Render()))
+	})
+}
+
 func Init() (*gin.Engine, error) {
 	config.LoadConfig()
 	auth.InitGoogleOAuthConfig()
@@ -212,13 +255,16 @@ func Init() (*gin.Engine, error) {
 
 	tokenService, err := InitializeTokenService(redisClient)
 	if err != nil {
-		log.Printf("Warning: Token invalidation service not available: %v\n", err)
+		slog.Warn("token invalidation service not available", "error", err)
 	}
 
 	client := config.NewMongoClient()
 	db := client.Database(config.Cfg.DBName)
-	router := gin.Default()
+	router := gin.New()
 	router.MaxMultipartMemory = 100 << 20 // 100 MB
+	router.Use(gin.Recovery())
+	router.Use(middleware.RequestLogger())
+	router.Use(middleware.Metrics())
 
 	router.Use(func(c *gin.Context) {
 		origin := c.Request.Header.Get("Origin")
@@ -245,7 +291,7 @@ func Init() (*gin.Engine, error) {
 	// Initialize Gemini client for content moderation
 	geminiClient, err := gemini.NewGeminiClient(&config.Cfg.Gemini)
 	if err != nil {
-		log.Printf("Warning: Gemini client initialization failed: %v. Content moderation will be disabled.", err)
+		slog.Warn("gemini client initialization failed; content moderation disabled", "error", err)
 	}
 
 	repos := initRepos(client, db)
@@ -254,8 +300,10 @@ func Init() (*gin.Engine, error) {
 
 	// Inject userRepo into middleware for settings caching
 	middleware.SetUserRepo(repos.UserRepo)
+	middleware.SetAuditLogService(services.AuditLogService)
 
-	initRoutes(controllers, router)
+	registerSystemRoutes(router, client, redisClient)
+	initRoutes(controllers, router, redisClient)
 
 	// Start background services
 	go wsHub.Start()

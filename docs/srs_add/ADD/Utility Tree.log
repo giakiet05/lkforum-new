@@ -1,117 +1,93 @@
-This is LuaHBTeX, Version 1.24.0 (TeX Live 2026/Arch Linux)  (format=lualatex 2026.4.17)  11 MAY 2026 21:25
- restricted system commands enabled.
-**"/home/giakiet05/university/3rd/sem2/software_architecture/srs_add/ADD/Utility Tree"
-("/home/giakiet05/university/3rd/sem2/software_architecture/srs_add/ADD/Utility Tree.tex"
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.4.17)  17 MAY 2026 10:14
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**"Utility Tree.tex"
+(./Utility Tree.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
-Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
-Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
-Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended collection.
-luaotfload | conf : Root cache directory is "/home/giakiet05/.texlive/texmf-var/luatex-cache/generic/names".
-luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-resolved path "/usr/share/texmf-dist/tex/luatex/luaotfload/fontloader-2023-12-28.lua".
-Lua-only attribute luaotfload@noligature = 1
-luaotfload | init : Context OpenType loader version 3.134
-Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
-Inserting `luaotfload.node_processor' in `hpack_filter'.
-Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
-Inserting `luaotfload.define_font' in `define_font'.
-Lua-only attribute luaotfload_color_attribute = 2
-luaotfload | conf : Root cache directory is "/home/giakiet05/.texlive/texmf-var/luatex-cache/generic/names".
-Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
-Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
-Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
-Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
-Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
-Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
-Inserting `luaotfload.cleanup_files' in `wrapup_run'.
-Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
-Inserting `luaotfload.glyphinfo' in `glyph_info'.
-Lua-only attribute luaotfload.letterspace_done = 3
-Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
-Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
-Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
-Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
-Inserting `tracingstacklevels' in `input_level_string'. (/usr/share/texmf-dist/tex/latex/base/article.cls
+(/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
-luaotfload | db : Font names database loaded from /home/giakiet05/.texlive/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
-\c@part=\count273
-\c@section=\count274
-\c@subsection=\count275
-\c@subsubsection=\count276
-\c@paragraph=\count277
-\c@subparagraph=\count278
-\c@figure=\count279
-\c@table=\count280
+)
+\c@part=\count275
+\c@section=\count276
+\c@subsection=\count277
+\c@subsubsection=\count278
+\c@paragraph=\count279
+\c@subparagraph=\count280
+\c@figure=\count281
+\c@table=\count282
 \abovecaptionskip=\skip49
 \belowcaptionskip=\skip50
-\bibindent=\dimen147
-) (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
+\bibindent=\dimen148
+)
+(/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2024/02/08 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-
-
-Package inputenc Warning: inputenc package ignored with utf8 based engines.
-
-) (/usr/share/texmf-dist/tex/latex/base/fontenc.sty
+)
+(/usr/share/texmf-dist/tex/latex/base/fontenc.sty
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 116.
- (/usr/share/texmf-dist/tex/latex/lm/t1lmr.fd
-File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)) (/usr/share/texmf-dist/tex/latex/tools/array.sty
+)
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
-\col@sep=\dimen148
+\col@sep=\dimen149
 \ar@mcellbox=\box53
-\extrarowheight=\dimen149
+\extrarowheight=\dimen150
 \NC@list=\toks19
 \extratabsurround=\skip51
 \backup@length=\skip52
 \ar@cellbox=\box54
-) (/usr/share/texmf-dist/tex/latex/float/float.sty
+)
+(/usr/share/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count281
+\c@float@type=\count283
 \float@exts=\toks20
 \float@box=\box55
 \@float@everytoks=\toks21
 \@floatcapt=\box56
-) (/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
+)
+(/usr/share/texmf-dist/tex/latex/multirow/multirow.sty
 Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
 \multirow@colwidth=\skip53
-\multirow@cntb=\count282
+\multirow@cntb=\count284
 \multirow@dima=\skip54
-\bigstrutjot=\dimen150
-) (/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
+\bigstrutjot=\dimen151
+)
+(/usr/share/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
+
+(/usr/share/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
 \KV@toks@=\toks22
-) (/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
+)
+(/usr/share/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 ))
-\Gm@cnth=\count283
-\Gm@cntv=\count284
-\c@Gm@tempcnt=\count285
-\Gm@bindingoffset=\dimen151
-\Gm@wd@mp=\dimen152
-\Gm@odd@mp=\dimen153
-\Gm@even@mp=\dimen154
-\Gm@layoutwidth=\dimen155
-\Gm@layoutheight=\dimen156
-\Gm@layouthoffset=\dimen157
-\Gm@layoutvoffset=\dimen158
+\Gm@cnth=\count285
+\Gm@cntv=\count286
+\c@Gm@tempcnt=\count287
+\Gm@bindingoffset=\dimen152
+\Gm@wd@mp=\dimen153
+\Gm@odd@mp=\dimen154
+\Gm@even@mp=\dimen155
+\Gm@layoutwidth=\dimen156
+\Gm@layoutheight=\dimen157
+\Gm@layouthoffset=\dimen158
+\Gm@layoutvoffset=\dimen159
 \Gm@dimlist=\toks23
-) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
-File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
-\l__color_backend_stack_int=\count286
-Inserting `l3color' in `luaotfload.parse_color'.) ("./Utility Tree.aux")
-\openout1 = Utility Tree.aux
+)
+(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count288
+)
+(./Utility Tree.aux)
+\openout1 = `"Utility Tree.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
@@ -123,17 +99,15 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
 LaTeX Font Info:    ... okay on input line 11.
 
 *geometry* driver: auto-detecting
-*geometry* detected driver: luatex
+*geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
-* driver: luatex
+* driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -170,435 +144,434 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 20.
 
 Underfull \hbox (badness 10000) in paragraph at lines 22--22
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 1097) in paragraph at lines 30--31
-[]|\T1/lmr/m/n/10 A guest user nav-i-gates be-tween pages or
+Underfull \hbox (badness 1102) in paragraph at lines 30--31
+[]|\T1/cmr/m/n/10 A guest user nav-i-gates be-tween pages or
  []
 
 
-Underfull \hbox (badness 1067) in paragraph at lines 48--49
-\T1/lmr/m/n/10 num-ber of guest users brows-ing posts si-
+Underfull \hbox (badness 1072) in paragraph at lines 48--49
+\T1/cmr/m/n/10 num-ber of guest users brows-ing posts si-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 70--70
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf-dist/fonts
+/enc/dvips/cm-super/cm-super-t1.enc}]
 Underfull \hbox (badness 10000) in paragraph at lines 118--118
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 1127) in paragraph at lines 144--145
-[]|\T1/lmr/m/n/10 At peak load, many guest users per-form
+Underfull \hbox (badness 1132) in paragraph at lines 144--145
+[]|\T1/cmr/m/n/10 At peak load, many guest users per-form
  []
 
 [2]
 Underfull \hbox (badness 10000) in paragraph at lines 166--166
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 [3]
 Underfull \hbox (badness 10000) in paragraph at lines 214--214
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 [4]
 Underfull \hbox (badness 10000) in paragraph at lines 262--262
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 [5]
 Underfull \hbox (badness 10000) in paragraph at lines 302--302
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 [6]
 Underfull \hbox (badness 10000) in paragraph at lines 352--352
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 356--357
-[]|\T1/lmr/m/n/10 Third-party au-then-ti-ca-
+[]|\T1/cmr/m/n/10 Third-party au-then-ti-ca-
  []
 
-Missing character: There is no ’ (U+2019) in font ec-lmr10!
-Missing character: There is no ’ (U+2019) in font ec-lmr10!
 
 Underfull \hbox (badness 10000) in paragraph at lines 385--386
-[]|\T1/lmr/m/n/10 Au-then-ti-ca-tion con-sis-
+[]|\T1/cmr/m/n/10 Authentication con-sis-
  []
 
 
-Underfull \hbox (badness 2173) in paragraph at lines 396--397
-[]|\T1/lmr/m/n/10 Ad-mins can mon-i-tor lo-gin suc-cess/fail-ure
+Underfull \hbox (badness 2189) in paragraph at lines 396--397
+[]|\T1/cmr/m/n/10 Admins can mon-i-tor lo-gin suc-cess/failure
  []
 
 [7]
 Underfull \hbox (badness 10000) in paragraph at lines 416--416
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 7685) in paragraph at lines 423--424
-[]|\T1/lmr/m/n/10 Token-based au-then-ti-ca-
+Underfull \hbox (badness 7777) in paragraph at lines 423--424
+[]|\T1/cmr/m/n/10 Token-based au-then-ti-ca-
  []
 
-Missing character: There is no ’ (U+2019) in font ec-lmr10!
-Missing character: There is no ’ (U+2019) in font ec-lmr10!
 
 Underfull \hbox (badness 10000) in paragraph at lines 449--450
-[]|\T1/lmr/m/n/10 Au-then-ti-ca-tion con-sis-
+[]|\T1/cmr/m/n/10 Authentication con-sis-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 454--455
-[]|\T1/lmr/m/n/10 Con-cur-rent au-then-ti-ca-
+[]|\T1/cmr/m/n/10 Concurrent au-then-ti-ca-
  []
 
-[8
-Missing character: There is no ’ (U+2019) in font ec-lmr10!
-]
+[8]
 Underfull \hbox (badness 10000) in paragraph at lines 467--467
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 1603) in paragraph at lines 496--497
-[]|\T1/lmr/m/n/10 A mem-ber up-dates pro-file data, and all
+Underfull \hbox (badness 1609) in paragraph at lines 496--497
+[]|\T1/cmr/m/n/10 A mem-ber up-dates pro-file data, and all
  []
 
-[9
-Missing character: There is no ’ (U+2019) in font ec-lmr10!
-]
+[9]
 Underfull \hbox (badness 10000) in paragraph at lines 538--538
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 4341) in paragraph at lines 585--586
-[]|\T1/lmr/m/n/10 Con-cur-rent post op-er-a-
+Underfull \hbox (badness 4378) in paragraph at lines 585--586
+[]|\T1/cmr/m/n/10 Concurrent post op-er-a-
  []
 
 [10]
 Underfull \hbox (badness 10000) in paragraph at lines 613--613
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 1946) in paragraph at lines 648--649
-[]|\T1/lmr/m/n/10 Con-cur-rent draft op-er-a-
+Underfull \hbox (badness 1968) in paragraph at lines 648--649
+[]|\T1/cmr/m/n/10 Concurrent draft op-er-a-
  []
 
 [11]
 Underfull \hbox (badness 10000) in paragraph at lines 661--661
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 699--700
-[]|\T1/lmr/m/n/10 High-frequency in-ter-ac-
+[]|\T1/cmr/m/n/10 High-frequency in-ter-ac-
  []
 
 [12]
 Underfull \hbox (badness 10000) in paragraph at lines 712--712
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 719--720
-[]|\T1/lmr/m/n/10 Threaded con-ver-sa-tion
+[]|\T1/cmr/m/n/10 Threaded con-ver-sa-tion
  []
 
 
-Underfull \hbox (badness 4726) in paragraph at lines 745--746
-[]|\T1/lmr/m/n/10 Com-ment ser-vice avail-
+Underfull \hbox (badness 4765) in paragraph at lines 745--746
+[]|\T1/cmr/m/n/10 Comment ser-vice avail-
  []
 
 [13]
 Underfull \hbox (badness 10000) in paragraph at lines 763--763
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 [14]
 Underfull \hbox (badness 10000) in paragraph at lines 832--832
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 3590) in paragraph at lines 875--876
-[]|\T1/lmr/m/n/10 No-ti-fi-ca-tion fea-ture up-
+Underfull \hbox (badness 3623) in paragraph at lines 875--876
+[]|\T1/cmr/m/n/10 Notification fea-ture up-
  []
 
 [15]
 Underfull \hbox (badness 10000) in paragraph at lines 903--903
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 2478) in paragraph at lines 939--940
-[]|\T1/lmr/m/n/10 Mes-sag-ing ser-vice avail-
+Underfull \hbox (badness 2503) in paragraph at lines 939--940
+[]|\T1/cmr/m/n/10 Messaging ser-vice avail-
  []
 
 
-Underfull \hbox (badness 1436) in paragraph at lines 950--951
-[]|\T1/lmr/m/n/10 De-vel-op-ers mod-ify mes-sag-ing func-tion-al-ity
+Underfull \hbox (badness 1454) in paragraph at lines 950--951
+[]|\T1/cmr/m/n/10 Developers mod-ify mes-sag-ing func-tion-al-ity
  []
 
 [16]
 Underfull \hbox (badness 10000) in paragraph at lines 977--977
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 3375) in paragraph at lines 1013--1014
-[]|\T1/lmr/m/n/10 Re-port-ing ser-vice avail-
+Underfull \hbox (badness 3407) in paragraph at lines 1013--1014
+[]|\T1/cmr/m/n/10 Reporting ser-vice avail-
  []
 
 
-Underfull \hbox (badness 3168) in paragraph at lines 1024--1025
-[]|\T1/lmr/m/n/10 De-vel-op-ers mod-ify re-port-ing func-tion-al-ity
+Underfull \hbox (badness 3199) in paragraph at lines 1024--1025
+[]|\T1/cmr/m/n/10 Developers mod-ify re-port-ing func-tion-al-ity
  []
 
 [17]
 Underfull \hbox (badness 10000) in paragraph at lines 1053--1053
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 3590) in paragraph at lines 1096--1097
-[]|\T1/lmr/m/n/10 Com-mu-nity fea-ture up-
+Underfull \hbox (badness 3623) in paragraph at lines 1096--1097
+[]|\T1/cmr/m/n/10 Community fea-ture up-
  []
 
 [18]
 Underfull \hbox (badness 10000) in paragraph at lines 1124--1124
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1167--1168
+[]|\T1/cmr/m/n/10 Rule man-age-ment up-
  []
 
 [19]
 Underfull \hbox (badness 10000) in paragraph at lines 1195--1195
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 6001) in paragraph at lines 1239--1240
-[]|\T1/lmr/m/n/10 De-vel-op-ers mod-ify pri-vacy con-trol logic
+Underfull \hbox (badness 6032) in paragraph at lines 1239--1240
+[]|\T1/cmr/m/n/10 Developers mod-ify pri-vacy con-trol logic
  []
 
 [20]
 Underfull \hbox (badness 10000) in paragraph at lines 1266--1266
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1281--1282
-[]|\T1/lmr/m/n/10 Per-mis-sion prop-a-ga-tion
+[]|\T1/cmr/m/n/10 Permission prop-a-ga-tion
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1286--1287
-[]|\T1/lmr/m/n/10 Role au-tho-riza-tion en-
+[]|\T1/cmr/m/n/10 Role au-tho-riza-tion en-
  []
 
 
-Underfull \hbox (badness 1215) in paragraph at lines 1289--1290
-[]|\T1/lmr/m/n/10 Priv-i-lege mis-use pre-ven-
+Underfull \hbox (badness 1231) in paragraph at lines 1289--1290
+[]|\T1/cmr/m/n/10 Privilege mis-use pre-ven-
  []
 
 
-Underfull \hbox (badness 1931) in paragraph at lines 1299--1300
-[]|\T1/lmr/m/n/10 Role man-age-ment avail-
+Underfull \hbox (badness 1946) in paragraph at lines 1299--1300
+[]|\T1/cmr/m/n/10 Role man-age-ment avail-
  []
 
 
-Underfull \hbox (badness 8000) in paragraph at lines 1304--1305
-[]|\T1/lmr/m/n/10 Role as-sign-ment un-der
+Underfull \hbox (badness 8038) in paragraph at lines 1304--1305
+[]|\T1/cmr/m/n/10 Role as-sign-ment un-der
  []
 
 
-Underfull \hbox (badness 1565) in paragraph at lines 1310--1311
-[]|\T1/lmr/m/n/10 De-vel-op-ers up-date role man-age-ment logic
+Underfull \hbox (badness 1584) in paragraph at lines 1310--1311
+[]|\T1/cmr/m/n/10 Developers up-date role man-age-ment logic
  []
 
 [21]
 Underfull \hbox (badness 10000) in paragraph at lines 1337--1337
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 1345--1346
-[]|\T1/lmr/m/n/10 A mod-er-a-tor views a pend-ing post, and
+Underfull \hbox (badness 1454) in paragraph at lines 1345--1346
+[]|\T1/cmr/m/n/10 A mod-er-a-tor views a pend-ing post, and
  []
 
 
-Underfull \hbox (badness 4505) in paragraph at lines 1349--1350
-[]|\T1/lmr/m/n/10 Re-view ac-tion re-sponse
+Underfull \hbox (badness 4531) in paragraph at lines 1349--1350
+[]|\T1/cmr/m/n/10 Review ac-tion re-sponse
  []
 
 
-Underfull \hbox (badness 4168) in paragraph at lines 1380--1381
-[]|\T1/lmr/m/n/10 Mod-er-a-tion logic main-
+Underfull \hbox (badness 4193) in paragraph at lines 1380--1381
+[]|\T1/cmr/m/n/10 Moderation logic main-
  []
 
 
-Underfull \hbox (badness 5578) in paragraph at lines 1381--1382
-[]|\T1/lmr/m/n/10 De-vel-op-ers mod-ify mod-er-a-tion work-flows
+Underfull \hbox (badness 5622) in paragraph at lines 1381--1382
+[]|\T1/cmr/m/n/10 Developers mod-ify mod-er-a-tion work-flows
  []
 
 
-Underfull \hbox (badness 1087) in paragraph at lines 1390--1391
-[]|\T1/lmr/m/n/10 Mod-er-a-tion ac-tiv-ity log-
+Underfull \hbox (badness 1102) in paragraph at lines 1390--1391
+[]|\T1/cmr/m/n/10 Moderation ac-tiv-ity log-
  []
 
 [22]
 Underfull \hbox (badness 10000) in paragraph at lines 1408--1408
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 1325) in paragraph at lines 1431--1432
-[]|\T1/lmr/m/n/10 Unau-tho-rized restora-tion
+Underfull \hbox (badness 1354) in paragraph at lines 1431--1432
+[]|\T1/cmr/m/n/10 Unauthorized restora-tion
  []
 
 
-Underfull \hbox (badness 4291) in paragraph at lines 1446--1447
-[]|\T1/lmr/m/n/10 Bulk mod-er-a-tion un-der
+Underfull \hbox (badness 4316) in paragraph at lines 1446--1447
+[]|\T1/cmr/m/n/10 Bulk mod-er-a-tion un-der
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1451--1452
-[]|\T1/lmr/m/n/10 Con-tent mod-er-a-tion
+[]|\T1/cmr/m/n/10 Content mod-er-a-tion
  []
 
 [23]
 Underfull \hbox (badness 10000) in paragraph at lines 1479--1479
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1494--1495
-[]|\T1/lmr/m/n/10 Re-stric-tion en-force-ment
+[]|\T1/cmr/m/n/10 Restriction en-force-ment
  []
 
 
-Underfull \hbox (badness 5133) in paragraph at lines 1499--1500
-[]|\T1/lmr/m/n/10 Mute au-tho-riza-tion en-
+Underfull \hbox (badness 5161) in paragraph at lines 1499--1500
+[]|\T1/cmr/m/n/10 Mute au-tho-riza-tion en-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1517--1518
-[]|\T1/lmr/m/n/10 User re-stric-tion un-der
+[]|\T1/cmr/m/n/10 User re-stric-tion un-der
  []
 
 
-Underfull \hbox (badness 1043) in paragraph at lines 1518--1519
-[]|\T1/lmr/m/n/10 The sys-tem en-forces mute re-stric-tions for
+Underfull \hbox (badness 1052) in paragraph at lines 1518--1519
+[]|\T1/cmr/m/n/10 The sys-tem en-forces mute re-stric-tions for
  []
 
 
-Underfull \hbox (badness 7631) in paragraph at lines 1522--1523
-[]|\T1/lmr/m/n/10 Re-stric-tion logic main-
+Underfull \hbox (badness 7667) in paragraph at lines 1522--1523
+[]|\T1/cmr/m/n/10 Restriction logic main-
  []
 
 [24]
 Underfull \hbox (badness 10000) in paragraph at lines 1550--1550
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1570--1571
-[]|\T1/lmr/m/n/10 Ban au-tho-riza-tion en-
+[]|\T1/cmr/m/n/10 Ban au-tho-riza-tion en-
  []
 
 
-Underfull \hbox (badness 3482) in paragraph at lines 1583--1584
-[]|\T1/lmr/m/n/10 Ban man-age-ment avail-
+Underfull \hbox (badness 3514) in paragraph at lines 1583--1584
+[]|\T1/cmr/m/n/10 Ban man-age-ment avail-
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 1609--1610
-[]|\T1/lmr/m/n/10 Ban sce-nar-ios (ap-ply, re-voke, by-pass at-
+Underfull \hbox (badness 1810) in paragraph at lines 1609--1610
+[]|\T1/cmr/m/n/10 Ban sce-nar-ios (ap-ply, re-voke, by-pass at-
  []
 
 [25]
 Underfull \hbox (badness 10000) in paragraph at lines 1623--1623
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 2503) in paragraph at lines 1664--1665
-[]|\T1/lmr/m/n/10 De-vel-op-ers up-date dash-board com-po-nents
+Underfull \hbox (badness 2529) in paragraph at lines 1664--1665
+[]|\T1/cmr/m/n/10 Developers up-date dash-board com-po-nents
  []
 
 
-Underfull \hbox (badness 4479) in paragraph at lines 1664--1665
-\T1/lmr/m/n/10 with-out af-fect-ing other sys-tem mod-ules.
+Underfull \hbox (badness 4505) in paragraph at lines 1664--1665
+\T1/cmr/m/n/10 with-out af-fect-ing other sys-tem mod-ules.
  []
 
 [26]
 Underfull \hbox (badness 10000) in paragraph at lines 1691--1691
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 7238) in paragraph at lines 1726--1727
-[]|\T1/lmr/m/n/10 Re-port han-dling un-der
+Underfull \hbox (badness 7273) in paragraph at lines 1726--1727
+[]|\T1/cmr/m/n/10 Report han-dling un-der
  []
 
 
-Underfull \hbox (badness 1675) in paragraph at lines 1731--1732
-[]|\T1/lmr/m/n/10 Re-port-ing sys-tem main-
+Underfull \hbox (badness 1688) in paragraph at lines 1731--1732
+[]|\T1/cmr/m/n/10 Reporting sys-tem main-
  []
 
 [27]
 Underfull \hbox (badness 10000) in paragraph at lines 1759--1759
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 1794--1795
-[]|\T1/lmr/m/n/10 Global en-force-ment at
+[]|\T1/cmr/m/n/10 Global en-force-ment at
  []
 
 [28]
 Underfull \hbox (badness 10000) in paragraph at lines 1827--1827
-[]|\T1/lmr/bx/n/10 Qual-ity At-
+[]|\T1/cmr/bx/n/10 Quality At-
  []
 
 
-Underfull \hbox (badness 4792) in paragraph at lines 1867--1868
-[]|\T1/lmr/m/n/10 Con-trol logic main-tain-
+Underfull \hbox (badness 4832) in paragraph at lines 1867--1868
+[]|\T1/cmr/m/n/10 Control logic main-tain-
  []
 
-[29] [30] ("./Utility Tree.aux")
+[29] [30] (./Utility Tree.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
-)
-
-Here is how much of LuaTeX's memory you used:
- 1563 strings out of 476076
- 100000,460012 words of node,token memory allocated
- 416 words of node memory still in use:
-   3 hlist, 1 vlist, 1 rule, 2 glue, 3 kern, 1 glyph, 4 attribute, 50 glue_spec, 4 attribute_list, 1 write nodes
-   avail lists: 2:1046,3:373,4:10,5:438,6:141,7:8238,8:1,9:1369,10:9,11:790
- 24044 multiletter control sequences out of 65536+600000
- 31 fonts using 1841199 bytes
- 57i,11n,62p,348b,307s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/share/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/lm/lmr10.pfb>
-Output written on Utility Tree.pdf (30 pages, 159179 bytes).
-
-PDF statistics: 111 PDF objects out of 1000 (max. 8388607)
- 75 compressed objects within 1 object stream
- 0 named destinations out of 1000 (max. 1048576)
- 1 words of extra memory for PDF output out of 10000 (max. 100000000)
+ ) 
+Here is how much of TeX's memory you used:
+ 1510 strings out of 469515
+ 23118 string characters out of 5470807
+ 458756 words of memory out of 5000000
+ 30206 multiletter control sequences out of 15000+600000
+ 632343 words of font info for 46 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 57i,11n,65p,301b,288s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/share/t
+exmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dist/fonts
+/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/public/c
+m-super/sfrm1000.pfb>
+Output written on "Utility Tree.pdf" (30 pages, 150434 bytes).
+PDF statistics:
+ 121 PDF objects out of 1000 (max. 8388607)
+ 80 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
