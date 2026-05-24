@@ -8,26 +8,28 @@ participant "Vote Service" as Service
 participant "Target Repo" as TargetRepo
 participant "Vote Repo" as VoteRepo
 
-User -> Frontend: Click Upvote or Downvote
-Frontend -> Controller: POST /api/votes {target_id, target_type, value}
-Controller -> Service: Submit Vote (targetID, type, value)
-Service -> TargetRepo: Verify target exists & is visible
-TargetRepo --> Service: Target is valid
+User -> Frontend: (1.1) Open a post or comment
+User -> Frontend: (2.1) Choose Upvote or Downvote
+User -> Frontend: (3.1) Submit the vote
+Frontend -> Controller: (3.2) POST /api/votes {target_id, target_type, value}
+Controller -> Service: (4.1) Submit vote request
+Service -> TargetRepo: (4.2) Validate authentication and target type
+TargetRepo --> Service: (4.3) Target is approved and visible
 
-Service -> VoteRepo: Find existing vote by User & Target
-VoteRepo --> Service: Existing vote state (if any)
+Service -> VoteRepo: (5.1) Load existing vote, if any
+VoteRepo --> Service: (5.2) Existing vote state
 
 alt New vote
-    Service -> VoteRepo: Create new vote record
+    Service -> VoteRepo: (6.1) Create new vote record
 else Change vote (Up to Down, Down to Up)
-    Service -> VoteRepo: Update vote record
+    Service -> VoteRepo: (6.2) Change vote record
 else Remove vote (Click same button again)
-    Service -> VoteRepo: Delete vote record
+    Service -> VoteRepo: (6.3) Remove vote record
 end
 
-Service -> TargetRepo: Recalculate & update total score
-TargetRepo --> Service: New score updated
-Service --> Controller: Updated Vote Totals
-Controller --> Frontend: 200 OK
-Frontend --> User: Update vote count UI
+Service -> TargetRepo: (7.1) Recalculate and update vote counts
+TargetRepo --> Service: (7.2) New totals updated
+Service --> Controller: (8.1) Updated vote totals
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> User: (8.3) Update vote count UI
 @enduml

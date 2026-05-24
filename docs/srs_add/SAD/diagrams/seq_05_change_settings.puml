@@ -7,22 +7,23 @@ participant "User Controller" as Controller
 participant "User Service" as Service
 participant "User Repository" as Repo
 
-User -> Frontend: Open Settings page
-Frontend -> Controller: GET /api/users/settings
-Controller -> Service: Get Settings
-Service -> Repo: Find User Settings by ID
-Repo --> Service: Current Settings
-Service --> Controller: Current Settings
-Controller --> Frontend: 200 OK (Settings data)
-Frontend --> User: Display Settings Form
+User -> Frontend: (1.1) Open Settings page
+Frontend -> Controller: (1.2) GET /api/users/settings
+Controller -> Service: (2.1) Load current account settings
+Service -> Repo: (2.2) Find user settings by ID
+Repo --> Service: (2.3) Current settings
+Service --> Controller: (3.1) Current settings
+Controller --> Frontend: (3.2) 200 OK (settings data)
+Frontend --> User: (3.3) Display settings form
 
-User -> Frontend: Modify settings & Save
-Frontend -> Controller: PUT /api/users/settings {new_settings}
-Controller -> Service: Update Settings
-Service -> Service: Validate settings values
-Service -> Repo: Update User Settings
-Repo --> Service: Settings updated
-Service --> Controller: Updated Settings
-Controller --> Frontend: 200 OK
-Frontend --> User: Show success message
+User -> Frontend: (4.1) Modify settings values
+User -> Frontend: (5.1) Save changes
+Frontend -> Controller: (5.2) PUT /api/users/settings {new_settings}
+Controller -> Service: (6.1) Update settings request
+Service -> Service: (6.2) Validate settings values
+Service -> Repo: (7.1) Update settings in database
+Repo --> Service: (7.2) Settings updated
+Service --> Controller: (8.1) Updated settings
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> User: (8.3) Show success message
 @enduml

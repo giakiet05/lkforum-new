@@ -9,24 +9,26 @@ participant "Post Repo" as PostRepo
 participant "Comment Repo" as CommentRepo
 participant "Event Bus\n(Go Channels)" as EventBus
 
-User -> Frontend: Write & submit comment
-Frontend -> Controller: POST /api/posts/{post_id}/comments {content}
-Controller -> Service: Create Comment
-Service -> PostRepo: Verify post exists and allows comments
-PostRepo --> Service: Post is valid
+User -> Frontend: (1.1) Open a post
+User -> Frontend: (2.1) Write a comment
+User -> Frontend: (3.1) Submit the comment
+Frontend -> Controller: (3.2) POST /api/posts/{post_id}/comments {content}
+Controller -> Service: (4.1) Create comment request
+Service -> PostRepo: (4.2) Validate authentication and post state
+PostRepo --> Service: (4.3) Post is valid
 
-Service -> CommentRepo: Insert new Comment record
-CommentRepo --> Service: Comment created
-Service -> PostRepo: Increment post comment count
-PostRepo --> Service: Count updated
+Service -> CommentRepo: (5.1) Create comment record
+CommentRepo --> Service: (5.2) Comment created
+Service -> PostRepo: (6.1) Increment post comment count
+PostRepo --> Service: (6.2) Count updated
 
-Service -> EventBus: Publish CommentCreatedEvent
+Service -> EventBus: (6.3) Publish CommentCreatedEvent
 note right of EventBus
   Background goroutine notifies
   the post author
 end note
 
-Service --> Controller: Created Comment Data
-Controller --> Frontend: 201 Created
-Frontend --> User: Render new comment in thread
+Service --> Controller: (7.1) Created comment data
+Controller --> Frontend: (7.2) 201 Created
+Frontend --> User: (7.3) Render new comment in thread
 @enduml

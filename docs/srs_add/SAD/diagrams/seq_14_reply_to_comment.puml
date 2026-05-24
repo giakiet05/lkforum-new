@@ -9,24 +9,26 @@ participant "Comment Repo" as CommentRepo
 participant "Post Repo" as PostRepo
 participant "Event Bus\n(Go Channels)" as EventBus
 
-User -> Frontend: Write & submit reply
-Frontend -> Controller: POST /api/comments/{parent_id}/reply {content}
-Controller -> Service: Create Reply (parentID, content)
-Service -> CommentRepo: Verify parent comment exists
-CommentRepo --> Service: Parent is valid (postID)
+User -> Frontend: (1.1) Open a comment thread
+User -> Frontend: (2.1) Write a reply
+User -> Frontend: (3.1) Submit the reply
+Frontend -> Controller: (3.2) POST /api/comments/{parent_id}/reply {content}
+Controller -> Service: (4.1) Create reply request
+Service -> CommentRepo: (4.2) Validate authentication and parent comment
+CommentRepo --> Service: (4.3) Parent is valid (postID)
 
-Service -> CommentRepo: Insert new Reply (with parent_id)
-CommentRepo --> Service: Reply created
-Service -> PostRepo: Increment post comment count
-PostRepo --> Service: Count updated
+Service -> CommentRepo: (5.1) Create reply with parent_id
+CommentRepo --> Service: (5.2) Reply created
+Service -> PostRepo: (6.1) Increment post comment count
+PostRepo --> Service: (6.2) Count updated
 
-Service -> EventBus: Publish ReplyCreatedEvent
+Service -> EventBus: (6.3) Publish ReplyCreatedEvent
 note right of EventBus
   Background goroutine notifies
   the parent comment author
 end note
 
-Service --> Controller: Created Reply Data
-Controller --> Frontend: 201 Created
-Frontend --> User: Render reply under parent
+Service --> Controller: (7.1) Created reply data
+Controller --> Frontend: (7.2) 201 Created
+Frontend --> User: (7.3) Render reply under parent
 @enduml

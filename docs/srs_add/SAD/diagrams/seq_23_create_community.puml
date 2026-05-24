@@ -8,24 +8,24 @@ participant "Community Service" as Service
 participant "Cloudinary" as Cloudinary
 participant "Community Repo" as Repo
 
-User -> Frontend: Fill community details & attach media
-Frontend -> Controller: POST /api/communities (multipart form)
-Controller -> Service: Create Community
-Service -> Repo: Check community name availability
-Repo --> Service: Name is available
+User -> Frontend: (1.1/2.1/3.1) Fill community details & attach media
+Frontend -> Controller: (4.1) POST /api/communities (multipart form)
+Controller -> Service: (5.1) Create Community
+Service -> Repo: (5.2) Check community name availability
+Repo --> Service: (5.3) Name is available
 
 alt Media (avatar/banner) attached
-    Service -> Cloudinary: Upload media stream
-    Cloudinary --> Service: Return Media URLs & IDs
+    Service -> Cloudinary: (3.2) Upload media stream
+    Cloudinary --> Service: (3.3) Return Media URLs & IDs
 end
 
-Service -> Repo: Insert new Community record
-Repo --> Service: Community created (ID)
+Service -> Repo: (6.1) Insert new Community record
+Repo --> Service: (6.2) Community created (ID)
 
-Service -> Repo: Add creator as Community Admin/Owner
-Repo --> Service: Role assigned
+Service -> Repo: (7.1) Add creator as Community Admin/Owner
+Repo --> Service: (7.2) Role assigned
 
-Service --> Controller: Created Community Data
-Controller --> Frontend: 201 Created
-Frontend --> User: Redirect to new community page
+Service --> Controller: (8.1) Created Community Data
+Controller --> Frontend: (8.2) 201 Created
+Frontend --> User: (8.3) Redirect to new community page
 @enduml

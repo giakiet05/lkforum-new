@@ -8,20 +8,20 @@ participant "Community Service" as Service
 participant "Cloudinary" as Cloudinary
 participant "Community Repo" as Repo
 
-Moderator -> Frontend: Update settings & media, then Save
-Frontend -> Controller: PUT /api/communities/{id}/settings (multipart form)
-Controller -> Service: Update Community Settings
-Service -> Repo: Verify ownership or moderator access
-Repo --> Service: Access confirmed
+Moderator -> Frontend: (1.1/2.1/3.1) Update settings & media, then Save
+Frontend -> Controller: (3.2) PUT /api/communities/{id}/settings (multipart form)
+Controller -> Service: (4.1) Update Community Settings
+Service -> Repo: (4.2) Verify ownership or moderator access
+Repo --> Service: (4.3) Access confirmed
 
 alt New avatar or banner uploaded
-    Service -> Cloudinary: Upload new image stream
-    Cloudinary --> Service: Return Media URLs & IDs
+    Service -> Cloudinary: (2.2) Upload new image stream
+    Cloudinary --> Service: (2.3) Return Media URLs & IDs
 end
 
-Service -> Repo: Update Community record in DB
-Repo --> Service: Record updated
-Service --> Controller: Saved Settings Data
-Controller --> Frontend: 200 OK
-Frontend --> Moderator: Show success message & refresh UI
+Service -> Repo: (5.1) Update Community record in DB
+Repo --> Service: (5.2) Record updated
+Service --> Controller: (6.1) Saved Settings Data
+Controller --> Frontend: (6.2) 200 OK
+Frontend --> Moderator: (6.3) Show success message & refresh UI
 @enduml

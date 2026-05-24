@@ -10,27 +10,31 @@ participant "Cloudinary" as Cloudinary
 participant "Post Repo" as PostRepo
 participant "Event Bus\n(Go Channels)" as EventBus
 
-User -> Frontend: Fill post data & attach media
-Frontend -> Controller: POST /api/posts (multipart form)
-Controller -> Service: Create Post
-Service -> CommRepo: Verify community membership
-CommRepo --> Service: Membership valid
+User -> Frontend: (1.1) Open Create Post modal
+User -> Frontend: (2.1) Select a community
+User -> Frontend: (3.1) Choose post type and enter title/content
+User -> Frontend: (4.1) Attach media or configure poll if needed
+User -> Frontend: (5.1) Submit the post
+Frontend -> Controller: (5.2) POST /api/posts (multipart form)
+Controller -> Service: (6.1) Create post request
+Service -> CommRepo: (6.2) Validate author and community membership
+CommRepo --> Service: (6.3) Membership valid
 
 alt Media files attached
-    Service -> Cloudinary: Upload media stream
-    Cloudinary --> Service: Return Media URLs & IDs
+    Service -> Cloudinary: (8.1) Upload media stream
+    Cloudinary --> Service: (8.2) Return media URLs and IDs
 end
 
-Service -> PostRepo: Insert new Post record
-PostRepo --> Service: Post created (ID)
+Service -> PostRepo: (7.1) Create post record
+PostRepo --> Service: (7.2) Post created (ID)
 
-Service -> EventBus: Publish PostCreatedEvent
+Service -> EventBus: (10.1) Trigger moderation workflow
 note right of EventBus
   Background goroutines handle 
   moderation and notifications
 end note
 
-Service --> Controller: Created Post Data
-Controller --> Frontend: 201 Created
-Frontend --> User: Redirect to new post
+Service --> Controller: (10.2) Created post data
+Controller --> Frontend: (10.3) 201 Created
+Frontend --> User: (10.4) Redirect to new post
 @enduml

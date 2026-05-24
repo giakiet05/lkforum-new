@@ -7,19 +7,20 @@ participant "Activity Controller" as Controller
 participant "Activity Service" as Service
 participant "Activity Repository" as Repo
 
-User -> Frontend: Open Activity History page
-Frontend -> Controller: GET /api/users/activity-history?page=1
-Controller -> Service: Get Paginated History (userID, page)
-Service -> Repo: Fetch Activity Records
-Repo --> Service: List of Records & Pagination Data
+User -> Frontend: (1.1) Open Activity History page
+User -> Frontend: (2.1) Choose a page of history records
+Frontend -> Controller: (2.2) GET /api/users/activity-history?page=1
+Controller -> Service: (3.1) Validate authenticated user
+Service -> Repo: (4.1) Fetch paginated post history
+Repo --> Service: (4.2) List of records and pagination data
 
 alt Records found
-    Service --> Controller: History Data
-    Controller --> Frontend: 200 OK (Data array)
-    Frontend --> User: Display Activity List
+    Service --> Controller: (5.1) History data
+    Controller --> Frontend: (5.2) 200 OK (data array)
+    Frontend --> User: (7.1) Display activity list
 else No records found
-    Service --> Controller: Empty List
-    Controller --> Frontend: 200 OK (Empty array)
-    Frontend --> User: Display "No activity" state
+    Service --> Controller: (6.1) Empty list
+    Controller --> Frontend: (6.2) 200 OK (empty array)
+    Frontend --> User: (6.3) Display "No activity" state
 end
 @enduml

@@ -8,24 +8,24 @@ participant "Role Service" as Service
 participant "Community Repo" as Repo
 participant "Event Bus\n(Go Channels)" as EventBus
 
-Owner -> Frontend: Invite member as Moderator
-Frontend -> Controller: POST /api/communities/{id}/roles {user_id, role: "moderator"}
-Controller -> Service: Assign Role
-Service -> Repo: Validate creator/owner permissions
-Repo --> Service: Permissions valid
+Owner -> Frontend: (1.1/2.1) Invite member as Moderator
+Frontend -> Controller: (3.1) POST /api/communities/{id}/roles {user_id, role: "moderator"}
+Controller -> Service: (3.2) Assign Role
+Service -> Repo: (4.1) Validate creator/owner permissions
+Repo --> Service: (4.2) Permissions valid
 
-Service -> Repo: Insert moderator invitation/assignment record
-Repo --> Service: Record created
+Service -> Repo: (5.1) Insert moderator invitation/assignment record
+Repo --> Service: (5.2) Record created
 
-Service -> EventBus: Publish RoleAssignedEvent
+Service -> EventBus: (6.1) Publish RoleAssignedEvent
 note right of EventBus
   Background goroutine notifies
   the target user
 end note
 
-Service -> Repo: Fetch updated role list
-Repo --> Service: Role list
-Service --> Controller: Updated Role List
-Controller --> Frontend: 200 OK
-Frontend --> Owner: Refresh role management UI
+Service -> Repo: (7.1) Fetch updated role list
+Repo --> Service: (7.2) Role list
+Service --> Controller: (7.3) Updated Role List
+Controller --> Frontend: (7.4) 200 OK
+Frontend --> Owner: (7.5) Refresh role management UI
 @enduml

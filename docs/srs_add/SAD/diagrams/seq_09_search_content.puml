@@ -9,29 +9,31 @@ participant "Post Repo" as PostRepo
 participant "User Repo" as UserRepo
 participant "Community Repo" as CommunityRepo
 
-User -> Frontend: Enter keyword and submit search
-Frontend -> Controller: GET /api/search?q={keyword}
-Controller -> Service: Perform Search (keyword)
-Service -> Service: Normalize query keyword
+User -> Frontend: (1.1) Open search page
+User -> Frontend: (2.1) Enter keyword
+User -> Frontend: (3.1) Submit search
+Frontend -> Controller: (3.2) GET /api/search?q={keyword}
+Controller -> Service: (3.3) Perform search
+Service -> Service: (4.1) Normalize query keyword
 
 par Search executing in parallel goroutines
-    Service -> PostRepo: Search Posts
-    Service -> UserRepo: Search Users
-    Service -> CommunityRepo: Search Communities
-    PostRepo --> Service: Post Results
-    UserRepo --> Service: User Results
-    CommunityRepo --> Service: Community Results
+    Service -> PostRepo: (5.1) Search posts
+    Service -> UserRepo: (5.2) Search users
+    Service -> CommunityRepo: (5.3) Search communities
+    PostRepo --> Service: (5.4) Post results
+    UserRepo --> Service: (5.5) User results
+    CommunityRepo --> Service: (5.6) Community results
 end
 
-Service -> Service: Aggregate and sort results
+Service -> Service: (5.7) Aggregate and sort results
 
 alt Results found
-    Service --> Controller: Aggregated Results
-    Controller --> Frontend: 200 OK (Results)
-    Frontend --> User: Display Search Results
+    Service --> Controller: (6.1) Aggregated results
+    Controller --> Frontend: (6.2) 200 OK (results)
+    Frontend --> User: (8.1) Display search results
 else No results
-    Service --> Controller: Empty Results
-    Controller --> Frontend: 200 OK (Empty)
-    Frontend --> User: Display "No results found"
+    Service --> Controller: (7.1) Empty results
+    Controller --> Frontend: (7.2) 200 OK (empty)
+    Frontend --> User: (7.3) Display "No results found"
 end
 @enduml

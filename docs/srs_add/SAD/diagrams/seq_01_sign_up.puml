@@ -9,42 +9,46 @@ participant "User Repository" as Repo
 participant "Redis Cache" as Redis
 participant "Email Service" as Email
 
-User -> Frontend: Open Register page & enter email
-Frontend -> Controller: POST /api/auth/register-email {email}
-Controller -> Service: Request OTP for email
-Service -> Repo: Check if email exists
-Repo --> Service: Email not found
-Service -> Redis: Generate & store OTP (TTL 5m)
-Service -> Email: Send OTP email
-Email --> Service: Email sent
-Service --> Controller: Success
-Controller --> Frontend: 200 OK (OTP sent)
-Frontend --> User: Prompt for OTP
+User -> Frontend: (1.1) Open Register page
+User -> Frontend: (2.1) Enter email
+User -> Frontend: (3.1) Submit email
+Frontend -> Controller: (3.2) POST /api/auth/register-email {email}
+Controller -> Service: (4.1) Validate email format
+Service -> Repo: (5.1) Check whether email is already registered
+Repo --> Service: (5.2) Email not found
+Service -> Redis: (6.1) Generate & store OTP (TTL 5m)
+Service -> Email: (7.1) Send OTP email
+Email --> Service: (7.2) Email sent
+Service --> Controller: (7.3) Success
+Controller --> Frontend: (7.4) 200 OK (OTP sent)
+Frontend --> User: (7.5) Prompt for OTP
 
-User -> Frontend: Enter OTP
-Frontend -> Controller: POST /api/auth/verify-otp {email, otp}
-Controller -> Service: Verify OTP
-Service -> Redis: Check OTP
-Redis --> Service: OTP matches
-Service -> Redis: Generate & store verification token (TTL 15m)
-Service --> Controller: Success (verification token)
-Controller --> Frontend: 200 OK (verification token)
-Frontend --> User: Prompt for username/password
+User -> Frontend: (10.1) Enter received OTP
+User -> Frontend: (11.1) Submit OTP
+Frontend -> Controller: (11.2) POST /api/auth/verify-otp {email, otp}
+Controller -> Service: (12.1) Verify OTP
+Service -> Redis: (12.2) Check OTP
+Redis --> Service: (12.3) OTP matches
+Service -> Redis: (13.1) Generate & store verification token (TTL 15m)
+Service --> Controller: (13.2) Success (verification token)
+Controller --> Frontend: (13.3) 200 OK (verification token)
+Frontend --> User: (13.4) Prompt for username/password
 
-User -> Frontend: Enter username, password
-Frontend -> Controller: POST /api/auth/register {email, username, password, token}
-Controller -> Service: Register User
-Service -> Redis: Validate verification token
-Redis --> Service: Token valid
-Service -> Repo: Check username availability
-Repo --> Service: Username available
-Service -> Service: Hash password (bcrypt)
-Service -> Repo: Create new User
-Repo --> Service: User created
-Service -> Service: Generate Access & Refresh Tokens
-Service -> Redis: Store Auth State (Refresh Token)
-Service -> Redis: Delete verification token
-Service --> Controller: Tokens & User Info
-Controller --> Frontend: 200 OK
-Frontend --> User: Redirect to Home Page
+User -> Frontend: (15.1) Enter username and password
+User -> Frontend: (16.1) Confirm registration
+Frontend -> Controller: (16.2) POST /api/auth/register {email, username, password, token}
+Controller -> Service: (17.1) Validate username and password
+Service -> Redis: (17.2) Validate verification token
+Redis --> Service: (17.3) Token valid
+Service -> Repo: (17.4) Check username availability
+Repo --> Service: (17.5) Username available
+Service -> Service: (18.1) Hash password (bcrypt)
+Service -> Repo: (18.2) Create user account
+Repo --> Service: (18.3) User created
+Service -> Service: (19.1) Generate access & refresh tokens
+Service -> Redis: (20.1) Store auth state (refresh token)
+Service -> Redis: (20.2) Delete verification token
+Service --> Controller: (21.1) Tokens & user info
+Controller --> Frontend: (21.2) 200 OK
+Frontend --> User: (21.3) Log user in and redirect to home page
 @enduml

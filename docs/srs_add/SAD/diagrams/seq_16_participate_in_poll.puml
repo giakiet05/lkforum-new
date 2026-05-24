@@ -8,25 +8,27 @@ participant "Poll Service" as Service
 participant "Poll Repo" as PollRepo
 participant "Vote Repo" as VoteRepo
 
-User -> Frontend: Select poll option(s) & Vote
-Frontend -> Controller: POST /api/polls/{poll_id}/vote {option_ids}
-Controller -> Service: Submit Poll Vote
-Service -> PollRepo: Check poll exists and is open
-PollRepo --> Service: Poll is valid and open
+User -> Frontend: (1.1) Open a poll post
+User -> Frontend: (2.1) Select poll option(s)
+User -> Frontend: (3.1) Submit the vote
+Frontend -> Controller: (3.2) POST /api/polls/{poll_id}/vote {option_ids}
+Controller -> Service: (4.1) Submit poll vote request
+Service -> PollRepo: (4.2) Validate authentication and poll state
+PollRepo --> Service: (4.3) Poll is valid and open
 
-Service -> VoteRepo: Check existing poll vote for user
-VoteRepo --> Service: Existing vote (if any)
+Service -> VoteRepo: (5.1) Check existing poll vote for user
+VoteRepo --> Service: (5.2) Existing vote (if any)
 
 alt Single-choice poll & user already voted
-    Service -> VoteRepo: Remove prior vote
+    Service -> VoteRepo: (5.3) Remove prior vote
 end
 
-Service -> VoteRepo: Record new selected option(s)
-VoteRepo --> Service: Vote recorded
+Service -> VoteRepo: (6.1) Record selected poll option(s)
+VoteRepo --> Service: (6.2) Vote recorded
 
-Service -> PollRepo: Update poll option counters
-PollRepo --> Service: Counts updated
-Service --> Controller: Updated Poll Results
-Controller --> Frontend: 200 OK
-Frontend --> User: Display poll results & lock options
+Service -> PollRepo: (7.1) Update poll option counters
+PollRepo --> Service: (7.2) Counts updated
+Service --> Controller: (7.3) Updated poll results
+Controller --> Frontend: (7.4) 200 OK
+Frontend --> User: (7.5) Display poll results and lock options
 @enduml

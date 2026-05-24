@@ -8,15 +8,15 @@ participant "Report Service" as Service
 participant "Report Repo" as Repo
 participant "Target Repo" as TargetRepo
 
-User -> Frontend: Fill report form & Submit
-Frontend -> Controller: POST /api/reports {target_id, type, reason}
-Controller -> Service: Create Report
-Service -> TargetRepo: Validate target exists (Post/Comment/Community)
-TargetRepo --> Service: Target is valid
+User -> Frontend: (1.1/2.1/3.1) Fill report form & Submit
+Frontend -> Controller: (3.2) POST /api/reports {target_id, type, reason}
+Controller -> Service: (4.1) Create Report
+Service -> TargetRepo: (4.2) Validate target exists (Post/Comment/Community)
+TargetRepo --> Service: (4.3) Target is valid
 
-Service -> Repo: Create Report record (Status: Pending)
-Repo --> Service: Report created
-Service --> Controller: Success
-Controller --> Frontend: 201 Created
-Frontend --> User: Show "Report submitted" message
+Service -> Repo: (5.1/6.1) Create Report record (Status: Pending)
+Repo --> Service: (5.2/6.2) Report created
+Service --> Controller: (7.1) Success
+Controller --> Frontend: (7.2) 201 Created
+Frontend --> User: (7.3) Show "Report submitted" message
 @enduml

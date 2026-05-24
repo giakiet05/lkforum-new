@@ -8,21 +8,24 @@ participant "User Service" as Service
 participant "Cloudinary" as Cloudinary
 participant "User Repository" as Repo
 
-User -> Frontend: Edit profile info & select new avatar
-Frontend -> Controller: PUT /api/users/profile (multipart form data)
-Controller -> Service: Update Profile
-Service -> Repo: Find User by ID
-Repo --> Service: User found
-Service -> Service: Validate profile fields
+User -> Frontend: (1.1) Open Profile / Settings page
+User -> Frontend: (2.1) Edit profile information
+User -> Frontend: (3.1) Choose avatar or cover image if needed
+User -> Frontend: (4.1) Submit profile changes
+Frontend -> Controller: (4.2) PUT /api/users/profile (multipart form data)
+Controller -> Service: (5.1) Update profile request
+Service -> Repo: (5.2) Find user by ID
+Repo --> Service: (5.3) User found
+Service -> Service: (5.4) Validate profile fields
 
 alt New avatar/cover image uploaded
-    Service -> Cloudinary: Upload image stream
-    Cloudinary --> Service: Return Image URL & Public ID
+    Service -> Cloudinary: (8.1) Upload image file
+    Cloudinary --> Service: (8.2) Return image URL and public ID
 end
 
-Service -> Repo: Update User Profile (including new image URLs if any)
-Repo --> Service: Profile updated
-Service --> Controller: Updated User Info
-Controller --> Frontend: 200 OK
-Frontend --> User: Display updated profile
+Service -> Repo: (6.1/9.1) Update profile information and image metadata
+Repo --> Service: (6.2/9.2) Profile updated
+Service --> Controller: (10.1) Updated profile data
+Controller --> Frontend: (10.2) 200 OK
+Frontend --> User: (10.3) Display updated profile
 @enduml

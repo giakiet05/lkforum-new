@@ -8,15 +8,17 @@ participant "Auth Service" as Service
 participant "User Repository" as Repo
 participant "Redis Cache" as Redis
 
-User -> Frontend: Enter username/email and password
-Frontend -> Controller: POST /api/auth/login {identifier, password}
-Controller -> Service: Login User
-Service -> Repo: Find User by email or username
-Repo --> Service: User found (hashed_password)
-Service -> Service: Verify password (bcrypt)
-Service -> Service: Generate Access & Refresh Tokens
-Service -> Redis: Store Auth State (Refresh Token)
-Service --> Controller: Tokens & User Info
-Controller --> Frontend: 200 OK
-Frontend --> User: Redirect to Home Page
+User -> Frontend: (1.1) Open the Login page
+User -> Frontend: (2.1) Enter username/email and password
+User -> Frontend: (3.1) Submit credentials
+Frontend -> Controller: (3.2) POST /api/auth/login {identifier, password}
+Controller -> Service: (4.1) Validate login input
+Service -> Repo: (5.1) Look up account by email or username
+Repo --> Service: (5.2) User found (hashed_password)
+Service -> Service: (6.1) Verify password and account status
+Service -> Service: (7.1) Generate access and refresh tokens
+Service -> Redis: (7.2) Store auth state (refresh token)
+Service --> Controller: (8.1) Tokens and user info
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> User: (8.3) Redirect to home page
 @enduml

@@ -8,28 +8,30 @@ participant "Post Service" as Service
 participant "Post Repo" as PostRepo
 participant "User Repo" as UserRepo
 
-User -> Frontend: Click delete post & confirm
-Frontend -> Controller: DELETE /api/posts/{id}
-Controller -> Service: Delete Post (userID, postID)
-Service -> PostRepo: Find post by ID
-PostRepo --> Service: Post Data
-Service -> Service: Verify delete permission (Author or Mod/Admin)
+User -> Frontend: (1.1) Open post menu
+User -> Frontend: (2.1) Choose Delete post
+User -> Frontend: (3.1) Confirm deletion
+Frontend -> Controller: (3.2) DELETE /api/posts/{id}
+Controller -> Service: (4.1) Delete post request
+Service -> PostRepo: (4.2) Load post record
+PostRepo --> Service: (4.3) Post data
+Service -> Service: (5.1) Verify delete permission
 
 alt User is authorized
-    Service -> PostRepo: Soft delete post (set deleted_at)
-    PostRepo --> Service: Post marked deleted
+    Service -> PostRepo: (6.1) Soft delete post
+    PostRepo --> Service: (6.2) Post marked deleted
     
     alt User is the Author
-        Service -> UserRepo: Decrease user post count
-        UserRepo --> Service: Count updated
+        Service -> UserRepo: (7.1) Decrease user post count
+        UserRepo --> Service: (7.2) Count updated
     end
     
-    Service --> Controller: Success
-    Controller --> Frontend: 200 OK
-    Frontend --> User: Remove post from UI
+    Service --> Controller: (8.1) Delete success response
+    Controller --> Frontend: (8.2) 200 OK
+    Frontend --> User: (8.3) Remove post from UI
 else Not authorized
-    Service --> Controller: Forbidden Error
-    Controller --> Frontend: 403 Forbidden
-    Frontend --> User: Show error message
+    Service --> Controller: (9.1) Forbidden error
+    Controller --> Frontend: (9.2) 403 Forbidden
+    Frontend --> User: (9.3) Show error message
 end
 @enduml

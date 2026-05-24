@@ -8,25 +8,25 @@ participant "Admin Auth Service" as Service
 participant "Admin Repo" as Repo
 participant "Redis Cache" as Redis
 
-Admin -> Frontend: Enter Admin Credentials
-Frontend -> Controller: POST /api/admin/auth/login
-Controller -> Service: Admin Login
-Service -> Repo: Fetch Admin by username
-Repo --> Service: Admin found (hashed_password)
-Service -> Service: Verify password & Admin Role
-Service -> Service: Generate Admin Access & Refresh Tokens
-Service -> Redis: Store Admin Auth State (Refresh Token)
-Service --> Controller: Tokens
-Controller --> Frontend: 200 OK
-Frontend --> Admin: Redirect to Admin Dashboard
+Admin -> Frontend: (1.1/2.1) Enter Admin Credentials
+Frontend -> Controller: (2.2) POST /api/admin/auth/login
+Controller -> Service: (3.1) Admin Login
+Service -> Repo: (3.2) Fetch Admin by username
+Repo --> Service: (3.3) Admin found (hashed_password)
+Service -> Service: (3.4) Verify password & Admin Role
+Service -> Service: (4.1) Generate Admin Access & Refresh Tokens
+Service -> Redis: (4.2) Store Admin Auth State (Refresh Token)
+Service --> Controller: (5.1) Tokens
+Controller --> Frontend: (5.2) 200 OK
+Frontend --> Admin: (5.3) Redirect to Admin Dashboard
 
 ... Admin manages platform ...
 
-Admin -> Frontend: Click Logout
-Frontend -> Controller: POST /api/admin/auth/logout
-Controller -> Service: Admin Logout
-Service -> Redis: Delete Admin Auth State (Revoke Session)
-Service --> Controller: Success
-Controller --> Frontend: 200 OK
-Frontend --> Admin: Redirect to Admin Login Page
+Admin -> Frontend: (6.1) Click Logout
+Frontend -> Controller: (6.2) POST /api/admin/auth/logout
+Controller -> Service: (7.1) Admin Logout
+Service -> Redis: (7.2) Delete Admin Auth State (Revoke Session)
+Service --> Controller: (8.1) Success
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> Admin: (8.3) Redirect to Admin Login Page
 @enduml

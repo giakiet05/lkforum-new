@@ -7,30 +7,30 @@ participant "Notification Controller" as Controller
 participant "Notification Service" as Service
 participant "Notification Repo" as Repo
 
-User -> Frontend: Open Notifications
-Frontend -> Controller: GET /api/notifications
-Controller -> Service: Get User Notifications
-Service -> Repo: Fetch notifications for user
-Repo --> Service: List of Notifications
-Service --> Controller: Notifications data
-Controller --> Frontend: 200 OK
-Frontend --> User: Display notifications
+User -> Frontend: (1.1) Open Notifications
+Frontend -> Controller: (1.2) GET /api/notifications
+Controller -> Service: (2.1) Get User Notifications
+Service -> Repo: (2.2) Fetch notifications for user
+Repo --> Service: (2.3) List of Notifications
+Service --> Controller: (3.1) Notifications data
+Controller --> Frontend: (3.2) 200 OK
+Frontend --> User: (3.3) Display notifications
 
-User -> Frontend: Mark as read / Delete
-Frontend -> Controller: PUT /api/notifications/{id}/read (or DELETE)
-Controller -> Service: Update Notification State
-Service -> Repo: Validate ownership
-Repo --> Service: Ownership confirmed
+User -> Frontend: (4.1/5.1) Mark as read / Delete
+Frontend -> Controller: (4.2/5.2) PUT /api/notifications/{id}/read (or DELETE)
+Controller -> Service: (6.1) Update Notification State
+Service -> Repo: (6.2) Validate ownership
+Repo --> Service: (6.3) Ownership confirmed
 
 alt Mark as read
-    Service -> Repo: Update status to 'read'
-    Repo --> Service: Updated
+    Service -> Repo: (7.1) Update status to 'read'
+    Repo --> Service: (7.2) Updated
 else Delete
-    Service -> Repo: Delete notification record
-    Repo --> Service: Deleted
+    Service -> Repo: (7.3) Delete notification record
+    Repo --> Service: (7.4) Deleted
 end
 
-Service --> Controller: Success
-Controller --> Frontend: 200 OK
-Frontend --> User: Update notification UI
+Service --> Controller: (8.1) Success
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> User: (8.3) Update notification UI
 @enduml

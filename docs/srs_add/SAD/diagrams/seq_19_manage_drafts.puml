@@ -8,34 +8,36 @@ participant "Draft Service" as Service
 participant "Draft Repo" as DraftRepo
 participant "Post Service" as PostService
 
-User -> Frontend: Open Drafts list
-Frontend -> Controller: GET /api/drafts
-Controller -> Service: Get User Drafts
-Service -> DraftRepo: Find drafts by UserID
-DraftRepo --> Service: List of Drafts
-Service --> Controller: Drafts data
-Controller --> Frontend: 200 OK
-Frontend --> User: Display drafts
+User -> Frontend: (1.1) Open Drafts
+Frontend -> Controller: (1.2) GET /api/drafts
+Controller -> Service: (2.1) Load user's draft list
+Service -> DraftRepo: (2.2) Find drafts by user ID
+DraftRepo --> Service: (2.3) List of drafts
+Service --> Controller: (3.1) Drafts data
+Controller --> Frontend: (3.2) 200 OK
+Frontend --> User: (3.3) Display drafts
 
-User -> Frontend: Create/Edit draft & Click Save
-Frontend -> Controller: PUT /api/drafts/{id} {draft_data}
-Controller -> Service: Save Draft
-Service -> DraftRepo: Verify ownership & update
-DraftRepo --> Service: Draft updated
-Service --> Controller: Success
-Controller --> Frontend: 200 OK
-Frontend --> User: Show "Saved" indicator
+User -> Frontend: (4.1) Create or edit a draft
+User -> Frontend: (5.1) Save the draft
+Frontend -> Controller: (5.2) PUT /api/drafts/{id} {draft_data}
+Controller -> Service: (6.1) Save draft request
+Service -> DraftRepo: (6.2) Validate ownership and draft content
+Service -> DraftRepo: (7.1) Store draft changes
+DraftRepo --> Service: (7.2) Draft updated
+Service --> Controller: (11.1) Updated draft state
+Controller --> Frontend: (11.2) 200 OK
+Frontend --> User: (11.3) Show "Saved" indicator
 
-User -> Frontend: Click "Publish" on a draft
-Frontend -> Controller: POST /api/drafts/{id}/publish
-Controller -> Service: Publish Draft
-Service -> DraftRepo: Load Draft content
-DraftRepo --> Service: Draft data
-Service -> PostService: Create Post from Draft data
-PostService --> Service: Post created (postID)
-Service -> DraftRepo: Delete Draft record
-DraftRepo --> Service: Draft deleted
-Service --> Controller: Success (postID)
-Controller --> Frontend: 200 OK
-Frontend --> User: Redirect to newly published post
+User -> Frontend: (8.1) Publish draft
+Frontend -> Controller: (8.2) POST /api/drafts/{id}/publish
+Controller -> Service: (8.3) Publish draft request
+Service -> DraftRepo: (8.4) Load draft content
+DraftRepo --> Service: (8.5) Draft data
+Service -> PostService: (8.6) Create post from draft
+PostService --> Service: (8.7) Post created (postID)
+Service -> DraftRepo: (9.1) Delete draft after publishing
+DraftRepo --> Service: (9.2) Draft deleted
+Service --> Controller: (11.4) Updated draft state
+Controller --> Frontend: (11.5) 200 OK
+Frontend --> User: (11.6) Redirect to newly published post
 @enduml

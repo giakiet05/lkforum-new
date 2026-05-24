@@ -162,7 +162,7 @@ BRD User Story Sources:
 - US-01 Browse posts
 - US-02 View posts/comments
 ASR: High-Throughput Content Retrieval
-ADD: Cache frequently requested feed data to reduce database load
+ADD Response: The system serves feeds directly from Redis RAM using a Read-Through caching strategy, bypassing MongoDB for cached feed endpoints.
 Code: Redis feed cache in post service
 ```
 
@@ -209,7 +209,7 @@ BRD User Story Sources:
 - US-24 Mention notifications
 - US-27 Private messages
 ASR: Asynchronous Processing
-ADD: Separate request handling from secondary processing
+ADD Response: The Post Service saves the content and returns success quickly, then publishes an event through Go Channels so background goroutines can process secondary work such as notifications.
 Code: Service layer and event-style components isolate side effects
 ```
 
@@ -250,7 +250,7 @@ BRD User Story Sources:
 - US-09 Local sign in
 - US-32 Assign moderator roles
 ASR: Authentication and Authorization
-ADD: Protect routes and enforce user identity/role
+ADD Response: The system validates JWT signatures and enforces role-based access control before allowing restricted actions such as moderation or admin operations.
 Code: Auth service, JWT utilities, auth middleware, protected routes
 ```
 
@@ -297,7 +297,7 @@ BRD User Story Sources:
 - US-13 Create text post
 - US-28 Report inappropriate content
 ASR: Abuse Prevention with Rate Limiting
-ADD: Limit repeated requests from the same client/user
+ADD Response: The system increments Redis counters scoped by endpoint and client identifier; requests within limit continue, while excessive requests are rejected before business logic.
 Code: Redis-backed rate limit middleware
 ```
 
@@ -334,7 +334,7 @@ Requirement Trace:
 BRD User Story Sources:
 - US-27 Send private messages one-on-one
 ASR: Data Privacy for Private Messaging
-ADD: Message content should not be stored as plaintext; direct messaging uses WebSocket connections
+ADD Response: The sender client encrypts the message before sending it over WebSocket. The backend stores and routes only ciphertext, nonce, algorithm, and key version metadata.
 Code: Frontend E2EE demo + backend encrypted message fields + WebSocket delivery
 ```
 
@@ -409,7 +409,7 @@ BRD User Story Sources:
 - US-39 Ban users
 - US-40 Restrict communities
 ASR: Audit and User Activity Logging
-ADD: Record actor, action, target, reason, metadata, and timestamp
+ADD Response: The system records persistent audit entries for critical state-changing actions, including actor, role, action, target, reason, IP address, user agent, metadata, and timestamp.
 Code: Audit log model, repository, service, middleware, and controller hooks
 ```
 
@@ -458,7 +458,7 @@ BRD User Story Sources:
 - US-37 View dashboard with system analytics
 - Cross-cutting operational support for all user flows
 ASR: Structured Error Diagnostics with slog
-ADD: Logs should be machine-readable and include request context
+ADD Response: The backend emits structured diagnostic logs with stable fields such as action, user id, target id, request path, and error details while keeping user-facing errors generic when needed.
 Code: Go slog logger and request logging middleware
 ```
 
@@ -514,7 +514,7 @@ Requirement Trace:
 BRD User Story Sources:
 - US-37 View dashboard with system analytics
 ASR: Health and Readiness Checks + Runtime Metrics
-ADD: Expose service status, dependency readiness, and runtime metrics
+ADD Response: The backend exposes `/health`, `/ready`, and Prometheus-compatible `/metrics`; readiness checks MongoDB and Redis, while metrics expose counters, gauges, and durations for runtime monitoring.
 Code: /health, /ready, /metrics
 ```
 
@@ -561,7 +561,7 @@ Requirement Trace:
 BRD User Story Sources:
 - Cross-cutting support for US-01 to US-40
 ASR: Layered Architecture and Interface-Based Design
-ADD: Separate responsibilities into layers and contracts
+ADD Response: The backend separates routing, request handling, business rules, data access, and infrastructure wiring so new capabilities can be added in the proper layer with limited unrelated changes.
 Code: controller/service/repository/model/dto package structure
 ```
 

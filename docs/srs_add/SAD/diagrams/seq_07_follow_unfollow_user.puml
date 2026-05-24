@@ -7,23 +7,24 @@ participant "Follow Controller" as Controller
 participant "Follow Service" as Service
 participant "User Repository" as Repo
 
-User -> Frontend: Click Follow / Unfollow button
-Frontend -> Controller: POST /api/users/{target_id}/follow (or DELETE)
-Controller -> Service: Toggle Follow Status (followerID, targetID)
-Service -> Repo: Check target user exists
-Repo --> Service: User exists
+User -> Frontend: (1.1) Open another user's profile
+User -> Frontend: (2.1) Click Follow / Unfollow button
+Frontend -> Controller: (2.2) POST /api/users/{target_id}/follow (or DELETE)
+Controller -> Service: (3.1) Validate authenticated user and target user
+Service -> Repo: (3.2) Check target user exists
+Repo --> Service: (3.3) User exists
 
 alt Action is Follow
-    Service -> Repo: Create Follow Relationship
-    Repo --> Service: Relationship created
-    Service -> Repo: Increment Follower Count
+    Service -> Repo: (4.1) Create follow relationship
+    Repo --> Service: (4.2) Relationship created
+    Service -> Repo: (5.1) Increase follower/feed visibility state
 else Action is Unfollow
-    Service -> Repo: Remove Follow Relationship
-    Repo --> Service: Relationship removed
-    Service -> Repo: Decrement Follower Count
+    Service -> Repo: (6.1) Remove follow relationship
+    Repo --> Service: (6.2) Relationship removed
+    Service -> Repo: (7.1) Reduce follower/feed visibility state
 end
 
-Service --> Controller: Updated Follow Status
-Controller --> Frontend: 200 OK
-Frontend --> User: Update UI button state
+Service --> Controller: (8.1) Updated follow status
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> User: (8.3) Update UI button state
 @enduml
