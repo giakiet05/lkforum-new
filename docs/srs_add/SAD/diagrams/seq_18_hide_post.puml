@@ -8,15 +8,16 @@ participant "Post Service" as Service
 participant "Post Repo" as PostRepo
 participant "Hide Repo" as HideRepo
 
-User -> Frontend: Click "Hide Post"
-Frontend -> Controller: POST /api/posts/{id}/hide
-Controller -> Service: Hide Post (userID, postID)
-Service -> PostRepo: Verify post exists and is visible
-PostRepo --> Service: Post is valid
+User -> Frontend: (1.1) Open a post
+User -> Frontend: (2.1) Click "Hide"
+Frontend -> Controller: (2.2) POST /api/posts/{id}/hide
+Controller -> Service: (3.1) Hide post request
+Service -> PostRepo: (3.2) Validate authentication and post visibility
+PostRepo --> Service: (3.3) Post is valid
 
-Service -> HideRepo: Create hidden-post record
-HideRepo --> Service: Record created
-Service --> Controller: Success
-Controller --> Frontend: 200 OK
-Frontend --> User: Remove post from current feed view
+Service -> HideRepo: (4.1) Store hidden-post record
+HideRepo --> Service: (4.2) Record created
+Service --> Controller: (6.1) Success
+Controller --> Frontend: (6.2) 200 OK
+Frontend --> User: (5.1/6.3) Remove post from current feed view
 @enduml

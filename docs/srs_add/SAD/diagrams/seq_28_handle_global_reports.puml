@@ -7,25 +7,25 @@ participant "Admin Report Controller" as Controller
 participant "Report Service" as Service
 participant "Report Repo" as Repo
 
-Admin -> Frontend: Open Global Reports Dashboard
-Frontend -> Controller: GET /api/admin/reports?filter=...
-Controller -> Service: Get Reports
-Service -> Repo: Validate Admin Access
-Repo --> Service: Access valid
-Service -> Repo: Fetch filtered reports
-Repo --> Service: List of Reports
-Service --> Controller: Reports Data
-Controller --> Frontend: 200 OK
-Frontend --> Admin: Display reports table
+Admin -> Frontend: (1.1) Open Global Reports Dashboard
+Frontend -> Controller: (2.1) GET /api/admin/reports?filter=...
+Controller -> Service: (6.1) Get Reports
+Service -> Repo: (5.1) Validate Admin Access
+Repo --> Service: (5.2) Access valid
+Service -> Repo: (6.2) Fetch filtered reports
+Repo --> Service: (6.3) List of Reports
+Service --> Controller: (7.1) Reports Data
+Controller --> Frontend: (7.2) 200 OK
+Frontend --> Admin: (7.3) Display reports table
 
-Admin -> Frontend: Select report(s) & Click Delete
-Frontend -> Controller: DELETE /api/admin/reports {report_ids}
-Controller -> Service: Delete Reports
-Service -> Repo: Validate Admin Access
-Repo --> Service: Access valid
-Service -> Repo: Soft/Hard delete selected report records
-Repo --> Service: Reports deleted
-Service --> Controller: Success
-Controller --> Frontend: 200 OK
-Frontend --> Admin: Remove reports from dashboard UI
+Admin -> Frontend: (3.1/4.1) Select report(s) & Click Delete
+Frontend -> Controller: (4.2) DELETE /api/admin/reports {report_ids}
+Controller -> Service: (8.1) Delete Reports
+Service -> Repo: (5.3) Validate Admin Access
+Repo --> Service: (5.4) Access valid
+Service -> Repo: (8.2) Soft/Hard delete selected report records
+Repo --> Service: (8.3) Reports deleted
+Service --> Controller: (9.1) Success
+Controller --> Frontend: (9.2) 200 OK
+Frontend --> Admin: (9.3) Remove reports from dashboard UI
 @enduml

@@ -8,28 +8,28 @@ participant "Post Service" as Service
 participant "Redis Cache" as Redis
 participant "Post Repository" as Repo
 
-User -> Frontend: Open Forum Homepage
-Frontend -> Controller: GET /api/posts/public-feed
-Controller -> Service: Get Public Feed
-Service -> Redis: Check Cache for Feed
+User -> Frontend: (1.1) Open forum homepage
+Frontend -> Controller: (2.1) GET /api/posts/public-feed
+Controller -> Service: (2.2) Load and fetch public posts
+Service -> Redis: (2.3) Check cache for feed
 alt Cache Hit
-    Redis --> Service: Cached Feed Data
+    Redis --> Service: (2.4) Cached feed data
 else Cache Miss
-    Redis --> Service: Null
-    Service -> Repo: Fetch Recent Public Posts
-    Repo --> Service: List of Posts
-    Service -> Redis: Store Feed in Cache (TTL)
+    Redis --> Service: (2.5) Null
+    Service -> Repo: (2.6) Fetch recent public posts
+    Repo --> Service: (2.7) List of posts
+    Service -> Redis: (2.8) Store feed in cache (TTL)
 end
-Service --> Controller: Feed Data
-Controller --> Frontend: 200 OK
-Frontend --> User: Display Post List
+Service --> Controller: (3.1/4.1) Feed data
+Controller --> Frontend: (3.2/4.2) 200 OK
+Frontend --> User: (3.3/4.3) Display post list or empty state
 
-User -> Frontend: Click on a specific post
-Frontend -> Controller: GET /api/posts/{post_id}
-Controller -> Service: Get Post Details
-Service -> Repo: Fetch Post by ID
-Repo --> Service: Post Details
-Service --> Controller: Post Details
-Controller --> Frontend: 200 OK
-Frontend --> User: Display full post content
+User -> Frontend: (5.1) Select a post
+Frontend -> Controller: (5.2) GET /api/posts/{post_id}
+Controller -> Service: (6.1) Fetch selected post details
+Service -> Repo: (6.2) Fetch post by ID
+Repo --> Service: (6.3) Post details
+Service --> Controller: (7.1) Post details
+Controller --> Frontend: (7.2) 200 OK
+Frontend --> User: (7.3) Display full post content
 @enduml

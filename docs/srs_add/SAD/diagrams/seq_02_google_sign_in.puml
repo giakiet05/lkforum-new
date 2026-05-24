@@ -9,28 +9,29 @@ participant "Google OAuth" as Google
 participant "User Repository" as Repo
 participant "Redis Cache" as Redis
 
-User -> Frontend: Click "Login with Google"
-Frontend -> Controller: GET /api/auth/google/login
-Controller --> Frontend: Redirect to Google Consent Screen
-Frontend -> Google: Redirect User
-User -> Google: Authorize application
-Google --> Frontend: Redirect to callback URL with Auth Code
-Frontend -> Controller: GET /api/auth/google/callback?code=...
-Controller -> Service: Process Google Callback
-Service -> Google: Exchange Auth Code for Tokens
-Google --> Service: Google Access Token
-Service -> Google: Fetch User Profile
-Google --> Service: Profile Data (Email, Name, Avatar)
-Service -> Repo: Find User by Google ID or Email
+User -> Frontend: (1.1) Open Login page
+User -> Frontend: (2.1) Click "Login with Google"
+Frontend -> Controller: (2.2) GET /api/auth/google/login
+Controller --> Frontend: (3.1) Redirect user to Google OAuth page
+Frontend -> Google: (3.2) Redirect user
+User -> Google: (5.1) Authenticate and grant consent
+Google --> Frontend: (6.1) Redirect to callback URL with authorization code
+Frontend -> Controller: (7.1) GET /api/auth/google/callback?code=...
+Controller -> Service: (8.1) Process Google callback
+Service -> Google: (8.2) Exchange authorization code for tokens
+Google --> Service: (8.3) Google access token
+Service -> Google: (8.4) Fetch Google profile
+Google --> Service: (8.5) Profile data (email, name, avatar)
+Service -> Repo: (8.6) Find user by Google ID or email
 alt User exists
-    Repo --> Service: Existing User
+    Repo --> Service: (8.7) Existing user
 else User not found
-    Service -> Repo: Create new User
-    Repo --> Service: New User created
+    Service -> Repo: (12.1) Create new user from Google profile
+    Repo --> Service: (12.2) New user created
 end
-Service -> Service: Generate Access & Refresh Tokens
-Service -> Redis: Store Auth State (Refresh Token)
-Service --> Controller: Tokens & User Info
-Controller --> Frontend: Redirect to Home with Tokens
-Frontend --> User: Display Home Page
+Service -> Service: (9.1/13.1) Generate access and refresh tokens
+Service -> Redis: (9.2/13.2) Store auth state (refresh token)
+Service --> Controller: (10.1/14.1) Tokens and user info
+Controller --> Frontend: (10.2/14.2) Redirect to home with tokens
+Frontend --> User: (10.3/14.3) Display home page
 @enduml

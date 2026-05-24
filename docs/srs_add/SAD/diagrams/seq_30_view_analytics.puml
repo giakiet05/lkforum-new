@@ -9,23 +9,23 @@ participant "User Repo" as UserRepo
 participant "Post Repo" as PostRepo
 participant "Community Repo" as CommRepo
 
-Admin -> Frontend: Open Analytics Dashboard
-Frontend -> Controller: GET /api/admin/analytics
-Controller -> Service: Get Dashboard Analytics
-Service -> UserRepo: Validate Admin Access
-UserRepo --> Service: Access valid
+Admin -> Frontend: (1.1) Open Analytics Dashboard
+Frontend -> Controller: (1.2) GET /api/admin/analytics
+Controller -> Service: (2.1) Get Dashboard Analytics
+Service -> UserRepo: (2.2) Validate Admin Access
+UserRepo --> Service: (2.3) Access valid
 
 par Aggregate statistics concurrently
-    Service -> UserRepo: Count total users & growth rate
-    Service -> PostRepo: Count total posts & engagement
-    Service -> CommRepo: Count total communities
-    UserRepo --> Service: User stats
-    PostRepo --> Service: Post stats
-    CommRepo --> Service: Community stats
+    Service -> UserRepo: (3.1) Count total users & growth rate
+    Service -> PostRepo: (4.1) Count total posts & engagement
+    Service -> CommRepo: (4.2) Count total communities
+    UserRepo --> Service: (3.2) User stats
+    PostRepo --> Service: (4.3) Post stats
+    CommRepo --> Service: (4.4) Community stats
 end
 
-Service -> Service: Compile analytics report
-Service --> Controller: Analytics Data
-Controller --> Frontend: 200 OK
-Frontend --> Admin: Render charts and statistics UI
+Service -> Service: (5.1) Compile analytics report
+Service --> Controller: (5.2) Analytics Data
+Controller --> Frontend: (5.3) 200 OK
+Frontend --> Admin: (5.4) Render charts and statistics UI
 @enduml

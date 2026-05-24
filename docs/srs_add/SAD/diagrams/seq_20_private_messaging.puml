@@ -9,28 +9,31 @@ participant "Message Service" as Service
 participant "Message Repo" as Repo
 participant "Event Bus\n(Go Channels)" as EventBus
 
-User -> Frontend: Open Messages
-Frontend -> Controller: GET /api/messages/channels
-Controller -> Service: Get User Channels
-Service -> Repo: Find channels for user
-Repo --> Service: List of channels
-Service --> Controller: Channels Data
-Controller --> Frontend: 200 OK (Channels)
-Frontend --> User: Display conversations
+User -> Frontend: (1.1) Open Messages
+Frontend -> Controller: (1.2) GET /api/messages/channels
+Controller -> Service: (2.1) Load user's channels and recent messages
+Service -> Repo: (2.2) Find channels for user
+Repo --> Service: (2.3) List of channels
+Service --> Controller: (3.1) Channels data
+Controller --> Frontend: (3.2) 200 OK (channels)
+Frontend --> User: (3.3) Display conversation list
 
-User -> Frontend: Type message & Send
-Frontend -> Crypto: Encrypt message with recipient's Public Key (E2EE)
-Crypto --> Frontend: Encrypted Ciphertext
-Frontend -> Controller: WS Send {channel_id, ciphertext}
-Controller -> Service: Process Message
-Service -> Repo: Validate channel membership
-Repo --> Service: Membership valid
-Service -> Repo: Persist Encrypted Message
-Repo --> Service: Message saved
-Service -> EventBus: Broadcast to Channel Members
-EventBus --> Controller: Push to recipient's WS connection
-Controller -> Frontend: WS Deliver Message (Ciphertext)
-Frontend -> Crypto: Decrypt with User's Private Key
-Crypto --> Frontend: Plaintext Message
-Frontend --> User: Display new message
+User -> Frontend: (4.1) Select a conversation
+User -> Frontend: (5.1) Type a message and send it
+Frontend -> Crypto: (5.2) Encrypt message with recipient's public key
+Crypto --> Frontend: (5.3) Encrypted ciphertext
+Frontend -> Controller: (5.4) WS Send {channel_id, ciphertext}
+Controller -> Service: (6.1) Process message
+Service -> Repo: (6.2) Validate channel membership and recipient settings
+Repo --> Service: (6.3) Membership valid
+Service -> Repo: (7.1) Persist encrypted message
+Repo --> Service: (7.2) Message saved
+Service -> EventBus: (8.1) Broadcast message to conversation members
+EventBus --> Controller: (8.2) Push to recipient's WS connection
+Controller -> Frontend: (8.3) WS deliver message (ciphertext)
+Frontend -> Crypto: (8.4) Decrypt message
+Crypto --> Frontend: (8.5) Plaintext message
+Service -> Repo: (9.1) Mark channel as read for current user
+Service --> Controller: (10.1) Delivery status
+Frontend --> User: (10.2) Display new message
 @enduml

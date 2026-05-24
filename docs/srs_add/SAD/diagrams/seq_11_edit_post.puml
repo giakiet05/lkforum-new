@@ -8,34 +8,38 @@ participant "Post Service" as Service
 participant "Post Repo" as PostRepo
 participant "Cloudinary" as Cloudinary
 
-User -> Frontend: Click edit post
-Frontend -> Controller: GET /api/posts/{id}
-Controller -> Service: Get Post
-Service -> PostRepo: Find post by ID
-PostRepo --> Service: Post Data
-Service --> Controller: Post Data
-Controller --> Frontend: 200 OK
-Frontend --> User: Display edit form
+User -> Frontend: (1.1) Open existing post for editing
+Frontend -> Controller: (1.2) GET /api/posts/{id}
+Controller -> Service: (2.1) Load post data
+Service -> PostRepo: (2.2) Find post by ID
+PostRepo --> Service: (2.3) Post data
+Service -> PostRepo: (3.1) Verify ownership
+PostRepo --> Service: (3.2) Ownership confirmed
+Service --> Controller: (4.1) Editable post content
+Controller --> Frontend: (4.2) 200 OK
+Frontend --> User: (4.3) Display edit form
 
-User -> Frontend: Modify content & change media
-Frontend -> Controller: PUT /api/posts/{id} (multipart form)
-Controller -> Service: Update Post
-Service -> PostRepo: Verify post ownership
-PostRepo --> Service: Ownership confirmed
+User -> Frontend: (6.1) Update title and content
+User -> Frontend: (7.1) Mark media changes if needed
+User -> Frontend: (8.1) Save changes
+Frontend -> Controller: (8.2) PUT /api/posts/{id} (multipart form)
+Controller -> Service: (9.1) Update post request
 
 alt Old media marked for removal
-    Service -> Cloudinary: Delete media by Public ID
-    Cloudinary --> Service: Deletion confirmed
+    Service -> Cloudinary: (10.1) Delete removed media by public ID
+    Cloudinary --> Service: (10.2) Deletion confirmed
+    Service -> PostRepo: (11.1) Persist media removal result
 end
 
 alt New media attached
-    Service -> Cloudinary: Upload new media stream
-    Cloudinary --> Service: Return Media URLs & IDs
+    Service -> Cloudinary: (12.1) Upload new media stream
+    Cloudinary --> Service: (12.2) Return media URLs and IDs
+    Service -> PostRepo: (13.1) Attach new media to post
 end
 
-Service -> PostRepo: Update Post record in DB
-PostRepo --> Service: Post updated
-Service --> Controller: Updated Post Data
-Controller --> Frontend: 200 OK
-Frontend --> User: Show updated post
+Service -> PostRepo: (9.2) Update post record in DB
+PostRepo --> Service: (9.3) Post updated
+Service --> Controller: (14.1) Updated post data
+Controller --> Frontend: (14.2) 200 OK
+Frontend --> User: (14.3) Show updated post
 @enduml

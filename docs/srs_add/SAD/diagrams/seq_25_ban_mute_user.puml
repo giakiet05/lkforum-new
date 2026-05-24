@@ -8,21 +8,21 @@ participant "Moderation Service" as Service
 participant "Restriction Repo" as Repo
 participant "User Repo" as UserRepo
 
-Moderator -> Frontend: Select Ban/Mute & Submit details
-Frontend -> Controller: POST /api/moderation/users/{id}/restrict {type, duration, reason}
-Controller -> Service: Restrict User
-Service -> UserRepo: Validate moderator permissions & target user
-UserRepo --> Service: Validation passed
+Moderator -> Frontend: (1.1/2.1/3.1/4.1) Select Ban/Mute & Submit details
+Frontend -> Controller: (4.2) POST /api/moderation/users/{id}/restrict {type, duration, reason}
+Controller -> Service: (5.1) Restrict User
+Service -> UserRepo: (5.2) Validate moderator permissions & target user
+UserRepo --> Service: (5.3) Validation passed
 
 alt Action is Ban
-    Service -> Repo: Insert Ban record
-    Repo --> Service: Ban record created
+    Service -> Repo: (6.1) Insert Ban record
+    Repo --> Service: (6.2) Ban record created
 else Action is Mute
-    Service -> Repo: Insert Mute record
-    Repo --> Service: Mute record created
+    Service -> Repo: (7.1) Insert Mute record
+    Repo --> Service: (7.2) Mute record created
 end
 
-Service --> Controller: Updated Restriction State
-Controller --> Frontend: 200 OK
-Frontend --> Moderator: Show success & update user status UI
+Service --> Controller: (8.1) Updated Restriction State
+Controller --> Frontend: (8.2) 200 OK
+Frontend --> Moderator: (8.3) Show success & update user status UI
 @enduml
