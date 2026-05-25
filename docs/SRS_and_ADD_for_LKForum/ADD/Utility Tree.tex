@@ -1,0 +1,1918 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{array}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\section{For Guest Users}
+
+\subsection{Utility Tree for Guest User Browsing Posts}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Browsing Posts}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Page load time
+& A guest user browses the list of posts under normal load, and the page loads in less than 2 seconds. (H,M) \\
+\cline{2-3}
+& Scrolling / pagination
+& A guest user navigates between pages or scrolls through posts under peak load, and additional content loads in less than 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Ease of navigation
+& A first-time guest user browses posts without prior instruction and can easily navigate between posts and lists. (H,M) \\
+\cline{2-3}
+& Readability
+& A guest user views posts on different devices, and the content is displayed clearly with a consistent layout. (M,M) \\
+\hline
+
+Availability
+& Read access
+& A guest user attempts to browse posts at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Traffic handling
+& At peak load, the system supports a large number of guest users browsing posts simultaneously without noticeable performance degradation. (H,M) \\
+\hline
+
+Security
+& Access restriction
+& A guest user attempts a restricted action such as posting or commenting, and the system prevents the action and prompts the user to sign up. (H,H) \\
+\hline
+
+Reliability
+& Content consistency
+& A guest user browses posts during operation, and all content is displayed correctly without missing or corrupted data. (H,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Guest User Viewing Posts and Comments}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Viewing Posts and Comments}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Post and comment load time
+& A guest user opens a post with comments under normal load, and all content is displayed in less than 2 seconds. (H,M) \\
+\cline{2-3}
+& Comment expansion
+& A guest user expands comment threads under peak load, and additional comments load in less than 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Readability
+& A guest user reads posts and nested comments, and the content is clearly structured and easy to follow. (H,M) \\
+\cline{2-3}
+& Navigation
+& A guest user navigates between posts and comment threads without confusion or additional guidance. (H,M) \\
+\hline
+
+Availability
+& Content access
+& A guest user attempts to view posts and comments at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent viewing
+& At peak load, many guest users view posts and comments simultaneously, and the system maintains stable response time. (H,M) \\
+\hline
+
+Security
+& Access restriction
+& A guest user attempts to interact (e.g., reply or vote), and the system prevents the action and prompts sign-up. (H,H) \\
+\hline
+
+Reliability
+& Data consistency
+& A guest user views posts and comments, and all content is displayed correctly without missing or duplicated entries. (H,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Guest User Searching Keywords}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Searching Keywords}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Search response time
+& A guest user enters a keyword under normal load, and the system returns relevant search results in less than 1 second. (H,H) \\
+\cline{2-3}
+& Result pagination
+& A guest user navigates through multiple pages of search results under peak load, and each page loads in less than 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Search accuracy
+& A guest user searches using common keywords, and the system returns relevant and meaningful results. (H,H) \\
+\cline{2-3}
+& Ease of use
+& A guest user performs a search without prior instruction and can easily refine or modify the query. (H,M) \\
+\hline
+
+Availability
+& Search availability
+& A guest user performs a search at any time, and the search functionality is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Query handling
+& At peak load, many guest users perform searches simultaneously, and the system maintains fast response times without degradation. (H,M) \\
+\hline
+
+Security
+& Query validation
+& A guest user submits search input, and the system sanitizes input to prevent injection or malicious queries. (H,H) \\
+\hline
+
+Reliability
+& Result consistency
+& A guest user performs the same search multiple times under stable data conditions, and the system returns consistent results. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Guest User Searching Communities}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Searching Communities}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Search response time
+& A guest user searches for communities under normal load, and the system returns results in less than 1 second. (H,H) \\
+\cline{2-3}
+& Result loading
+& A guest user navigates through community search results under peak load, and additional results load in less than 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Discoverability
+& A guest user searches for communities using keywords, and the system returns relevant communities based on interests. (H,H) \\
+\cline{2-3}
+& Ease of navigation
+& A guest user can easily browse, filter, and select communities from search results without prior instruction. (H,M) \\
+\hline
+
+Availability
+& Search access
+& A guest user performs community search at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent search
+& At peak load, many guest users search for communities simultaneously, and the system maintains stable response time. (H,M) \\
+\hline
+
+Security
+& Input validation
+& A guest user submits search queries, and the system validates and sanitizes input to prevent malicious usage. (H,H) \\
+\hline
+
+Reliability
+& Result consistency
+& A guest user performs repeated searches under stable conditions, and the system returns consistent community results. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Guest User Viewing User Profiles}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Viewing User Profiles}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Profile load time
+& A guest user opens a user profile under normal load, and the profile page loads in less than 2 seconds. (H,M) \\
+\cline{2-3}
+& Content loading
+& A guest user views posts or activity on a profile under peak load, and content loads in less than 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Information clarity
+& A guest user views a profile and can easily understand the user's bio, posts, and activity. (H,M) \\
+\cline{2-3}
+& Navigation
+& A guest user navigates between profile sections (posts, comments, etc.) without confusion. (H,M) \\
+\hline
+
+Availability
+& Profile access
+& A guest user attempts to view profiles at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent access
+& At peak load, many guest users view profiles simultaneously, and the system maintains stable response time. (H,M) \\
+\hline
+
+Security
+& Privacy protection
+& A guest user views a profile, and the system ensures only public information is displayed while restricted data is protected. (H,H) \\
+\hline
+
+Reliability
+& Data consistency
+& A guest user views a profile, and all displayed information is accurate and not missing or corrupted. (H,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Guest User Sign-up Prompt on Restricted Actions}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Sign-up Prompt on Restricted Actions}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Clarity of prompt
+& A guest user attempts a restricted action, and the system displays a clear and understandable sign-up prompt explaining the restriction. (H,H) \\
+\cline{2-3}
+& User guidance
+& A guest user sees the prompt and can easily proceed to the sign-up process without confusion. (H,M) \\
+\hline
+
+Performance
+& Prompt response time
+& A guest user triggers a restricted action under normal load, and the sign-up prompt appears in less than 0.5 seconds. (H,M) \\
+\hline
+
+Availability
+& Prompt availability
+& A guest user attempts restricted actions at any time, and the sign-up prompt mechanism is always available. (H,H) \\
+\hline
+
+Security
+& Access enforcement
+& A guest user attempts restricted actions, and the system consistently blocks the action and enforces authentication requirements. (H,H) \\
+\hline
+
+Reliability
+& Prompt consistency
+& A guest user repeatedly attempts restricted actions, and the system consistently displays the correct prompt without failure. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Guest User Sign-up with Email and OTP Verification}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Guest User Sign-up with Email and OTP Verification}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Security}
+& OTP verification
+& A guest user signs up with email, and the system generates and sends a one-time password (OTP) that must be correctly validated before account creation. (H,H) \\
+\cline{2-3}
+& Data protection
+& A guest user submits personal information during sign-up, and the system securely stores the data using encryption. (H,H) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& OTP delivery time
+& A guest user requests an OTP under normal load, and the system delivers the OTP within 5 seconds. (H,M) \\
+\cline{2-3}
+& Registration response
+& A guest user completes OTP verification, and the account is created in less than 2 seconds. (H,M) \\
+\hline
+
+Usability
+& Ease of registration
+& A guest user completes the sign-up and OTP verification process without prior instruction and minimal steps. (H,M) \\
+\hline
+
+Availability
+& Registration access
+& A guest user attempts to sign up at any time, and the registration and OTP services are available with 99.9\% uptime. (H,H) \\
+\hline
+
+Reliability
+& OTP correctness
+& A guest user enters a valid OTP within the allowed time, and the system consistently verifies it correctly without errors. (H,M) \\
+\hline
+
+Scalability
+& Concurrent registrations
+& At peak load, many guest users register simultaneously, and the system maintains stable performance for OTP generation and verification. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\section{For Members}
+
+\subsection{Utility Tree for Member Sign-in with External Authentication Provider}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Member Sign-in with External Authentication Provider}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{3}{*}{Security}
+& Third-party authentication
+& A member chooses to sign in using an external authentication provider, and the system securely delegates authentication without exposing user credentials. (H,H) \\
+\cline{2-3}
+& Token handling
+& A member successfully authenticates via the external provider, and the system receives and securely processes an authentication token containing user identity information. (H,H) \\
+\cline{2-3}
+& Token validation
+& A member sends requests after authentication, and the system validates the token’s integrity and expiration before granting access. (H,H) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Login response time
+& A member signs in using an external provider under normal load, and access is granted within 2 seconds. (H,M) \\
+\cline{2-3}
+& Redirection latency
+& A member is redirected between the platform and the external provider, and the transitions occur without noticeable delay. (M,M) \\
+\hline
+
+Usability
+& Ease of login
+& A member signs in using an external provider with minimal steps and without needing to create or remember a password. (H,H) \\
+\hline
+
+Availability
+& External dependency
+& A member attempts to sign in, and the system handles the availability of the external authentication service gracefully without blocking system access. (H,H) \\
+\hline
+
+Reliability
+& Authentication consistency
+& A member repeatedly signs in using the external provider under stable conditions, and the system consistently authenticates without failure. (H,M) \\
+\hline
+
+Interoperability
+& External integration
+& The system communicates with external authentication services using standard protocols to exchange authentication data correctly. (H,H) \\
+\hline
+
+\multirow{2}{*}{Manageability}
+& Monitoring login service
+& Admins can monitor login success/failure rates via dashboards. (M,M) \\
+\cline{2-3}
+& Error diagnostics
+& When login fails, logs provide sufficient detail for debugging authentication issues. (M,M) \\
+\hline
+
+Flexibility
+& Multiple login methods
+& The system supports adding new authentication providers without major redesign. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Member Sign-in with Email and Password}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Member Sign-in with Email and Password}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{3}{*}{Security}
+& Credential protection
+& A member enters email and password, and the system securely transmits credentials over a protected channel and stores passwords using strong hashing mechanisms. (H,H) \\
+\cline{2-3}
+& Token-based authentication
+& A member successfully authenticates, and the system generates a secure authentication token containing user identity and authorization data. (H,H) \\
+\cline{2-3}
+& Token validation
+& A member sends requests with an authentication token, and the system validates the token’s integrity and expiration before granting access. (H,H) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Login response time
+& A member signs in under normal load, and access is granted within 2 seconds. (H,M) \\
+\cline{2-3}
+& Authentication overhead
+& A member makes authenticated requests, and token validation adds minimal overhead to each request. (M,M) \\
+\hline
+
+Usability
+& Session continuity
+& A member remains authenticated across multiple interactions without needing to repeatedly enter credentials. (H,M) \\
+\hline
+
+Availability
+& Authentication service
+& A member attempts to sign in at any time, and the authentication service is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Reliability
+& Authentication consistency
+& A member repeatedly signs in with correct credentials, and the system consistently authenticates without failure. (H,M) \\
+\hline
+
+Scalability
+& Concurrent authentication
+& At peak load, many members authenticate and send requests simultaneously, and the system maintains stable performance without degradation. (H,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Member Profile Customization}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Profile Customization}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Profile editing ease
+& A member updates bio, avatar, and banner, and the system allows completion without guidance in a few intuitive steps. (H,M) \\
+\cline{2-3}
+& Feedback clarity
+& A member performs profile updates, and the system provides clear success or error messages. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Upload response time
+& A member uploads avatar or banner images under normal load, and the system processes and displays them within 3 seconds. (H,M) \\
+\cline{2-3}
+& Profile load time
+& A member views a profile with images, and the page loads within 2 seconds. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& File validation
+& A member uploads an image, and the system validates file type and size to prevent malicious content. (H,H) \\
+\cline{2-3}
+& Data protection
+& A member updates profile information, and the system ensures only the owner can modify their profile data. (H,H) \\
+\hline
+
+Reliability
+& Data consistency
+& A member updates profile data, and all changes are saved correctly without data loss or corruption. (H,M) \\
+\hline
+
+Availability
+& Profile editing access
+& A member attempts to edit their profile at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent uploads
+& At peak load, many members upload avatars and banners simultaneously, and the system maintains stable performance. (M,M) \\
+\hline
+
+Maintainability
+& Profile module modification
+& Developers modify profile customization features, and changes can be made without affecting unrelated modules. (M,M) \\
+\hline
+
+Flexibility
+& Profile extensibility
+& New profile fields (e.g., social links) can be added without significant redesign. (M,M) \\
+\hline
+
+Supportability
+& Error logging
+& Failures during profile updates or uploads are logged to support debugging and issue resolution. (M,M) \\
+\hline
+
+Testability
+& Feature testing
+& Profile customization features can be verified through automated and manual test cases. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Post Management}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Member Post Management}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Content interaction ease
+& A member creates, edits, or deletes a post (text, image, poll), and the system allows completion in a few intuitive steps with clear feedback. (H,M) \\
+\cline{2-3}
+& Input validation feedback
+& A member submits or updates a post with missing or invalid data, and the system provides clear and immediate feedback. (H,M) \\
+\hline
+
+\multirow{4}{*}{Performance}
+& Post submission time
+& A member submits a text post under normal load, and the system publishes it within 1 second. (H,M) \\
+\cline{2-3}
+& Image upload processing
+& A member uploads images to a post, and the system processes and attaches them within 3 seconds. (H,M) \\
+\cline{2-3}
+& Poll creation response
+& A member creates or updates a poll, and the system registers poll options and updates the post within 1 second. (H,M) \\
+\cline{2-3}
+& Edit/Delete response time
+& A member edits or deletes a post, and the system processes the action within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Content validation
+& A member submits or updates post content, and the system sanitizes inputs to prevent malicious scripts or harmful data. (H,H) \\
+\cline{2-3}
+& Access control
+& A member attempts to modify or delete a post, and only the owner or authorized roles are allowed to perform the action. (H,H) \\
+\hline
+
+\multirow{2}{*}{Reliability}
+& Data persistence
+& A member creates, edits, or deletes a post, and the system ensures all changes are stored correctly without data loss or inconsistency. (H,H) \\
+\cline{2-3}
+& Poll result correctness
+& Members vote on a poll, and the system accurately records votes and consistently displays correct aggregated results. (H,H) \\
+\hline
+
+Availability
+& Posting service availability
+& A member attempts to create, edit, or delete a post at any time, and the posting service is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent post operations
+& At peak load, many members create, edit, delete posts, and vote on polls simultaneously, and the system maintains stable performance. (H,M) \\
+\hline
+
+Maintainability
+& Post feature evolution
+& Developers extend or modify post-related features without affecting existing functionality. (M,M) \\
+\hline
+
+Flexibility
+& Content type extensibility
+& The system supports adding new post types or poll features without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Error logging
+& Failures during post operations or poll interactions are logged for debugging and issue resolution. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Post Drafting}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Saving Post as Draft}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Draft saving ease
+& A member saves a post as a draft, and the system allows the action with a single step and clear feedback. (H,M) \\
+\cline{2-3}
+& Draft retrieval
+& A member accesses saved drafts, and the system displays and allows editing without confusion. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Save response time
+& A member saves a draft under normal load, and the system stores it within 1 second. (H,M) \\
+\cline{2-3}
+& Load draft time
+& A member opens a saved draft, and the system loads the content within 1 second. (H,M) \\
+\hline
+
+Security
+& Access control
+& A member attempts to view or edit a draft, and only the owner can access and modify it. (H,H) \\
+\hline
+
+Reliability
+& Draft persistence
+& A member saves a draft, and the system ensures the content is stored correctly without data loss. (H,H) \\
+\hline
+
+Availability
+& Draft service availability
+& A member attempts to save or access drafts at any time, and the system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent draft operations
+& At peak load, many members save and edit drafts simultaneously, and the system maintains stable performance. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Member Voting on Posts and Comments}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Voting (Upvote/Downvote)}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Interaction simplicity
+& A member upvotes or downvotes a post or comment, and the system allows the action with a single click and immediate visual feedback. (H,M) \\
+\cline{2-3}
+& Feedback clarity
+& A member performs a vote action, and the system clearly reflects the updated vote state and count. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Vote response time
+& A member votes on a post or comment under normal load, and the system updates the vote within 0.5 seconds. (H,M) \\
+\cline{2-3}
+& Count update latency
+& A member performs voting under peak load, and vote counts are updated and displayed within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access control
+& A member attempts to vote, and only authenticated users are allowed to perform voting actions. (H,H) \\
+\cline{2-3}
+& Vote integrity
+& A member attempts to vote multiple times on the same item, and the system enforces one vote per user per item. (H,H) \\
+\hline
+
+Reliability
+& Vote consistency
+& A member votes on a post or comment, and the system consistently records and reflects the correct vote state. (H,H) \\
+\hline
+
+Availability
+& Voting service availability
+& A member attempts to vote at any time, and the voting functionality is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& High-frequency interactions
+& At peak load, many members perform voting simultaneously, and the system maintains stable performance without degradation. (H,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Commenting and Replying}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Comment Creation, Modification, Deletion, and Reply}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Comment interaction ease
+& A member creates, edits, deletes, or replies to a comment, and the system allows the action in a few intuitive steps with clear feedback. (H,M) \\
+\cline{2-3}
+& Threaded conversation clarity
+& A member replies to a specific comment, and the system displays the conversation in a clear hierarchical structure. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Comment submission time
+& A member submits or edits a comment under normal load, and the system processes the action within 1 second. (H,M) \\
+\cline{2-3}
+& Thread loading time
+& A member views a post with nested comments, and the system loads and renders the comment thread within 2 seconds. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access control
+& A member attempts to modify or delete a comment, and only the owner or authorized roles can perform the action. (H,H) \\
+\cline{2-3}
+& Content validation
+& A member submits a comment, and the system sanitizes input to prevent malicious or harmful content. (H,H) \\
+\hline
+
+Reliability
+& Comment consistency
+& A member performs comment operations, and the system ensures all changes are saved correctly without duplication or loss. (H,H) \\
+\hline
+
+Availability
+& Comment service availability
+& A member attempts to interact with comments at any time, and the system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& High interaction load
+& At peak load, many members create and reply to comments simultaneously, and the system maintains stable performance. (H,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Follow}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Following Users and Viewing Their Post History}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Follow interaction ease
+& A member follows or unfollows another user, and the system completes the action with a single step and clear feedback. (H,M) \\
+\cline{2-3}
+& History readability
+& A member views a followed user's post history, and the system presents posts in a clear and chronological order. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Follow action response
+& A member follows or unfollows a user under normal load, and the system processes the action within 1 second. (H,M) \\
+\cline{2-3}
+& History load time
+& A member opens a followed user's post history, and the system loads posts within 2 seconds. (H,H) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access control
+& A member attempts to follow a user or view their posts, and the system enforces authentication and respects visibility settings. (H,H) \\
+\cline{2-3}
+& Data privacy
+& A member views a user's post history, and the system ensures only accessible posts are displayed. (H,H) \\
+\hline
+
+\multirow{2}{*}{Reliability}
+& Follow consistency
+& A member follows or unfollows a user, and the system consistently updates and reflects the relationship. (H,H) \\
+\cline{2-3}
+& History correctness
+& A member views post history, and the system consistently displays all posts without duplication or omission. (H,H) \\
+\hline
+
+Availability
+& History access availability
+& A member attempts to view a user's post history at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent access
+& At peak load, many members follow users and view post histories simultaneously, and the system maintains stable performance. (H,M) \\
+\hline
+
+Maintainability
+& Feature updates
+& Developers modify follow or history viewing features without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& History extensibility
+& The system supports future enhancements such as filtering or sorting post history without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Activity logging
+& Follow actions and history access operations are logged to support debugging and monitoring. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Member Notification System}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Notifications}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Notification clarity
+& A member receives a notification, and the system displays clear and understandable information about the triggering event. (H,M) \\
+\cline{2-3}
+& Interaction ease
+& A member views a notification and can easily navigate to the related content with a single action. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Delivery latency
+& An event that triggers a notification occurs under normal load, and the system delivers the notification within 1 second. (H,H) \\
+\cline{2-3}
+& Retrieval time
+& A member opens the notification list, and the system loads notifications within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Reliability}
+& Delivery guarantee
+& A notification event occurs, and the system ensures the notification is delivered without loss. (H,H) \\
+\cline{2-3}
+& Consistency
+& A member views notifications, and the system consistently displays correct and up-to-date notification states. (H,H) \\
+\hline
+
+Availability
+& Notification service availability
+& A member receives notifications at any time, and the notification system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& High event throughput
+& At peak load, many events trigger notifications simultaneously, and the system maintains stable performance. (H,H) \\
+\hline
+
+Security
+& Access control
+& A member accesses notifications, and the system ensures only authorized users can view their notifications. (H,H) \\
+\hline
+
+Maintainability
+& Notification feature updates
+& Developers modify notification logic without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& Notification extensibility
+& The system supports adding new notification types without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Event logging
+& Notification events and delivery failures are logged to support debugging and monitoring. (M,M) \\
+\hline
+
+Testability
+& Notification verification
+& Notification delivery and display can be validated through automated and manual tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Member Private Messaging}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Private Messaging}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Messaging ease
+& A member sends and receives private messages, and the system allows communication through a simple and intuitive interface. (H,M) \\
+\cline{2-3}
+& Conversation readability
+& A member views a conversation, and messages are displayed in a clear and chronological order. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Message delivery latency
+& A member sends a message under normal load, and the system delivers it to the recipient within 1 second. (H,H) \\
+\cline{2-3}
+& Conversation load time
+& A member opens a conversation, and messages are loaded within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Message privacy
+& A member sends a private message, and the system ensures that only the intended recipient can access the message content. (H,H) \\
+\cline{2-3}
+& Access control
+& A member attempts to access a conversation, and only authorized participants can view or interact with it. (H,H) \\
+\hline
+
+\multirow{2}{*}{Reliability}
+& Message delivery guarantee
+& A member sends a message, and the system ensures the message is delivered without loss or duplication. (H,H) \\
+\cline{2-3}
+& Message consistency
+& A member views messages, and the system consistently displays the correct conversation history. (H,H) \\
+\hline
+
+Availability
+& Messaging service availability
+& A member sends or receives messages at any time, and the messaging system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent messaging
+& At peak load, many members send messages simultaneously, and the system maintains stable performance. (H,H) \\
+\hline
+
+Maintainability
+& Messaging feature updates
+& Developers modify messaging functionality without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& Messaging extensibility
+& The system supports adding new messaging features (e.g., attachments) without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Message logging
+& Messaging operations and failures are logged to support debugging and monitoring. (M,M) \\
+\hline
+
+Testability
+& Messaging verification
+& Message sending, receiving, and display can be validated through automated and manual tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Member Reporting Inappropriate Content}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Reporting System}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Reporting ease
+& A member reports inappropriate content, and the system allows submission in a few simple steps with clear feedback. (H,M) \\
+\cline{2-3}
+& Feedback clarity
+& A member submits a report, and the system confirms successful submission with clear status information. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Report submission time
+& A member submits a report under normal load, and the system processes it within 1 second. (H,M) \\
+\cline{2-3}
+& Report retrieval time
+& A moderator accesses reports, and the system loads them within 2 seconds. (M,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access control
+& A member attempts to submit a report, and only authenticated users are allowed to perform the action. (H,H) \\
+\cline{2-3}
+& Abuse prevention
+& A member submits reports, and the system prevents spam or excessive reporting through validation mechanisms. (H,H) \\
+\hline
+
+\multirow{2}{*}{Reliability}
+& Report persistence
+& A member submits a report, and the system ensures the report is stored correctly without loss. (H,H) \\
+\cline{2-3}
+& Processing consistency
+& Reports are processed by moderators, and the system maintains consistent status updates without errors. (H,M) \\
+\hline
+
+Availability
+& Reporting service availability
+& A member submits reports at any time, and the reporting system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& High report volume
+& At peak load, many members submit reports simultaneously, and the system maintains stable performance. (M,M) \\
+\hline
+
+Maintainability
+& Reporting feature updates
+& Developers modify reporting functionality without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& Report extensibility
+& The system supports adding new report categories or workflows without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Report logging
+& Reporting actions and errors are logged to support debugging and moderation analysis. (M,M) \\
+\hline
+
+Testability
+& Reporting verification
+& Report submission and processing can be validated through automated and manual tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\section{For Community Owners and Moderators}
+
+\subsection{Utility Tree for Community Creation}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Community Creation}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Creation ease
+& A community owner creates a new community, and the system allows completion in a few intuitive steps with clear guidance. (H,M) \\
+\cline{2-3}
+& Input feedback
+& A community owner submits community details, and the system provides immediate and clear validation feedback for missing or invalid inputs. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Creation response time
+& A community owner creates a community under normal load, and the system processes and confirms creation within 2 seconds. (H,M) \\
+\cline{2-3}
+& Page load time
+& A community owner accesses the community creation interface, and the page loads within 2 seconds. (M,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access control
+& A user attempts to create a community, and only authorized members are allowed to perform the action. (H,H) \\
+\cline{2-3}
+& Data validation
+& A community owner submits community information, and the system validates inputs to prevent malicious or inappropriate data. (H,H) \\
+\hline
+
+Reliability
+& Creation consistency
+& A community owner creates a community, and the system ensures the community is stored and initialized correctly without errors. (H,H) \\
+\hline
+
+Availability
+& Creation service availability
+& A community owner attempts to create a community at any time, and the system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent creation
+& At peak load, multiple users create communities simultaneously, and the system maintains stable performance. (M,M) \\
+\hline
+
+Maintainability
+& Community feature updates
+& Developers modify community creation features without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& Community configuration extensibility
+& The system supports adding new community settings without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Creation logging
+& Community creation actions and failures are logged for debugging and monitoring. (M,M) \\
+\hline
+
+Testability
+& Creation verification
+& Community creation functionality can be validated through automated and manual tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Defining Community Rules}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Community Rules Management}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Rule creation ease
+& A community owner defines or updates community rules, and the system allows completion in a few intuitive steps with clear guidance. (H,M) \\
+\cline{2-3}
+& Rule clarity
+& A member views community rules, and the system displays them in a clear and readable format. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Rule update response
+& A community owner updates rules under normal load, and the system processes and saves changes within 1 second. (H,M) \\
+\cline{2-3}
+& Rule retrieval time
+& A member accesses community rules, and the system loads them within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access control
+& A user attempts to create or modify rules, and only the community owner or authorized moderators can perform the action. (H,H) \\
+\cline{2-3}
+& Content validation
+& A community owner submits rule content, and the system validates and sanitizes inputs to prevent malicious or harmful content. (H,H) \\
+\hline
+
+Reliability
+& Rule consistency
+& A community owner updates rules, and the system ensures all changes are stored and displayed correctly without data loss. (H,H) \\
+\hline
+
+Availability
+& Rule service availability
+& Users access community rules at any time, and the system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Concurrent access
+& At peak load, many users view community rules simultaneously, and the system maintains stable performance. (M,M) \\
+\hline
+
+Maintainability
+& Rule management updates
+& Developers modify rule management features without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& Rule extensibility
+& The system supports adding new rule formats or categories without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Rule change logging
+& Rule updates and related errors are logged to support debugging and moderation tracking. (M,M) \\
+\hline
+
+Testability
+& Rule verification
+& Rule creation, modification, and display can be validated through automated and manual tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Community Privacy Settings}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Community Privacy Control}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Setting configuration ease
+& A community owner sets or updates privacy settings (public or private), and the system allows completion in a few intuitive steps with clear feedback. (H,M) \\
+\cline{2-3}
+& Privacy visibility clarity
+& A user views a community, and the system clearly indicates whether it is public or private. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Setting update response
+& A community owner changes privacy settings under normal load, and the system applies changes within 1 second. (H,M) \\
+\cline{2-3}
+& Access validation time
+& A user attempts to access a community, and the system validates access permissions within 0.5 seconds. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Access enforcement
+& A user attempts to access a private community, and the system restricts access to authorized members only. (H,H) \\
+\cline{2-3}
+& Unauthorized access prevention
+& A non-member attempts to view restricted content, and the system prevents exposure of private data. (H,H) \\
+\hline
+
+Reliability
+& Policy consistency
+& A community owner updates privacy settings, and the system consistently enforces the updated policy across all access points. (H,H) \\
+\hline
+
+Availability
+& Privacy control availability
+& A community owner updates or users access community privacy settings at any time, and the system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Access control under load
+& At peak load, many users attempt to access communities simultaneously, and the system enforces privacy rules without performance degradation. (H,M) \\
+\hline
+
+Maintainability
+& Privacy feature updates
+& Developers modify privacy control logic without affecting other system components. (M,M) \\
+\hline
+
+Flexibility
+& Privacy model extensibility
+& The system supports future extensions (e.g., invite-only or role-based access) without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Access logging
+& Access attempts and violations are logged to support monitoring and debugging. (M,M) \\
+\hline
+
+Testability
+& Access rule verification
+& Privacy enforcement can be validated through automated and manual test cases. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Assigning Moderator Roles}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Assigning Moderator Roles to Members}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Role assignment simplicity
+& A community owner assigns or removes moderator roles, and the system allows completion through a clear and intuitive interface within a few steps. (H,M) \\
+\cline{2-3}
+& Role visibility clarity
+& A user views member roles in a community, and the system clearly displays who is a moderator or owner. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Role assignment response time
+& A community owner assigns a moderator under normal load, and the system updates the role within 1 second. (H,M) \\
+\cline{2-3}
+& Permission propagation time
+& A member is assigned a moderator role, and the system applies new permissions across all relevant features within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Role authorization enforcement
+& A non-owner attempts to assign moderator roles, and the system denies the action and logs the attempt. (H,H) \\
+\cline{2-3}
+& Privilege misuse prevention
+& A moderator attempts to perform actions beyond their permissions, and the system restricts unauthorized operations. (H,H) \\
+\hline
+
+Reliability
+& Role consistency
+& A moderator role is assigned or revoked, and the system consistently reflects the correct role across all services without conflict. (H,H) \\
+\hline
+
+Availability
+& Role management availability
+& Community owners manage moderator roles at any time, and the system remains available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Role assignment under load
+& At peak usage, multiple communities assign moderators simultaneously, and the system maintains stable performance. (H,M) \\
+\hline
+
+Maintainability
+& Role management extensibility
+& Developers update role management logic without impacting other modules such as permissions or user profiles. (M,M) \\
+\hline
+
+Flexibility
+& Role model extensibility
+& The system supports adding new roles (e.g., senior moderator) without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Role change logging
+& All role assignment and revocation actions are logged for auditing and debugging purposes. (M,M) \\
+\hline
+
+Testability
+& Role assignment verification
+& Role assignment and permission enforcement can be validated through automated and manual test cases. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Reviewing and Approving Posts}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Moderation of Pending Posts}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Moderation workflow clarity
+& A moderator reviews pending posts, and the system provides a clear interface to approve or reject content with minimal steps. (H,M) \\
+\cline{2-3}
+& Content review readability
+& A moderator views a pending post, and the system displays content (text, images, metadata) clearly for quick decision-making. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Review action response time
+& A moderator approves or rejects a post under normal load, and the system processes the action within 1 second. (H,M) \\
+\cline{2-3}
+& Queue loading time
+& A moderator opens the moderation queue, and the system loads pending posts within 2 seconds. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Moderation authorization enforcement
+& A non-moderator attempts to approve or reject posts, and the system denies access and logs the attempt. (H,H) \\
+\cline{2-3}
+& Content integrity protection
+& A post under review cannot be altered by unauthorized users before moderation is completed. (H,H) \\
+\hline
+
+Reliability
+& Moderation decision consistency
+& A post is approved or rejected, and the system consistently updates its status across all views without duplication or loss. (H,H) \\
+\hline
+
+Availability
+& Moderation system availability
+& Moderators access and process pending posts at any time, and the system maintains 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Moderation queue under load
+& During peak activity, a large number of posts enter the moderation queue, and the system handles the load without degrading performance. (H,M) \\
+\hline
+
+Maintainability
+& Moderation logic maintainability
+& Developers modify moderation workflows without affecting unrelated components such as posting or notifications. (M,M) \\
+\hline
+
+Flexibility
+& Moderation rule extensibility
+& The system supports adding automated moderation rules (e.g., AI filtering) without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Moderation activity logging
+& All moderation actions (approve/reject) are logged for auditing and debugging. (M,M) \\
+\hline
+
+Testability
+& Moderation workflow testing
+& Moderation scenarios (approve, reject, edge cases) can be validated through automated and manual test cases. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Removing Posts or Comments}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Removing Posts or Comments}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Removal action simplicity
+& A moderator removes a post or comment, and the system allows completion in a few clear steps with confirmation feedback. (H,M) \\
+\cline{2-3}
+& Removal feedback clarity
+& A user attempts to view removed content, and the system clearly indicates that it has been removed due to policy violations. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Removal response time
+& A moderator removes content under normal load, and the system processes the action within 1 second. (H,M) \\
+\cline{2-3}
+& Content update propagation
+& Removed content is reflected across feeds and views within 1 second. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Removal authorization enforcement
+& A non-moderator attempts to remove content, and the system denies the action and logs the attempt. (H,H) \\
+\cline{2-3}
+& Unauthorized restoration prevention
+& A removed post or comment cannot be restored by unauthorized users. (H,H) \\
+\hline
+
+Reliability
+& Removal consistency
+& Once content is removed, the system consistently prevents it from appearing across all interfaces. (H,H) \\
+\hline
+
+Availability
+& Moderation availability
+& Moderators can remove content at any time with 99.9\% system uptime. (H,H) \\
+\hline
+
+Scalability
+& Bulk moderation under load
+& During peak usage, moderators remove large volumes of content, and the system maintains stable performance. (H,M) \\
+\hline
+
+Maintainability
+& Content moderation maintainability
+& Developers update removal logic without impacting other modules. (M,M) \\
+\hline
+
+Flexibility
+& Moderation policy flexibility
+& The system supports evolving content policies without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Removal logging
+& All removal actions are logged for auditing and debugging. (M,M) \\
+\hline
+
+Testability
+& Removal testing
+& Content removal scenarios can be verified through automated and manual tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Muting Users from Community}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Muting Users}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Mute action simplicity
+& A moderator mutes a user, and the system provides an intuitive interface to set duration and confirm the action. (H,M) \\
+\cline{2-3}
+& Mute status visibility
+& A muted user attempts to interact, and the system clearly informs them of the restriction and duration. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Mute action response
+& A moderator mutes a user, and the system enforces the restriction within 1 second. (H,M) \\
+\cline{2-3}
+& Restriction enforcement latency
+& A muted user attempts to post or comment, and the system blocks the action within 0.5 seconds. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Mute authorization enforcement
+& A non-moderator attempts to mute users, and the system denies the action. (H,H) \\
+\cline{2-3}
+& Restriction bypass prevention
+& A muted user attempts to bypass restrictions, and the system prevents unauthorized interactions. (H,H) \\
+\hline
+
+Reliability
+& Mute duration accuracy
+& A user is muted for a specified duration, and the system enforces and lifts the restriction accurately. (H,H) \\
+\hline
+
+Availability
+& Mute functionality availability
+& Moderators can mute users at any time with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& User restriction under load
+& The system enforces mute restrictions for many users simultaneously without degradation. (H,M) \\
+\hline
+
+Maintainability
+& Restriction logic maintainability
+& Developers update mute logic without affecting other moderation features. (M,M) \\
+\hline
+
+Flexibility
+& Restriction policy extensibility
+& The system supports additional restriction types (e.g., partial mute) without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Mute action logging
+& All mute actions and durations are logged for monitoring and debugging. (M,M) \\
+\hline
+
+Testability
+& Mute enforcement testing
+& Mute scenarios (apply, expire, edge cases) can be validated through tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Banning Users from Community}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Banning Users}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Ban action clarity
+& A moderator bans a user, and the system provides clear steps including reason input and confirmation. (H,M) \\
+\cline{2-3}
+& Ban notification clarity
+& A banned user attempts to access the community, and the system clearly communicates the ban status and reason. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Ban enforcement time
+& A moderator bans a user, and the system enforces the restriction across all features within 1 second. (H,M) \\
+\cline{2-3}
+& Access denial response
+& A banned user attempts to access content, and the system denies access within 0.5 seconds. (H,M) \\
+\hline
+
+\multirow{2}{*}{Security}
+& Ban authorization enforcement
+& A non-moderator attempts to ban users, and the system denies the action and logs it. (H,H) \\
+\cline{2-3}
+& Re-entry prevention
+& A banned user attempts to rejoin or bypass the ban, and the system prevents unauthorized access. (H,H) \\
+\hline
+
+Reliability
+& Ban consistency
+& A banned user is consistently restricted from all community interactions without exception. (H,H) \\
+\hline
+
+Availability
+& Ban management availability
+& Moderators manage bans at any time with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Ban enforcement at scale
+& The system enforces bans for a large number of users across communities without performance degradation. (H,M) \\
+\hline
+
+Maintainability
+& Ban logic maintainability
+& Developers update banning mechanisms without impacting other system modules. (M,M) \\
+\hline
+
+Flexibility
+& Ban policy extensibility
+& The system supports temporary or conditional bans without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Ban audit logging
+& All ban actions, reasons, and timestamps are logged for auditing purposes. (M,M) \\
+\hline
+
+Testability
+& Ban enforcement testing
+& Ban scenarios (apply, revoke, bypass attempts) can be validated through testing. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\section{For System Administrators}
+
+\subsection{Utility Tree for System Analytics Dashboard}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for System Analytics Dashboard}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Dashboard readability
+& A system admin views the analytics dashboard, and the system presents metrics in a clear and organized manner. (H,M) \\
+\cline{2-3}
+& Navigation efficiency
+& A system admin navigates between analytics sections, and the system allows quick and intuitive access. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Dashboard load time
+& A system admin opens the dashboard, and the system loads key metrics within 2 seconds. (H,M) \\
+\cline{2-3}
+& Data refresh latency
+& Analytics data updates in near real-time with a delay of no more than 5 seconds. (H,M) \\
+\hline
+
+Security
+& Access control
+& A non-admin attempts to access the dashboard, and the system denies access. (H,H) \\
+\hline
+
+Reliability
+& Data accuracy
+& The dashboard displays accurate and consistent analytics data across sessions. (H,H) \\
+\hline
+
+Availability
+& Dashboard availability
+& The analytics dashboard is accessible with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Analytics under load
+& The system handles large volumes of analytics data without performance degradation. (H,M) \\
+\hline
+
+Maintainability
+& Analytics maintainability
+& Developers update dashboard components without affecting other system modules. (M,M) \\
+\hline
+
+Flexibility
+& Metric extensibility
+& New analytics metrics can be added without major redesign. (M,M) \\
+\hline
+
+Supportability
+& Monitoring logs
+& System metrics and access logs are recorded for debugging and monitoring. (M,M) \\
+\hline
+
+Testability
+& Analytics validation
+& Dashboard metrics and data pipelines can be verified through tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Reviewing Escalated Reports}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Reviewing Escalated Reports}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Report review clarity
+& A system admin reviews escalated reports, and the system presents all relevant information clearly. (H,M) \\
+\cline{2-3}
+& Decision workflow simplicity
+& A system admin takes action (dismiss, escalate, ban), and the system provides a clear workflow. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Report loading time
+& A system admin opens a report queue, and the system loads within 2 seconds. (H,M) \\
+\cline{2-3}
+& Action processing time
+& Actions on reports are processed within 1 second. (H,M) \\
+\hline
+
+Security
+& Report access control
+& Unauthorized users cannot access escalated reports. (H,H) \\
+\hline
+
+Reliability
+& Report consistency
+& Report status updates are consistent across all views. (H,H) \\
+\hline
+
+Availability
+& Report system availability
+& The reporting system is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Report handling under load
+& The system processes large volumes of reports without degradation. (H,M) \\
+\hline
+
+Maintainability
+& Reporting system maintainability
+& Developers update reporting workflows without affecting other modules. (M,M) \\
+\hline
+
+Flexibility
+& Action extensibility
+& The system supports adding new moderation actions without redesign. (M,M) \\
+\hline
+
+Supportability
+& Report audit logs
+& All report actions are logged for auditing. (M,M) \\
+\hline
+
+Testability
+& Report workflow testing
+& Report handling scenarios can be validated through tests. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Global User Banning}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Global User Banning}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Ban workflow clarity
+& A system admin bans a user globally, and the system provides clear steps and confirmation. (H,M) \\
+\cline{2-3}
+& Ban communication clarity
+& A banned user is clearly informed of the global restriction. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Ban enforcement time
+& A global ban is enforced across all communities within 1 second. (H,M) \\
+\cline{2-3}
+& Access denial latency
+& A banned user is denied access within 0.5 seconds. (H,M) \\
+\hline
+
+Security
+& Admin authorization enforcement
+& Only authorized admins can perform global bans. (H,H) \\
+\hline
+
+Reliability
+& Ban consistency
+& A globally banned user is restricted across all services without exception. (H,H) \\
+\hline
+
+Availability
+& Ban system availability
+& Global banning functionality is available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Global enforcement at scale
+& The system enforces bans across millions of users without degradation. (H,M) \\
+\hline
+
+Maintainability
+& Ban system maintainability
+& Developers update ban logic without affecting other modules. (M,M) \\
+\hline
+
+Flexibility
+& Ban policy extensibility
+& The system supports temporary or conditional global bans. (M,M) \\
+\hline
+
+Supportability
+& Ban audit logs
+& All global bans are logged with reasons and timestamps. (M,M) \\
+\hline
+
+Testability
+& Ban system testing
+& Global ban scenarios can be validated through testing. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\subsection{Utility Tree for Removing or Restricting Communities}
+
+\begin{table}[H]
+\centering
+\caption{Utility Tree for Community Removal or Restriction}
+\begin{tabular}{|p{3cm}|p{4cm}|p{7cm}|}
+\hline
+\textbf{Quality Attribute} & \textbf{Attribute Refinement} & \textbf{ASR} \\
+\hline
+
+\multirow{2}{*}{Usability}
+& Action clarity
+& A system admin removes or restricts a community, and the system provides clear steps and confirmation. (H,M) \\
+\cline{2-3}
+& Status visibility
+& Users viewing a restricted community see clear status indicators. (H,M) \\
+\hline
+
+\multirow{2}{*}{Performance}
+& Action processing time
+& Community restriction/removal is processed within 1 second. (H,M) \\
+\cline{2-3}
+& Propagation time
+& Changes are reflected across the system within 1 second. (H,M) \\
+\hline
+
+Security
+& Admin authorization
+& Only authorized admins can remove or restrict communities. (H,H) \\
+\hline
+
+Reliability
+& Enforcement consistency
+& Restricted communities are consistently controlled across all features. (H,H) \\
+\hline
+
+Availability
+& Control system availability
+& Community control features are available with 99.9\% uptime. (H,H) \\
+\hline
+
+Scalability
+& Enforcement under load
+& The system handles large numbers of community restrictions without degradation. (H,M) \\
+\hline
+
+Maintainability
+& Control logic maintainability
+& Developers update restriction logic without affecting unrelated modules. (M,M) \\
+\hline
+
+Flexibility
+& Policy extensibility
+& The system supports different restriction levels without redesign. (M,M) \\
+\hline
+
+Supportability
+& Action logging
+& All admin actions on communities are logged for auditing. (M,M) \\
+\hline
+
+Testability
+& Control testing
+& Community restriction/removal scenarios can be validated through testing. (M,M) \\
+\hline
+
+\end{tabular}
+\end{table}
+
+\end{document}

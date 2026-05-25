@@ -1,0 +1,37 @@
+PWD e:\Github\lkforum\docs\SRS_and_ADD_for_LKForum\SRS
+INPUT C:\Users\Admin\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
+INPUT e:\Github\lkforum\docs\SRS_and_ADD_for_LKForum\SRS\SRS - Copy.tex
+OUTPUT SRS - Copy.log
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrreprt.cls
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrreprt.cls
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrkbase.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrbase.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrlfile.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrlfile-hook.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrlogo.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\graphics\keyval.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\tocbasic.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\caption\caption.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\footmisc\footmisc.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\scrsize11pt.clo
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\koma-script\typearea.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr10.tfm
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\fontspec\fontspec.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\l3packages\xparse\xparse.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
+INPUT C:\Users\Admin\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
